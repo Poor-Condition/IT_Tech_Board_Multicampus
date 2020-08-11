@@ -20,4 +20,4 @@ def main():
 if __name__ == '__main__':
     main()
 
-# Test Commit / 김채린
+# Test Commit / 김채린 / 김민지
