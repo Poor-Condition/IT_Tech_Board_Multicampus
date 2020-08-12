@@ -1,0 +1,19 @@
+{
+    "python.pythonPath": "venv\\Scripts\\python.exe",
+    "sqltools.connections": [
+        {
+            "database": "poor_db",
+            "driver": "MariaDB",
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "name": "poor_condition",
+            "password": "minji",
+            "port": 3306,
+            "previewLimit": 50,
+            "server": "192.168.0.25",
+            "username": "minji"
+        }
+    ],
+    "git.ignoreLimitWarning": true
+}
