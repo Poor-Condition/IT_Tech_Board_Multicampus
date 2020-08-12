@@ -1,0 +1,56 @@
+.page_header{
+    background-color: darkgray;
+    margin-top: 0px;
+    padding: 10px 20px 40px 20px;
+}
+
+.page_header h1, .page_header h1 a, .page_header h1 a:visited, .page_header h1 a:active{
+    color: #ffffff;
+    font-size: 60pt;
+    text-decoration: unset;
+    font-weight: bold;
+    font: bold;
+    text-align: center;
+}
+
+h1, h2, h3, h4{
+    font-family: "Oswald";
+    font-weight: bold;
+}
+
+.content{
+    margin-left: 15px;
+}
+
+.post{
+    margin-bottom: 40px;
+}
+
+.date{
+    color: #828282;
+    font-size: 15px;
+}
+
+.post-form textarea, .post-form input{
+    width:100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited{
+    color: white;
+    font-size: 15pt;
+    margin-right: 20px;
+    float: right;
+}
+
+.save{
+    float: right;
+}
+
+input.btn{
+    float: right;
+    margin-right: 60px;
+}
+
+.comment{
+    margin: 20px 0px 20px 20px;
+}
