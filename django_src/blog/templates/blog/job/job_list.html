@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <div class="">
+        <div class="date">
+        </div>
+        <h3><a href="{% url 'job_cloud_list' %}"> 클라우드 채용 공고 </a></h3>
+        <h3><a href="{% url 'job_python_list' %}"> 파이썬 채용 공고 </a></h3>
+        <h3><a href="{% url 'job_db_list' %}"> DB 채용 공고 </a></h3>
+    </div>
+{% endblock %}
+
