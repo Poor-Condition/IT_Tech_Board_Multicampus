@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+    <div>
+        <h1><a href= "/"> 공모전 </a></h1>
+    </div>
+
+    {% for contest in contests %}
+        <div class="contest">
+            <div class="date">
+                <h6><p>접수기간: {{contest.contest_period}}</p></h6>
+            </div>
+            <h4><a href={{ contest.contest_homepage }}> {{contest.contest_title}} </a></h4>
+
+        </div>
+        {% empty %}
+        <div> 요청하신 Post가 없습니다. </div>
+    {% endfor %}
+{% endblock %}
