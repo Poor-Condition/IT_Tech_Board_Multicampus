@@ -1,13 +1,17 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+
+    <div>
+        <h1><a href= "/"> 뉴스 </a></h1>
+    </div>
+
     {% for article in articles %} 
         <div class="article">
             <div class="date">
                 <p>Published: {{ article.published_date }}</p>
             </div>
             <h3><a href={{ article.news_url }}> {{article.news_title}} </a></h3>
-            <p>{{ article.news_link|linebreaksbr }}</p>
         </div>
         {% empty %}
         <div> 요청하신 Post가 없습니다. </div>
