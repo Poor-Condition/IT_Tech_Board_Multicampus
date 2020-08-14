@@ -31,6 +31,15 @@ def article_cloud_list(request):
     page = request.GET.get("page")
     posts = paginator.get_page(page)
 
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+
     return render(request, "blog/article/article_detail_list.html", {"posts": posts})
 
 def article_new_tech_list(request):
@@ -38,5 +47,14 @@ def article_new_tech_list(request):
     paginator = Paginator(article_new_tech, 10)
     page = request.GET.get("page")
     posts = paginator.get_page(page)
+
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
     
     return render(request, "blog/article/article_detail_list.html", {"posts": posts})
