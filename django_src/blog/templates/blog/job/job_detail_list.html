@@ -8,10 +8,8 @@
 
     {% for job in jobs %}
         <div class="article">
-            <div class="date">
-                <p>Published: {{ article.published_date }}</p>
-            </div>
-            <h3><a href={{ article.news_url }}> {{article.news_title}} </a></h3>
+            <h3><a href={{ job.link }}> {{job.job_title}} </a></h3>
+            <p>{{job.company}}</p>
         </div>
         {% empty %}
         <div> 요청하신 Post가 없습니다. </div>
