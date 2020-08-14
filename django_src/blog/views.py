@@ -1,75 +1,49 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science
+from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
 
-
+# 메인 화면(임시)
 def main_view(request):
     return render(request, "blog/main_view.html", )
 
+# view
+def set_view(request, model_name, field_name, path):
+    obj = model_name.objects.filter(field=field_name)
+    paginator = Paginator(obj, 10)
+    page = request.GET.get("page")
 
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts})
+
+# 뉴스
 def article_list(request):
     return render(request, "blog/article/article_list.html", )
 
-
 def article_dev_list(request):
-    article_dev = News_dev.objects.all()
-    paginator = Paginator(article_dev, 10)
-    page = request.GET.get("page")
-
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        posts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        posts = paginator.page(paginator.num_pages)
-
-    return render(request, "blog/article/article_detail_list.html", {"posts": posts})
+    return set_view(request, Articles, "개발자", "article")
 
 
 def article_cloud_list(request):
-    article_cloud = News_cloud.objects.all()
-    paginator = Paginator(article_cloud, 10)
-    page = request.GET.get("page")
-    posts = paginator.get_page(page)
-
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        posts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        posts = paginator.page(paginator.num_pages)
-
-    return render(request, "blog/article/article_detail_list.html", {"posts": posts})
-
+    return set_view(request, Articles, "클라우드", "article")
 
 def article_new_tech_list(request):
-    article_new_tech = News_new_tech.objects.all()
-    paginator = Paginator(article_new_tech, 10)
-    page = request.GET.get("page")
-    posts = paginator.get_page(page)
+    return set_view(request, Articles, "신기술", "article")
 
-    try:
-        posts = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        posts = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        posts = paginator.page(paginator.num_pages)
-
-    return render(request, "blog/article/article_detail_list.html", {"posts": posts})
-
+# 채용공고
 def job_list(request):
     return render(request, "blog/job/job_list.html",)
 
 def job_python_list(request):
     jobs_python = Jobs_Python.objects.all()
-
     return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_python})
 
 
@@ -85,7 +59,6 @@ def job_db_list(request):
 
 
 # 공모전
-
 def contest_list(request):
     return render(request, "blog/contest/contest_list.html",)
 
