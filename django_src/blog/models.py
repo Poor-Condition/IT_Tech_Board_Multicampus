@@ -125,6 +125,7 @@ class Contest_game(models.Model):
     def __str__(self):
         return self.contest_title
 
+
 class Contest_science(models.Model):
     objects=None
     #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
