@@ -72,6 +72,7 @@ def job_python_list(request):
 
     return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_python})
 
+
 def job_cloud_list(request):
     jobs_cloud = Jobs_Cloud.objects.all()
 
