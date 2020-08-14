@@ -44,19 +44,59 @@ class News_new_tech(models.Model):
 
 
 
-class Jbos(models.Model):
-    job_company = models.CharField(db_column='기업명', max_length=100)
-    job_job_title = models.CharField(db_column='직무', max_length=300)
-    job_experience = models.CharField(db_column='경력사항', max_length=300)
-    job_edu_level = models.CharField(db_column='학력', max_length=50)
-    job_type = models.CharField(db_column='근무형태', max_length=50)
-    job_location = models.CharField(db_column='근무지', max_length=50)
-    job_category = models.CharField(db_column='분류', max_length=300)
-    job_link = models.CharField(db_column='상세링크', max_length=300)
+class Jobs_Cloud(models.Model):
+    objects = None
+
+    company = models.CharField(db_column='기업명', max_length=100)
+    job_title = models.CharField(db_column='직무', max_length=300)
+    experience = models.CharField(db_column='경력사항', max_length=300)
+    edu_level = models.CharField(db_column='학력', max_length=50)
+    type = models.CharField(db_column='근무형태', max_length=50)
+    location = models.CharField(db_column='근무지', max_length=50)
+    category = models.CharField(db_column='분류', max_length=300)
+    link = models.CharField(db_column='상세링크', max_length=300)
 
     class Meta:
         managed = False
         db_table = "jobs_cloud"
+
+    def __str__(self):
+        return self.job_title
+
+class Jobs_Python(models.Model):
+    objects = None
+
+    company = models.CharField(db_column='기업명', max_length=100)
+    job_title = models.CharField(db_column='직무', max_length=300)
+    experience = models.CharField(db_column='경력사항', max_length=300)
+    edu_level = models.CharField(db_column='학력', max_length=50)
+    type = models.CharField(db_column='근무형태', max_length=50)
+    location = models.CharField(db_column='근무지', max_length=50)
+    category = models.CharField(db_column='분류', max_length=300)
+    link = models.CharField(db_column='상세링크', max_length=300)
+
+    class Meta:
+        managed = False
+        db_table = "jobs_python"
+
+    def __str__(self):
+        return self.job_title
+
+class Jobs_DB(models.Model):
+    objects = None
+
+    company = models.CharField(db_column='기업명', max_length=100)
+    job_title = models.CharField(db_column='직무', max_length=300)
+    experience = models.CharField(db_column='경력사항', max_length=300)
+    edu_level = models.CharField(db_column='학력', max_length=50)
+    type = models.CharField(db_column='근무형태', max_length=50)
+    location = models.CharField(db_column='근무지', max_length=50)
+    category = models.CharField(db_column='분류', max_length=300)
+    link = models.CharField(db_column='상세링크', max_length=300)
+
+    class Meta:
+        managed = False
+        db_table = "jobs_db"
 
     def __str__(self):
         return self.job_title
@@ -66,7 +106,7 @@ class Jbos(models.Model):
 class Contest_game(models.Model):
     objects=None
     #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
-    contest_title = models.CharField(db_column="공모이름", max_length=400)
+    contest_title=models.CharField(db_column="공모이름", max_length=400)
     contest_image = models.CharField(db_column="이미지", max_length=400)
     contest_category = models.CharField(db_column="분야", max_length=400)
     contest_participant = models.CharField(db_column="응모대상", max_length=400)
