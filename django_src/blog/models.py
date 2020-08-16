@@ -92,7 +92,7 @@ class Jobs_Python(models.Model):
 
     class Meta:
         managed = False
-        db_table = "job_python"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title

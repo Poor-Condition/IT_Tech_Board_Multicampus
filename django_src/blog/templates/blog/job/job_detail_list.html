@@ -1,17 +1,33 @@
 {% extends "blog/base.html" %}
 
+<div class="job-listings mb-5">
 {% block content %}
-
-    <div>
-        <h1><a href= "/"> 뉴스 </a></h1>
-    </div>
-
     {% for job in jobs %}
-        <div class="article">
-            <h3><a href={{ job.link }}> {{job.job_title}} </a></h3>
-            <p>{{job.company}}</p>
-        </div>
+        <ul class="job-listings mb-5">
+          <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+
+            <div class="job-listing-logo">
+              <img src="images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
+            </div>
+
+            <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+              <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                <h2>{{job.job_title}}</h2>
+                <strong>{{job.company}}</strong>
+              </div>
+              <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                {{job.experience}}
+                  {{job.edu_level}}
+              </div>
+              <div class="job-listing-meta">
+                <span class="badge badge-danger">Part Time</span>
+              </div>
+            </div>
+
+          </li>
         {% empty %}
         <div> 요청하신 Post가 없습니다. </div>
     {% endfor %}
 {% endblock %}
+        </ul>
+</div>
