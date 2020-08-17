@@ -2,23 +2,25 @@
 
 {% block content %}
 
-    <div>
-        <h1><a href= "/"> 뉴스 </a></h1>
-    </div>
-
-    {% for article in posts %} 
-        <div class="article">
-            <div style="border:1px solid; padding:10px;">
-                <div class="date">
-                    <p>Published: {{ article.published_date }}</p>
-                </div>
-                <img src={{ article.image_link }}>
-                <h3><a href={{ article.news_url }}> {{ article.news_title }} </a></h3>
-            </div>
+    <section class="site-section">
+      <div class="container col align-self-center">
+        <div class="row mb-5">
+          {% for article in posts %}
+              <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ article.image_link }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ article.news_url }} class="text-black">{{article.news_title}}</a></h4>
+                <div>{{article.published_date}} <span class="mx-2">|</span> <a href="#">2 Comments</a></div>
+              </div>
+              {% empty %}
+              <div> 요청하신 Post가 없습니다. </div>
+           {% endfor %}
         </div>
-        {% empty %}
-        <div> 요청하신 Post가 없습니다. </div>
-    {% endfor %}
+        <div class="row mt-5 align-self-center">
+          {% include "blog/pagination.html" %}
+        </div>
+
+      </div>
+    </section>
 
     <!-- {% if posts.has_previous %}
         <a href="?page1">처음</a>
@@ -33,7 +35,5 @@
         <a href="?page={{ posts.next_page_number }}">다음</a>
         <a href="?page={{ posts.paginator.num_page }}">마지막</a>
     {% endif %} -->
-
-    {% include "blog/pagination.html" %}
 
 {% endblock %}

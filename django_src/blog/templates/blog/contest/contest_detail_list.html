@@ -1,20 +1,44 @@
 {% extends "blog/base.html" %}
 
-{% block content %}
+<section class="site-section">
+      <div class="container">
+        {% block content %}
 
-    <div>
-        <h1><a href= "/"> 공모전 </a></h1>
-    </div>
+            {% for contest in contests %}
+                <ul class="job-listings mb-3">
+                  <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
 
-    {% for contest in contests %}
-        <div class="contest">
-            <div class="date">
-                <h6><p>접수기간: {{contest.contest_period}}</p></h6>
-            </div>
-            <h4><a href={{ contest.contest_homepage }}> {{contest.contest_title}} </a></h4>
+                    <div class="job-listing-logo">
+                      <img src={{ contest.contest_image }} class="img-fluid">
+                   </div>
 
-        </div>
-        {% empty %}
-        <div> 요청하신 Post가 없습니다. </div>
-    {% endfor %}
-{% endblock %}
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                      <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                          <h2><a href="{{contest.contest_homepage}}">{{contest.contest_title}}</a></h2>
+                      </div>
+
+                      <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                        {{contest.contest_period}}
+                      </div>
+                      {% if "정규직" in job.type %}
+                      <div class="job-listing-meta">
+                        <span class="badge badge-success">정규직</span>
+                      </div>
+                      {% elif "프리랜서" in job.type %}
+                      <div class="job-listing-info">
+                        <span class="badge badge-info">프리랜서/계약직</span>
+                      </div>
+                      {% else %}
+                      <div class="job-listing-info">
+                        <span class="badge badge-danger">교육생/인턴</span>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </li>
+                </ul>
+                {% empty %}
+                <div> 요청하신 Post가 없습니다. </div>
+            {% endfor %}
+        {% endblock %}
+      </div>
+</section>

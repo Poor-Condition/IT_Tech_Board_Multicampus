@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 {%load static%}
-{%load compress%}
 
 <html lang="en">
 <head>
@@ -9,7 +8,6 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" type="text/css">
     <!-- 개발자 정의 css -->
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom-bs.css' %}">
@@ -38,7 +36,7 @@
                 </ul>
               </li>
               <li class="has-children">
-                <a href="{% url 'contest_list' %}">Job Listings</a>
+                <a href="{% url 'contest_list' %}">Contests</a>
                 <ul class="dropdown">
                   <li><a href="{% url 'contest_game_list' %}">게임 공모전</a></li>
                   <li><a href="{% url 'contest_science_list' %}">과학 공모전</a></li>
@@ -61,8 +59,14 @@
                 </ul>
               </li>
               <li><a href="contact.html">Contact</a></li>
-              <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-              <li class="d-lg-none"><a href="login.html">Log In</a></li>
+              {% if user.is_authenticated %}
+                <li class="d-lg-none"><a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Sign Out</a></li>
+              {% endif %}
+
+              {% if not user.is_authenticated %}
+                <li class="d-lg-none"><a href="{% url 'register' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Sign Up</a></li>
+                <li class="d-lg-none"><a href="{% url 'login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a></li>
+              {% endif %}
             </ul>
           </nav>
 
