@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
 
 from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
+from .forms import RegisterForm
 
 # 메인 화면(임시)
 def main_view(request):
@@ -77,3 +81,16 @@ def contest_job_list(request):
 
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job})
 
+def register(request):
+    if request.method == 'POST':
+        user_form = RegisterForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            user.set_password(user_form.cleaned_data['password'])
+            user.save()
+            return render(request, 'registration/signup_done.html', {'user': user})
+
+    elif request.method == 'GET':
+        user_form = RegisterForm()
+
+    return render(request, 'registration/signup.html', {'user_form': user_form})

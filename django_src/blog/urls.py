@@ -1,4 +1,6 @@
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
 from . import views
 
 urlpatterns = [
@@ -19,4 +21,13 @@ urlpatterns = [
     path('job/cloud', views.job_cloud_list, name='job_cloud_list'),
     path('job/python', views.job_python_list, name='job_python_list'),
     path('job/db', views.job_db_list, name='job_db_list'),
+
+    #로그인
+    path('accounts/login/', auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
+
+    #로그아웃
+    path('accounts/logout/', auth_views.LogoutView.as_view(), {'next_page': None}, name='logout'),
+
+    #회원가입
+    path('register/', views.register, name = 'register'),
 ]
