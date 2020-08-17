@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from django.db.models import Max
 
 from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
 from .forms import RegisterForm
@@ -68,8 +69,11 @@ def contest_list(request):
 
 def contest_game_list(request):
     contest_game = Contest_game.objects.all()
+    first = Contest_game.objects.order_by('-contest_views')[0]
+    second = Contest_game.objects.order_by('-contest_views')[1]
+    third = Contest_game.objects.order_by('-contest_views')[2]
 
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전"})
+    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전", "first":first, "second":second, "third":third})
 
 def contest_science_list(request):
     contest_science = Contest_science.objects.all()

@@ -133,6 +133,7 @@ class Contest_game(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
@@ -155,6 +156,7 @@ class Contest_science(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
@@ -178,6 +180,7 @@ class Contest_job(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False

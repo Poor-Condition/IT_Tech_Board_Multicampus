@@ -3,7 +3,23 @@
 <section class="site-section">
       <div class="container">
         {% block content %}
-
+          <div class="row">
+            <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ first.contest_image }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ first.contest_homepage }} class="text-black">{{first.contest_title}}</a></h4>
+                <div>{{first.contest_period}} <span class="mx-2">|</span> <a href="#">{{first.contest_views}}</a></div>
+            </div>
+            <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ second.contest_image }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ second.contest_homepage }} class="text-black">{{second.contest_title}}</a></h4>
+                <div>{{second.contest_period}} <span class="mx-2">|</span> <a href="#">{{second.contest_views}}</a></div>
+            </div>
+            <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ third.contest_image }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ third.contest_homepage }} class="text-black">{{third.contest_title}}</a></h4>
+                <div>{{third.contest_period}} <span class="mx-2">|</span> <a href="#">{{third.contest_views}}</a></div>
+            </div>
+            </div>
             {% for contest in contests %}
                 <ul class="job-listings mb-3">
                   <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
