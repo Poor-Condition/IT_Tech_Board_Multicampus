@@ -75,7 +75,7 @@ class Jobs_Cloud(models.Model):
 
     class Meta:
         managed = False
-        db_table = "jobs_cloud"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
@@ -94,7 +94,7 @@ class Jobs_Python(models.Model):
 
     class Meta:
         managed = False
-        db_table = "jobs_python"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
@@ -113,7 +113,7 @@ class Jobs_DB(models.Model):
 
     class Meta:
         managed = False
-        db_table = "jobs_db"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
