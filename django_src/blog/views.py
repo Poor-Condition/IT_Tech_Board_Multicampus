@@ -7,7 +7,7 @@ from django.db.models import Max
 
 from .forms import RegisterForm
 
-from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
+from .models import News_dev, News_cloud, News_new_tech, Jobs, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
 
 # @login_required
 
@@ -16,7 +16,7 @@ def main_view(request):
     return render(request, "blog/main_view.html", )
 
 # view
-def set_view(request, model_name, field_name, path):
+def set_view(request, model_name, field_name, path, page_name):
     obj = model_name.objects.filter(field=field_name)
     paginator = Paginator(obj, 10)
     page = request.GET.get("page")
@@ -30,40 +30,35 @@ def set_view(request, model_name, field_name, path):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":field_name + " 뉴스"})
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
 
 # 뉴스
 def article_list(request):
-    return render(request, "blog/article/article_list.html", )
+    return render(request, "blog/article/article_list.html", "뉴스")
 
 def article_dev_list(request):
-    return set_view(request, Articles, "개발자", "article")
+    return set_view(request, Articles, "개발자", "article", "개발자 뉴스")
 
 
 def article_cloud_list(request):
-    return set_view(request, Articles, "클라우드", "article")
+    return set_view(request, Articles, "클라우드", "article", "클라우드 뉴스")
 
 def article_new_tech_list(request):
-    return set_view(request, Articles, "신기술", "article")
+    return set_view(request, Articles, "신기술", "article", "신기술 뉴스")
 
 # 채용공고
 def job_list(request):
     return render(request, "blog/job/job_list.html",)
 
 def job_python_list(request):
-    jobs_python = Jobs_Python.objects.all()
-    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_python, "page_name":"파이썬 채용공고"})
+    return set_view(request, Jobs, "python", "job", "파이썬 채용공고")
 
 
 def job_cloud_list(request):
-    jobs_cloud = Jobs_Cloud.objects.all()
-
-    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_cloud, "page_name":"클라우드 채용공고"})
+    return set_view(request, Jobs, "cloud", "job", "클라우드 채용공고")
 
 def job_db_list(request):
-    jobs_db = Jobs_DB.objects.all()
-
-    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_db, "page_name":"DB 채용공고"})
+    return set_view(request, Jobs, "db", "job", "DB 채용공고")
 
 
 # 공모전
@@ -80,13 +75,19 @@ def contest_game_list(request):
 
 def contest_science_list(request):
     contest_science = Contest_science.objects.all()
+    first = Contest_science.objects.order_by('-contest_views')[0]
+    second = Contest_science.objects.order_by('-contest_views')[1]
+    third = Contest_science.objects.order_by('-contest_views')[2]
 
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전"})
+    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전", "first":first, "second":second, "third":third})
 
 def contest_job_list(request):
     contest_job = Contest_job.objects.all()
+    first = Contest_job.objects.order_by('-contest_views')[0]
+    second = Contest_job.objects.order_by('-contest_views')[1]
+    third = Contest_job.objects.order_by('-contest_views')[2]
 
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전"})
+    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전", "first":first, "second":second, "third":third})
 
 
 
