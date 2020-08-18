@@ -1,0 +1,60 @@
+{% extends "blog/base.html" %}
+
+<section class="site-section">
+      <div class="container">
+        {% block content %}
+          <div class="row">
+            <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ first.contest_image }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ first.contest_homepage }} class="text-black">{{first.contest_title}}</a></h4>
+                <div>{{first.contest_period}} <span class="mx-2">|</span> <a href="#">{{first.contest_views}}</a></div>
+            </div>
+            <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ second.contest_image }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ second.contest_homepage }} class="text-black">{{second.contest_title}}</a></h4>
+                <div>{{second.contest_period}} <span class="mx-2">|</span> <a href="#">{{second.contest_views}}</a></div>
+            </div>
+            <div class="shadow-sm col-4 mb-5 px-4 py-5 border">
+                  <div class = "news-image"><a href="blog-single.html"><img src={{ third.contest_image }} alt="Image" class="img-fluid rounded mb-4"></a></div>
+                <h4><a href={{ third.contest_homepage }} class="text-black">{{third.contest_title}}</a></h4>
+                <div>{{third.contest_period}} <span class="mx-2">|</span> <a href="#">{{third.contest_views}}</a></div>
+            </div>
+            </div>
+            {% for contest in contests %}
+                <ul class="job-listings mb-3">
+                  <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+
+                    <div class="job-listing-logo">
+                      <img src={{ contest.contest_image }} class="img-fluid">
+                   </div>
+
+                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                      <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                          <h2><a href="{{contest.contest_homepage}}">{{contest.contest_title}}</a></h2>
+                      </div>
+
+                      <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                        {{contest.contest_period}}
+                      </div>
+                      {% if "정규직" in job.type %}
+                      <div class="job-listing-meta">
+                        <span class="badge badge-success">정규직</span>
+                      </div>
+                      {% elif "프리랜서" in job.type %}
+                      <div class="job-listing-info">
+                        <span class="badge badge-info">프리랜서/계약직</span>
+                      </div>
+                      {% else %}
+                      <div class="job-listing-info">
+                        <span class="badge badge-danger">교육생/인턴</span>
+                      </div>
+                      {% endif %}
+                    </div>
+                  </li>
+                </ul>
+                {% empty %}
+                <div> 요청하신 Post가 없습니다. </div>
+            {% endfor %}
+        {% endblock %}
+      </div>
+</section>
