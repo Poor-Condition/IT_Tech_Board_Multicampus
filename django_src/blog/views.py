@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
+from django.db.models import Max
 
 from .forms import RegisterForm
 
@@ -29,7 +30,7 @@ def set_view(request, model_name, field_name, path):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts})
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":field_name + " 뉴스"})
 
 # 뉴스
 def article_list(request):
@@ -51,18 +52,18 @@ def job_list(request):
 
 def job_python_list(request):
     jobs_python = Jobs_Python.objects.all()
-    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_python})
+    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_python, "page_name":"파이썬 채용공고"})
 
 
 def job_cloud_list(request):
     jobs_cloud = Jobs_Cloud.objects.all()
 
-    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_cloud})
+    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_cloud, "page_name":"클라우드 채용공고"})
 
 def job_db_list(request):
     jobs_db = Jobs_DB.objects.all()
 
-    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_db})
+    return render(request, "blog/job/job_detail_list.html", {"jobs": jobs_db, "page_name":"DB 채용공고"})
 
 
 # 공모전
@@ -71,18 +72,21 @@ def contest_list(request):
 
 def contest_game_list(request):
     contest_game = Contest_game.objects.all()
+    first = Contest_game.objects.order_by('-contest_views')[0]
+    second = Contest_game.objects.order_by('-contest_views')[1]
+    third = Contest_game.objects.order_by('-contest_views')[2]
 
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game})
+    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전", "first":first, "second":second, "third":third})
 
 def contest_science_list(request):
     contest_science = Contest_science.objects.all()
 
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science})
+    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전"})
 
 def contest_job_list(request):
     contest_job = Contest_job.objects.all()
 
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job})
+    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전"})
 
 
 

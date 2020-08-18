@@ -76,7 +76,7 @@ class Jobs_Cloud(models.Model):
 
     class Meta:
         managed = False
-        db_table = "jobs_cloud"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
@@ -95,7 +95,7 @@ class Jobs_Python(models.Model):
 
     class Meta:
         managed = False
-        db_table = "jobs_python"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
@@ -114,7 +114,7 @@ class Jobs_DB(models.Model):
 
     class Meta:
         managed = False
-        db_table = "jobs_db"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
@@ -134,6 +134,7 @@ class Contest_game(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
@@ -156,6 +157,7 @@ class Contest_science(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
@@ -179,6 +181,7 @@ class Contest_job(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
