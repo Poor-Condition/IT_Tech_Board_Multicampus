@@ -3,7 +3,11 @@
 <section class="site-section">
       <div class="container">
         {% block content %}
-            {% for job in jobs %}
+          <form method="get">
+              {{ filter.form.as_p }}
+          <button type="submit">Search</button>
+          </form>
+            {% for job in posts %}
                 <ul class="job-listings mb-3">
                   <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
 
@@ -36,9 +40,14 @@
                     </div>
                   </li>
                 </ul>
+
                 {% empty %}
                 <div> 요청하신 Post가 없습니다. </div>
             {% endfor %}
+          <div class="row mt-5 align-self-center">
+          {% include "blog/pagination.html" %}
+        </div>
         {% endblock %}
+
       </div>
 </section>
