@@ -139,5 +139,3 @@ LOGOUT_REDIRECT_URL='/'
 
 
 AUTH_USER_MODEL = 'blog.User'
-
-

@@ -1,12 +1,15 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.db.models import Max
 
-from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
 from .forms import RegisterForm
+
+from .models import News_dev, News_cloud, News_new_tech, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
+
+# @login_required
 
 # 메인 화면(임시)
 def main_view(request):
@@ -84,6 +87,9 @@ def contest_job_list(request):
     contest_job = Contest_job.objects.all()
 
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전"})
+
+
+
 
 def register(request):
     if request.method == 'POST':

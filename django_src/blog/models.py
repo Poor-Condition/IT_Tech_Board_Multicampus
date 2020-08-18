@@ -1,5 +1,6 @@
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
+
 from django.db import models
 
 class News_dev(models.Model):
@@ -230,7 +231,6 @@ INTEREST_CHOICES = (
     (4, '보안'),
     (5, '선택 안함')
 )
-
 class User(AbstractUser):
     objects = UserManager()
 
@@ -239,14 +239,14 @@ class User(AbstractUser):
     이름=models.CharField(max_length=30, db_column="name")
     휴대폰번호 =models.BigIntegerField(db_column="phone")
     USERNAME_FIELD = 'username'
-    # REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = []
     성별 = models.SmallIntegerField(choices=GENDER_CHOICES, db_column="gender")
     관심사1 = models.SmallIntegerField(choices=INTEREST_CHOICES, db_column="first_interest")
     관심사2 = models.SmallIntegerField(choices=INTEREST_CHOICES, db_column="second_interest")
 
     class Meta:
         managed = False
-        db_table = "AUTH_USER_MODEL"
+        db_table = "auth_user"
 
     def __str__(self):
         return "<%d %s>" %(self.pk, self.email)
