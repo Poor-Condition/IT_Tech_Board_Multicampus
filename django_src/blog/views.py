@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
@@ -97,11 +98,16 @@ def register(request):
         user_form = RegisterForm(request.POST)
         if user_form.is_valid():
             user = user_form.save(commit=False)
+            # 회원가입 폼의 데이터를 DB에 저장하는 코드를 user 라는 변수에 저장
             user.set_password(user_form.cleaned_data['password'])
             user.save()
+            login(request, user)
             return render(request, 'registration/signup_done.html', {'user': user})
 
     elif request.method == 'GET':
         user_form = RegisterForm()
+
+    if request.user.is_authenticated:
+        return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
