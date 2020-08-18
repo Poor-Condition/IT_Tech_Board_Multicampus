@@ -8,13 +8,10 @@
 
     {% for article in posts %} 
         <div class="article">
-            <div style="border:1px solid; padding:10px;">
-                <div class="date">
-                    <p>Published: {{ article.published_date }}</p>
-                </div>
-                <img src={{ article.image_link }}>
-                <h3><a href={{ article.news_url }}> {{ article.news_title }} </a></h3>
+            <div class="date">
+                <p>Published: {{ article.published_date }}</p>
             </div>
+            <h3><a href={{ article.news_url }}> {{article.news_title}} </a></h3>
         </div>
         {% empty %}
         <div> 요청하신 Post가 없습니다. </div>

@@ -1,7 +1,10 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
-
 from . import views
+from django.contrib.auth import views as auth_views
+from django.contrib import admin
+
+from django.conf.urls import url
+
 
 urlpatterns = [
     path('', views.main_view, name='main_view'),
@@ -17,6 +20,7 @@ urlpatterns = [
     path('contest/contest_science/', views.contest_science_list, name='contest_science_list'),
     path('contest/contest_job/', views.contest_job_list, name='contest_job_list'),
 
+    #취업
     path('job/', views.job_list, name='job_list'),
     path('job/cloud', views.job_cloud_list, name='job_cloud_list'),
     path('job/python', views.job_python_list, name='job_python_list'),
@@ -30,4 +34,5 @@ urlpatterns = [
 
     #회원가입
     path('register/', views.register, name = 'register'),
+
 ]
