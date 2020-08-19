@@ -8,7 +8,8 @@ from django.db.models import Max
 
 from .forms import RegisterForm
 
-from .models import News_dev, News_cloud, News_new_tech, Jobs, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
+from .models import Articles, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
+
 
 # @login_required
 
@@ -22,6 +23,8 @@ def set_view(request, model_name, field_name, path, page_name):
     paginator = Paginator(obj, 10)
     page = request.GET.get("page")
 
+    recommends = obj[0:3]
+
     try:
         posts = paginator.page(page)
 
@@ -31,8 +34,8 @@ def set_view(request, model_name, field_name, path, page_name):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
-
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name": field_name, "recommends": recommends, "field": obj[0].field})
+  
 # 뉴스
 def article_list(request):
     return render(request, "blog/article/article_list.html", "뉴스")
@@ -40,12 +43,27 @@ def article_list(request):
 def article_dev_list(request):
     return set_view(request, Articles, "개발자", "article", "개발자 뉴스")
 
-
 def article_cloud_list(request):
     return set_view(request, Articles, "클라우드", "article", "클라우드 뉴스")
 
+def article_big_data_list(request):
+    return set_view(request, Articles, "빅데이터", "article")
+
+def article_AI_list(request):
+    return set_view(request, Articles, "AI", "article")
+
+def article_IoT_list(request):
+    return set_view(request, Articles, "IoT", "article")
+
+def article_devops_list(request):
+    return set_view(request, Articles, "DevOps", "article")
+
+def article_secure_list(request):
+    return set_view(request, Articles, "보안", "article")    
+
 def article_new_tech_list(request):
-    return set_view(request, Articles, "신기술", "article", "신기술 뉴스")
+    return set_view(request, Articles, "신기술", "article")   
+
 
 # 채용공고
 def job_list(request):
@@ -91,8 +109,6 @@ def contest_job_list(request):
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전", "first":first, "second":second, "third":third})
 
 
-
-
 def register(request):
     if request.method == 'POST':
         user_form = RegisterForm(request.POST)
@@ -111,3 +127,4 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
