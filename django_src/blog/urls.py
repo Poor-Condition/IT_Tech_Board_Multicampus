@@ -9,10 +9,16 @@ from django.conf.urls import url
 
 
 urlpatterns = [
+    # 뉴스
     path('', views.main_view, name='main_view'),
     path('article', views.article_list, name='article_list'),
     path('article/dev/', views.article_dev_list, name='article_dev_list'),
     path('article/cloud/', views.article_cloud_list, name='article_cloud_list'),
+    path('article/big_data/', views.article_big_data_list, name='article_big_data_list'),
+    path('article/AI/', views.article_AI_list, name='article_AI_list'),
+    path('article/IoT/', views.article_IoT_list, name='article_IoT_list'),
+    path('article/devops/', views.article_devops_list, name='article_devops_list'),
+    path('article/secure/', views.article_secure_list, name='article_secure_list'),
     path('article/new_tech/', views.article_new_tech_list, name='article_new_tech_list'),
 
     # 공모전
