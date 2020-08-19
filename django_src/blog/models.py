@@ -19,7 +19,6 @@ class Articles(models.Model):
     def __str__(self):
         return self.news_title
 
-
 class Jobs_Cloud(models.Model):
     objects = None
 
