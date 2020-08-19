@@ -8,7 +8,8 @@ from django.db.models import Max
 
 from .forms import RegisterForm
 
-from .models import Articles, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
+
+from .models import News_dev, News_cloud, News_new_tech, Jobs, Contest_game, Contest_job, Contest_science, Articles
 
 
 from .filters import JobFilter
@@ -73,10 +74,6 @@ def article_new_tech_list(request):
 
 
 # 채용공고
-def job_search_list(request):
-    job_list = Jobs.objects.all()
-    job_filter = JobFilter(request.GET, queryset=job_list)
-    return render(request, 'blog/job/job_detail_list.html', {'filter':job_filter})
 
 def job_list(request):
     posts = Jobs.objects.all()

@@ -30,9 +30,7 @@ urlpatterns = [
 
     #취업
     path('job/', views.job_list, name='job_list'),
-    path('job/cloud', views.job_cloud_list, name='job_cloud_list'),
-    path('job/python', views.job_python_list, name='job_python_list'),
-    path('job/db', views.job_db_list, name='job_db_list'),
+
 
     #로그인
     path('accounts/login/', auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
