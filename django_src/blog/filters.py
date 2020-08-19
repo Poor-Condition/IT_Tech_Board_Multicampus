@@ -1,11 +1,26 @@
 from django import forms
 from .models import Jobs
-import django_filters
+from django_filters import FilterSet, CharFilter, ModelMultipleChoiceFilter, ChoiceFilter
 
-class JobFilter(django_filters.FilterSet):
-    company = django_filters.CharFilter(lookup_expr='icontains')
-    fields = django_filters.ModelMultipleChoiceFilter(queryset=Jobs.objects.values('field'),
-                                                      widget=forms.CheckboxSelectMultiple)
+
+JOB_FIELD = (
+    (0, "cloud"),
+    (1, "python"),
+    (2, "db")
+)
+# job_title = CharFilter(lookup_expr='icontains')
+
+class JobFilter(FilterSet):
+    job_title = CharFilter(lookup_expr='icontains')
+    field = ChoiceFilter(choices=JOB_FIELD)
+    category = ModelMultipleChoiceFilter(
+        queryset=Jobs.objects.all(),
+        widget=forms.CheckboxSelectMultiple
+    )
+
+
     class Meta:
         model = Jobs
-        fields = ['company', 'field']
+        fields = ['job_title', 'field', 'category']
+
+

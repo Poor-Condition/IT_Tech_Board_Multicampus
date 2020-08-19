@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
+from .filters import JobFilter
+from django_filters.views import FilterView
 
 from django.conf.urls import url
 
@@ -40,5 +42,11 @@ urlpatterns = [
 
     #회원가입
     path('register/', views.register, name = 'register'),
+
+    #필터된 정보
+    path('', FilterView.as_view(
+            filterset_class=JobFilter,
+            template_name='job/job_detail_list_temp.html'),
+         name='index')
 
 ]
