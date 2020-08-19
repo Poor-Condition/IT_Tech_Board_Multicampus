@@ -105,8 +105,6 @@ def contest_job_list(request):
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전"})
 
 
-
-
 def register(request):
     if request.method == 'POST':
         user_form = RegisterForm(request.POST)
