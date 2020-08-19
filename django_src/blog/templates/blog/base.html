@@ -66,17 +66,11 @@
                 <li><a href="contact.html">Contact</a></li>
                 
                 {% if user.is_authenticated %}
-                  <li class="d-lg-none">
-                    <a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block">
-                      <span class="mr-2 icon-add"></span>
-                      Sign Out
-                    </a>
-                  </li>
+                  <a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log out</a>
                 {% endif %}
-
                 {% if not user.is_authenticated %}
-                  <li class="d-lg-none"><a href="{% url 'register' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Sign Up</a></li>
-                  <li class="d-lg-none"><a href="{% url 'login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a></li>
+                  <a href="{% url 'register' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Sign Up</a>
+                  <a href="{% url 'login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
                 {% endif %}
 
                 <!-- {% if user.is_authenticated %}
