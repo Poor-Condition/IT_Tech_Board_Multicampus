@@ -116,5 +116,8 @@ def register(request):
 
     elif request.method == 'GET':
         user_form = RegisterForm()
+    
+    if request.user.is_authenticated:
+        return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
