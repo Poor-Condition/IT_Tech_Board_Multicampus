@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Jobs
 
 
 class RegisterForm(forms.ModelForm):
@@ -16,3 +16,4 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError('비밀번호가 일치하지 않습니다.')
 
         return cd['re_password']
+

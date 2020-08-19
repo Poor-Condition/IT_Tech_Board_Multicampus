@@ -10,11 +10,15 @@ from .forms import RegisterForm
 
 from .models import News_dev, News_cloud, News_new_tech, Jobs, Jobs_DB, Jobs_Cloud, Jobs_Python, Contest_game, Contest_job, Contest_science, Articles
 
+from .filters import JobFilter
+
 # @login_required
+
 
 # 메인 화면(임시)
 def main_view(request):
     return render(request, "blog/main_view.html", )
+
 
 # view
 def set_view(request, model_name, field_name, path, page_name):
@@ -33,9 +37,11 @@ def set_view(request, model_name, field_name, path, page_name):
 
     return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
 
+
 # 뉴스
 def article_list(request):
     return render(request, "blog/article/article_list.html", "뉴스")
+
 
 def article_dev_list(request):
     return set_view(request, Articles, "개발자", "article", "개발자 뉴스")
@@ -44,19 +50,30 @@ def article_dev_list(request):
 def article_cloud_list(request):
     return set_view(request, Articles, "클라우드", "article", "클라우드 뉴스")
 
+
 def article_new_tech_list(request):
     return set_view(request, Articles, "신기술", "article", "신기술 뉴스")
 
+
 # 채용공고
+def job_search_list(request):
+    job_list = Jobs.objects.all()
+    job_filter = JobFilter(request.GET, queryset=job_list)
+    return render(request, 'blog/job/job_detail_list.html', {'filter':job_filter})
+
 def job_list(request):
-    return render(request, "blog/job/job_list.html",)
+    posts = Jobs.objects.all()
+    job_filter = JobFilter(request.GET, queryset=posts)
+    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'filter':job_filter})
+
 
 def job_python_list(request):
-    return set_view(request, Jobs, "python", "job", "파이썬 채용공고")
+    return set_view(request, Jobs, "", "job", "파이썬 채용공고")
 
 
 def job_cloud_list(request):
     return set_view(request, Jobs, "cloud", "job", "클라우드 채용공고")
+
 
 def job_db_list(request):
     return set_view(request, Jobs, "db", "job", "DB 채용공고")
@@ -66,6 +83,7 @@ def job_db_list(request):
 def contest_list(request):
     return render(request, "blog/contest/contest_list.html",)
 
+
 def contest_game_list(request):
     contest_game = Contest_game.objects.all()
     first = Contest_game.objects.order_by('-contest_views')[0]
@@ -73,6 +91,7 @@ def contest_game_list(request):
     third = Contest_game.objects.order_by('-contest_views')[2]
 
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전", "first":first, "second":second, "third":third})
+
 
 def contest_science_list(request):
     contest_science = Contest_science.objects.all()
@@ -82,6 +101,7 @@ def contest_science_list(request):
 
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전", "first":first, "second":second, "third":third})
 
+
 def contest_job_list(request):
     contest_job = Contest_job.objects.all()
     first = Contest_job.objects.order_by('-contest_views')[0]
@@ -89,8 +109,6 @@ def contest_job_list(request):
     third = Contest_job.objects.order_by('-contest_views')[2]
 
     return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전", "first":first, "second":second, "third":third})
-
-
 
 
 def register(request):
@@ -111,3 +129,5 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+
