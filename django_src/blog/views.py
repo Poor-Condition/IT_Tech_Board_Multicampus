@@ -9,7 +9,7 @@ from django.db.models import Max
 from .forms import RegisterForm
 
 
-from .models import News_dev, News_cloud, News_new_tech, Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
 
 
 from .filters import JobFilter
@@ -82,7 +82,7 @@ def job_list(request):
 
 
 def job_python_list(request):
-    return set_view(request, Jobs, "", "job", "파이썬 채용공고")
+    return set_view(request, Jobs, "python", "job", "파이썬 채용공고")
 
 
 def job_cloud_list(request):
