@@ -50,6 +50,7 @@ distributed==2.11.0
 Django==3.1
 django-appconf==1.0.4
 django-compressor==2.4
+django-filter==2.3.0
 django-libsass==0.8
 django-sass-processor==0.8
 django-scss==0.6.1
