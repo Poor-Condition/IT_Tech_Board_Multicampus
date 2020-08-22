@@ -6,7 +6,8 @@
           <form method="get">
               {{ filter.form.job_title }}
               {{ filter.form.field }}
-              {{ filter.form.category }}
+              {{ filter.form.edu_level }}
+              {{ filter.form.experience }}
           <button type="submit">Search</button>
           </form>
             {% for job in filter.qs %}
