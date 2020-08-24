@@ -1,5 +1,7 @@
-from .models import Jobs
+from .models import Jobs, Articles
 from django_filters import FilterSet, CharFilter, ModelMultipleChoiceFilter, ChoiceFilter
+
+#(db에서 매칭되는 필드값, 웹사이트 표시값)
 
 FIELD_FILTER = (
     ("cloud", "cloud"),
@@ -28,10 +30,6 @@ class JobFilter(FilterSet):
     field = ChoiceFilter(choices=FIELD_FILTER, field_name='field')
     experience = ChoiceFilter(choices=EXP_FILTER, field_name='experience', lookup_expr='icontains')
     edu_level = ChoiceFilter(choices=EDU_FILTER, field_name='edu_level', lookup_expr='icontains')
-    # category = ModelMultipleChoiceFilter(
-    #     queryset=Jobs.objects.all(),
-    #     widget=forms.CheckboxSelectMultiple
-    # )
 
     class Meta:
         model = Jobs
@@ -43,3 +41,8 @@ class JobFilter(FilterSet):
         fields = ['job_title', 'field', 'category']
 
 
+class ArticleFilter(FilterSet):
+    news_title = CharFilter(lookup_expr='icontains')
+
+    class Meta:
+        model = Articles

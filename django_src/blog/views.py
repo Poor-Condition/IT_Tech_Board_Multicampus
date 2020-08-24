@@ -36,6 +36,13 @@ def set_view(request, model_name, field_name, path, page_name):
 
     return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
 
+# 메인화면 검색
+def search_view(request):
+    posts = Jobs.objects.all()
+    job_filter = JobFilter(request.GET, queryset=posts)
+
+    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name": "채용공고", 'filter': job_filter})
+
 
 # 뉴스
 def article_list(request):
