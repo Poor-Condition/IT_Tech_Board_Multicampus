@@ -4,10 +4,13 @@
       <div class="container">
         {% block content %}
           <form method="get">
-              {{ filter.form.as_p }}
+              {{ filter.form.job_title }}
+              {{ filter.form.field }}
+              {{ filter.form.edu_level }}
+              {{ filter.form.experience }}
           <button type="submit">Search</button>
           </form>
-            {% for job in posts %}
+            {% for job in filter.qs %}
                 <ul class="job-listings mb-3">
                   <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
 
