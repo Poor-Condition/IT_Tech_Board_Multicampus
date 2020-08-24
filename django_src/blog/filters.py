@@ -38,8 +38,3 @@ class JobFilter(FilterSet):
         fields = ['job_title', 'field', 'experience', 'edu_level']
 
 
-    class Meta:
-        model = Jobs
-        fields = ['job_title', 'field', 'category']
-
-

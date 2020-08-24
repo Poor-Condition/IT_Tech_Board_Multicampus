@@ -6,9 +6,9 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.db.models import Max
 
-from .forms import RegisterForm
+from .forms import RegisterForm, CustomUserChangeForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .models import Jobs, Articles, Contest
 
 from .filters import JobFilter
 # @login_required
@@ -92,36 +92,50 @@ def job_db_list(request):
     return set_view(request, Jobs, "db", "job", "DB 채용공고")
 
 
+
+
+# view
+def contest_set_view(request, model_name, field_name, path, page_name):
+    obj = model_name.objects.filter(field=field_name)
+    paginator = Paginator(obj, 10)
+    page = request.GET.get("page")
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    first = obj.order_by('-contest_views')[0]
+    second = obj.order_by('-contest_views')[1]
+    third = obj.order_by('-contest_views')[2]
+
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name, "first":first, "second":second, "third":third})
+
+
 # 공모전
 def contest_list(request):
-    return render(request, "blog/contest/contest_list.html",)
+    posts = Contest.objects.all()
+
+    first = posts.order_by('-contest_views')[0]
+    second = posts.order_by('-contest_views')[1]
+    third = posts.order_by('-contest_views')[2]
+    return render(request, "blog/contest/contest_detail_list.html", {"posts": posts, "page_name":"공모전", "first":first, "second":second, "third":third})
 
 
 def contest_game_list(request):
-    contest_game = Contest_game.objects.all()
-    first = Contest_game.objects.order_by('-contest_views')[0]
-    second = Contest_game.objects.order_by('-contest_views')[1]
-    third = Contest_game.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전", "first":first, "second":second, "third":third})
+    return contest_set_view(request, Contest, "게임/소프트웨어", "contest", "게임/소프트웨어")
 
 
 def contest_science_list(request):
-    contest_science = Contest_science.objects.all()
-    first = Contest_science.objects.order_by('-contest_views')[0]
-    second = Contest_science.objects.order_by('-contest_views')[1]
-    third = Contest_science.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전", "first":first, "second":second, "third":third})
+    return contest_set_view(request, Contest, "과학/공학", "contest", "과학/공학")
 
 
 def contest_job_list(request):
-    contest_job = Contest_job.objects.all()
-    first = Contest_job.objects.order_by('-contest_views')[0]
-    second = Contest_job.objects.order_by('-contest_views')[1]
-    third = Contest_job.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전", "first":first, "second":second, "third":third})
+    return contest_set_view(request, Contest, "취업/창업", "contest", "취업/창업")
 
 
 def register(request):
@@ -145,3 +159,27 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+@login_required
+def update(request):
+    if request.method=='POST':
+        user=request.user
+
+        gender = request.POST.get('성별')
+        email= request.POST.get('email')
+        phone = request.POST.get('휴대폰번호')
+        first_interest = request.POST.get('관심사1')
+        second_interest = request.POST.get('관심사2')
+
+        user.성별 = gender
+        user.email = email
+        user.휴대폰번호 = phone
+        user.관심사1 = first_interest
+        user.관심사2 = second_interest
+
+        user.save()
+        return render(request,'blog/main_view.html',{'user':user})
+
+    else:
+        user_change_form=CustomUserChangeForm(instance=request.user)
+        return render(request, 'registration/update.html', {'user_change_form': user_change_form})

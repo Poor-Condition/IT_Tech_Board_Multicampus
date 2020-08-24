@@ -41,6 +41,9 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
+    # 회원정보 수정
+    path('update/', views.update,name='update'),
+
     #필터된 정보
     path('', FilterView.as_view(
             filterset_class=JobFilter,
