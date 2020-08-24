@@ -13,13 +13,13 @@ from .forms import RegisterForm
 
 from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
 
-from .filters import JobFilter
+from .filters import JobFilter, JobSearch, ArticleSearch
 # @login_required
 
 
 # 메인 화면(임시)
-def main_view(request):
-    return render(request, "blog/main_view.html", )
+# def main_view(request):
+#     return render(request, "blog/main_view.html", )
 
 
 # view
@@ -40,11 +40,24 @@ def set_view(request, model_name, field_name, path, page_name):
     return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
 
 # 메인화면 검색
-def search_view(request):
-    posts = Jobs.objects.all()
-    job_filter = JobFilter(request.GET, queryset=posts)
+def main_view(request):
+    posts = Articles.objects.all()
+    article_filter = ArticleSearch(request.GET, queryset=posts)
 
-    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name": "채용공고", 'filter': job_filter})
+    return render(request, "blog/main_view.html", {'filter':article_filter})
+
+# def search_view(request):
+#     jobs = Jobs.objects.all()
+#     job_filter = JobSearch(request.GET, queryset=jobs)
+#
+#     articles = Articles.objects.all()
+#     article_filter = ArticleSearch(request.GET, queryset = articles)
+#
+#     posts = (jobs, articles)
+#     filters = (job_filter, article_filter)
+#
+#
+#     return render(request, "main_search.html", {"posts": posts, "page_name": "검색결과", 'filter': filters})
 
 
 # 뉴스
@@ -87,7 +100,7 @@ def job_list(request):
     posts = Jobs.objects.all()
     job_filter = JobFilter(request.GET, queryset=posts)
 
-    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'filter':job_filter})
+    return render(request, "blog/job/job_detail_list.html", {"page_name":"채용공고", 'filter':job_filter})
 
 
 def job_python_list(request):
@@ -109,6 +122,7 @@ def contest_list(request):
 
 def contest_game_list(request):
     contest_game = Contest_game.objects.all()
+
     first = Contest_game.objects.order_by('-contest_views')[0]
     second = Contest_game.objects.order_by('-contest_views')[1]
     third = Contest_game.objects.order_by('-contest_views')[2]
@@ -156,5 +170,28 @@ def register(request):
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
-class SearchView(ListView):
-    template_name =
+# class SearchView(ListView):
+#     template_name = 'main_search.html'
+#
+#     def get_context_data(self, *args, **kwargs):
+#         context = super().get_context_data(*args, **kwargs)
+#         context['query'] = self.request.GET.get('q')
+#         return context
+#
+#     def get_queryset(self):
+#         request = self.request
+#         query = request.GET.get('q', None)
+#
+#         if query is not None:
+#             articles_results = Articles.objects.search(query)
+#             jobs_results = Jobs.objects.search(query)
+#
+#             queryset_chain = chain(
+#                 articles_results,
+#                 jobs_results
+#             )
+#
+#             return queryset_chain
+#         return Jobs.objects.none()
+#
+
