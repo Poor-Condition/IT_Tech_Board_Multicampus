@@ -65,12 +65,15 @@ def article_secure_list(request):
     return set_view(request, Articles, "보안", "article", "보안 뉴스")    
 
 def article_new_tech_list(request):
-    return set_view(request, Articles, "신기술", "article", "신기술 뉴스")   
+    return set_view(request, Articles, "신기술", "article", "신기술 뉴스") 
+
+
 
 
 # 채용공고
 
 def job_list(request):
+    
     posts = Jobs.objects.all()
     job_filter = JobFilter(request.GET, queryset=posts)
 
