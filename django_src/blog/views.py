@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.db.models import Max
+from django.views.generic import ListView
+from itertools import chain
+
 
 from .forms import RegisterForm
 
@@ -152,3 +155,6 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+class SearchView(ListView):
+    template_name =

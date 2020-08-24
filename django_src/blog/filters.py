@@ -36,13 +36,9 @@ class JobFilter(FilterSet):
         fields = ['job_title', 'field', 'experience', 'edu_level']
 
 
-    class Meta:
-        model = Jobs
-        fields = ['job_title', 'field', 'category']
-
-
 class ArticleFilter(FilterSet):
     news_title = CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Articles
+        fields = ['news_title']
