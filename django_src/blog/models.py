@@ -3,20 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 from django.db import models
 
-class News_dev(models.Model):
-    objects = None
-    news_title = models.CharField(db_column="제목", max_length=400)
-    news_url = models.URLField(db_column="링크", max_length=400)
-    image_link = models.CharField(db_column="이미지", max_length=400)
-    published_date = models.CharField(db_column="등록날짜", max_length=400)
-
-    class Meta:
-        managed = False
-        db_table = "articles"
-
-    def __str__(self):
-        return self.news_title
-
 class Articles(models.Model):
     objects = None
     news_title = models.CharField(db_column="제목", max_length=400)
@@ -24,6 +10,7 @@ class Articles(models.Model):
     image_link = models.CharField(db_column="이미지", max_length=400)
     published_date = models.CharField(db_column="등록날짜", max_length=400)
     field = models.CharField(db_column="분류", max_length=50)
+    news_text = models.CharField(db_column="내용", max_length=500)
 
     class Meta:
         managed = False
@@ -32,37 +19,8 @@ class Articles(models.Model):
     def __str__(self):
         return self.news_title
 
-class News_cloud(models.Model):
-    objects = None
-    news_title = models.CharField(db_column="제목", max_length=400)
-    news_url = models.URLField(db_column="링크", max_length=400)
-    image_link = models.CharField(db_column="이미지", max_length=400)
-    published_date = models.CharField(db_column="등록날짜", max_length=400)
 
-    class Meta:
-        managed = False
-        db_table = "article_cloud"
-
-    def __str__(self):
-        return self.news_title
-
-class News_new_tech(models.Model):
-    objects = None
-    news_title = models.CharField(db_column="제목", max_length=400)
-    news_url = models.URLField(db_column="링크", max_length=400)
-    image_link = models.CharField(db_column="이미지", max_length=400)
-    published_date = models.CharField(db_column="등록날짜", max_length=400)
-
-    class Meta:
-        managed = False
-        db_table = "article_new_tech"
-
-    def __str__(self):
-        return self.news_title
-
-
-
-class Jobs_Cloud(models.Model):
+class Jobs(models.Model):
     objects = None
 
     company = models.CharField(db_column='기업명', max_length=100)
@@ -73,48 +31,11 @@ class Jobs_Cloud(models.Model):
     location = models.CharField(db_column='근무지', max_length=50)
     category = models.CharField(db_column='분류', max_length=300)
     link = models.CharField(db_column='상세링크', max_length=300)
+    field = models.CharField(db_column="분류필터", max_length=50)
 
     class Meta:
         managed = False
-        db_table = "jobs_cloud"
-
-    def __str__(self):
-        return self.job_title
-
-class Jobs_Python(models.Model):
-    objects = None
-
-    company = models.CharField(db_column='기업명', max_length=100)
-    job_title = models.CharField(db_column='직무', max_length=300)
-    experience = models.CharField(db_column='경력사항', max_length=300)
-    edu_level = models.CharField(db_column='학력', max_length=50)
-    type = models.CharField(db_column='근무형태', max_length=50)
-    location = models.CharField(db_column='근무지', max_length=50)
-    category = models.CharField(db_column='분류', max_length=300)
-    link = models.CharField(db_column='상세링크', max_length=300)
-
-    class Meta:
-        managed = False
-        db_table = "jobs_python"
-
-    def __str__(self):
-        return self.job_title
-
-class Jobs_DB(models.Model):
-    objects = None
-
-    company = models.CharField(db_column='기업명', max_length=100)
-    job_title = models.CharField(db_column='직무', max_length=300)
-    experience = models.CharField(db_column='경력사항', max_length=300)
-    edu_level = models.CharField(db_column='학력', max_length=50)
-    type = models.CharField(db_column='근무형태', max_length=50)
-    location = models.CharField(db_column='근무지', max_length=50)
-    category = models.CharField(db_column='분류', max_length=300)
-    link = models.CharField(db_column='상세링크', max_length=300)
-
-    class Meta:
-        managed = False
-        db_table = "jobs_db"
+        db_table = "job_list"
 
     def __str__(self):
         return self.job_title
@@ -134,6 +55,7 @@ class Contest_game(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
@@ -156,6 +78,7 @@ class Contest_science(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
@@ -179,6 +102,7 @@ class Contest_job(models.Model):
     contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
+    contest_views = models.IntegerField(db_column="조회수")
 
     class Meta:
         managed = False
