@@ -16,4 +16,3 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError('비밀번호가 일치하지 않습니다.')
 
         return cd['re_password']
-
