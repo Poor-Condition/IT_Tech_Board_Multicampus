@@ -68,6 +68,8 @@ def article_new_tech_list(request):
     return set_view(request, Articles, "신기술", "article", "신기술 뉴스") 
 
 
+def trend(request):
+    return render(request, "blog/trend/trend.html",)
 
 
 # 채용공고
