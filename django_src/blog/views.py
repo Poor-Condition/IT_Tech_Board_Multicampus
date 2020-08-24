@@ -47,22 +47,22 @@ def article_cloud_list(request):
     return set_view(request, Articles, "클라우드", "article", "클라우드 뉴스")
 
 def article_big_data_list(request):
-    return set_view(request, Articles, "빅데이터", "article")
+    return set_view(request, Articles, "빅데이터", "article", "빅데이터 뉴스")
 
 def article_AI_list(request):
-    return set_view(request, Articles, "AI", "article")
+    return set_view(request, Articles, "AI", "article", "AI 뉴스")
 
 def article_IoT_list(request):
-    return set_view(request, Articles, "IoT", "article")
+    return set_view(request, Articles, "IoT", "article", "IoT 뉴스")
 
 def article_devops_list(request):
-    return set_view(request, Articles, "DevOps", "article")
+    return set_view(request, Articles, "DevOps", "article", "DevOps 뉴스")
 
 def article_secure_list(request):
-    return set_view(request, Articles, "보안", "article")    
+    return set_view(request, Articles, "보안", "article", "보안 뉴스")    
 
 def article_new_tech_list(request):
-    return set_view(request, Articles, "신기술", "article")   
+    return set_view(request, Articles, "신기술", "article", "신기술 뉴스")   
 
 
 # 채용공고
