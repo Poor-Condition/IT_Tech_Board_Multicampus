@@ -83,11 +83,10 @@
             <div class="mb-5 text-center">
               <h1 class="text-white font-weight-bold">나에게 맞는 취업 정보를 검색해보세요</h1>
               <p>오늘의 뉴스부터 취업, 공모전 정보까지 필요한 정보를 한번에</p>
-              {{ filter.form.job_title }}
             </div>
-            <form method="get" class="search-jobs-form">
+            <form action="{%url 'search_results' %}" method="get" class="search-jobs-form">
               <div class="row mb-5">
-                {{ filter.form.news_title }}
+                <input name="q" type="text" placeholder="search">
               </div>
               <button type="submit">Search</button>
             </form>
@@ -105,7 +104,7 @@
       </a>
 
     </section>
-    <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url('{% static "images/hero_1.jpg" %}')";>
+    <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style = "background-image: url('{% static "images/hero_1.jpg" %}')";>
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">

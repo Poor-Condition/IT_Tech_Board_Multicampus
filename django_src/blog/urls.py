@@ -2,8 +2,9 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from django.contrib import admin
-from .filters import JobFilter, ArticleSearch, JobSearch
+from .filters import JobFilter
 from django_filters.views import FilterView
+from .views import SearchView
 
 from django.conf.urls import url
 
@@ -48,9 +49,6 @@ urlpatterns = [
          name='index'),
 
     #메인 검색
-    path('', FilterView.as_view(
-        filterset_class=ArticleSearch,
-        template_name='main_view.html'),
-         name='index'),
+    path('search/', SearchView.as_view(), name='search_results'),
 
 ]

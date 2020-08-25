@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from django.db.models import Max
+from django.db.models import Max, Q
 from django.views.generic import ListView
 from itertools import chain
 
@@ -13,7 +13,7 @@ from .forms import RegisterForm
 
 from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
 
-from .filters import JobFilter, JobSearch, ArticleSearch
+from .filters import JobFilter
 # @login_required
 
 
@@ -41,10 +41,8 @@ def set_view(request, model_name, field_name, path, page_name):
 
 # 메인화면 검색
 def main_view(request):
-    posts = Articles.objects.all()
-    article_filter = ArticleSearch(request.GET, queryset=posts)
 
-    return render(request, "blog/main_view.html", {'filter':article_filter})
+    return render(request, "blog/main_view.html")
 
 # def search_view(request):
 #     jobs = Jobs.objects.all()
@@ -169,6 +167,18 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+class SearchView(ListView):
+    template_name = 'search_results.html'
+    
+    def get_queryset(self):
+        request = self.request
+        query = self.request.GET.get('q')
+
+        news = Articles.objects.filter(Q(news_title__icontains=query))
+        jobs = Jobs.objects.filter(Q(job_title__icontains=query))
+        object_list = chain(news, jobs)
+        return object_list
 
 # class SearchView(ListView):
 #     template_name = 'main_search.html'
