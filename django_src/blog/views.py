@@ -44,18 +44,25 @@ def main_view(request):
 
     return render(request, "blog/main_view.html")
 
-# def search_view(request):
-#     jobs = Jobs.objects.all()
-#     job_filter = JobSearch(request.GET, queryset=jobs)
-#
-#     articles = Articles.objects.all()
-#     article_filter = ArticleSearch(request.GET, queryset = articles)
-#
-#     posts = (jobs, articles)
-#     filters = (job_filter, article_filter)
-#
-#
-#     return render(request, "main_search.html", {"posts": posts, "page_name": "검색결과", 'filter': filters})
+class SearchView(ListView):
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('q', '')
+
+        if query is not None:
+            articles_results = Articles.objects.filter(Q(news_title__icontains=query))
+            jobs_results = Jobs.objects.filter(Q(job_title__icontains=query))
+
+            context={
+                'articles_results':articles_results,
+                'jobs_results':jobs_results
+            }
+
+            return render(request, 'search_results.html', context)
+
+        return Jobs.objects.none()
 
 
 # 뉴스
@@ -168,34 +175,25 @@ def register(request):
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
+
 # class SearchView(ListView):
 #     template_name = 'search_results.html'
-    
+
 #     def get_queryset(self):
 #         request = self.request
-#         query = self.request.GET.get('q')
+#         query = request.GET.get('q', None)
 
-#         news = Articles.objects.filter(Q(news_title__icontains=query))
-#         jobs = Jobs.objects.filter(Q(job_title__icontains=query))
-#         queryset_chain = chain(news, jobs)
-#         return queryset_chain
+#         if query is not None:
+#             articles_results = Articles.objects.filter(Q(news_title__icontains=query))
+#             jobs_results = Jobs.objects.filter(Q(job_title__icontains=query))
 
-class SearchView(ListView):
-    # template_name = 'search_results.html'
+#             queryset_chain = chain(
+#                 articles_results,
+#                 jobs_results
+#             )
+#             return render(request, 'search_results.html', {'results': queryset_chain})
+#         return Jobs.objects.none()
 
-    def get_queryset(self):
-        request = self.request
-        query = request.GET.get('q', None)
 
-        if query is not None:
-            articles_results = Articles.objects.filter(Q(news_title__icontains=query))
-            jobs_results = Jobs.objects.filter(Q(job_title__icontains=query))
-
-            queryset_chain = chain(
-                articles_results,
-                jobs_results
-            )
-            return render(request, 'search_results.html', {'results': queryset_chain})
-        return Jobs.objects.none()
 
 

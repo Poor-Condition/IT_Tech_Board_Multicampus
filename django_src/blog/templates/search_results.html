@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+{% for article in article_list %}
+<div class="row">
+  <div class="shadow-sm col-2 mb-1 pt-4 px-2 py-2 border">
+    <div class = "news-image">
+      <a href={{ article.news_url }}>
+        <img src={{ article.image_link }} alt="Image" class="img-fluid rounded mb-4" style="width: 90%">
+      </a>    
+    </div>
+  </div>
+  <div class="col-10 mb-1 pt-3 px-4 py-2 border">
+    <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
+    <div>{{article.published_date}}</div>
+    <div>{{ article.news_text }}</div>
+  </div>
+</div>
+  {% empty %}
+  <div> 요청하신 Post가 없습니다. </div>
+
+{% endfor %}
+
+{% endblock %}

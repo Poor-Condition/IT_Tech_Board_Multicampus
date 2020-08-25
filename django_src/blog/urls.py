@@ -49,6 +49,6 @@ urlpatterns = [
          name='index'),
 
     #메인 검색
-    path('search/', SearchView.as_view(), name='search_results'),
-
+    path('search/', SearchView.as_view(template_name="search_results.html"), name='search_results'),
+   
 ]
