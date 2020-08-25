@@ -181,7 +181,7 @@ def register(request):
 #         return queryset_chain
 
 class SearchView(ListView):
-    template_name = 'search_results.html'
+    # template_name = 'search_results.html'
 
     def get_queryset(self):
         request = self.request
@@ -195,8 +195,7 @@ class SearchView(ListView):
                 articles_results,
                 jobs_results
             )
-
-            return queryset_chain
+            return render(request, 'search_results.html', {'results': queryset_chain})
         return Jobs.objects.none()
 
 
