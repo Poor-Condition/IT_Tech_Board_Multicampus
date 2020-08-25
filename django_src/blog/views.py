@@ -168,40 +168,35 @@ def register(request):
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
-class SearchView(ListView):
-    template_name = 'search_results.html'
-    
-    def get_queryset(self):
-        request = self.request
-        query = self.request.GET.get('q')
-
-        news = Articles.objects.filter(Q(news_title__icontains=query))
-        jobs = Jobs.objects.filter(Q(job_title__icontains=query))
-        object_list = chain(news, jobs)
-        return object_list
-
 # class SearchView(ListView):
-#     template_name = 'main_search.html'
-#
-#     def get_context_data(self, *args, **kwargs):
-#         context = super().get_context_data(*args, **kwargs)
-#         context['query'] = self.request.GET.get('q')
-#         return context
-#
+#     template_name = 'search_results.html'
+    
 #     def get_queryset(self):
 #         request = self.request
-#         query = request.GET.get('q', None)
-#
-#         if query is not None:
-#             articles_results = Articles.objects.search(query)
-#             jobs_results = Jobs.objects.search(query)
-#
-#             queryset_chain = chain(
-#                 articles_results,
-#                 jobs_results
-#             )
-#
-#             return queryset_chain
-#         return Jobs.objects.none()
-#
+#         query = self.request.GET.get('q')
+
+#         news = Articles.objects.filter(Q(news_title__icontains=query))
+#         jobs = Jobs.objects.filter(Q(job_title__icontains=query))
+#         queryset_chain = chain(news, jobs)
+#         return queryset_chain
+
+class SearchView(ListView):
+    template_name = 'search_results.html'
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('q', None)
+
+        if query is not None:
+            articles_results = Articles.objects.filter(Q(news_title__icontains=query))
+            jobs_results = Jobs.objects.filter(Q(job_title__icontains=query))
+
+            queryset_chain = chain(
+                articles_results,
+                jobs_results
+            )
+
+            return queryset_chain
+        return Jobs.objects.none()
+
 
