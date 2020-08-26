@@ -32,6 +32,8 @@ urlpatterns = [
     #취업
     path('job/', views.job_list, name='job_list'),
 
+    # 트렌드
+    path('trend/', views.trend, name='trend'),
 
     #로그인
     path('accounts/login/', auth_views.LoginView.as_view(template_name="registration/login.html"), name="login"),
