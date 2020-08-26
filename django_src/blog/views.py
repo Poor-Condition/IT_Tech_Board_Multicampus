@@ -39,30 +39,30 @@ def set_view(request, model_name, field_name, path, page_name):
 
     return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
 
-# 메인화면 검색
+# 메인화면
 def main_view(request):
 
     return render(request, "blog/main_view.html")
 
+# Search from home page
 class SearchView(ListView):
-    template_name = 'search_results.html'
+    template_name = 'blog/search_results.html'
 
     def get_queryset(self):
         request = self.request
         query = request.GET.get('q', '')
 
-        if query is not None:
-            articles_results = Articles.objects.filter(Q(news_title__icontains=query))
-            jobs_results = Jobs.objects.filter(Q(job_title__icontains=query))
+        articles_results = Articles.objects.filter(Q(news_title__icontains=query))
+        jobs_results = Jobs.objects.filter(Q(job_title__icontains=query))
+        contest_results = Contest_game.objects.all()
 
-            context={
-                'articles_results':articles_results,
-                'jobs_results':jobs_results
-            }
+        context={
+            'articles':articles_results,
+            'jobs':jobs_results,
+            'contests':contest_results
+        }
 
-            return render(request, 'search_results.html', context)
-
-        return Jobs.objects.none()
+        return render(request, 'blog/search_results.html', context)
 
 
 # 뉴스

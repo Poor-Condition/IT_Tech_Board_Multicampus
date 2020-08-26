@@ -87,9 +87,9 @@
               <h1 class="text-white font-weight-bold">나에게 맞는 취업 정보를 검색해보세요</h1>
               <p>오늘의 뉴스부터 취업, 공모전 정보까지 필요한 정보를 한번에</p>
             </div>
-            <form action="{%url 'search_results' %}" method="get" values="{{request.GET.q}" class="search-jobs-form">
+            <form action="{%url 'search_results' %}" method="get" values="{{request.GET.q}}" class="search-jobs-form">
               <div class="row mb-5">
-                <input name="q" type="text" values="{{request.GET.q}" placeholder="search">
+                <input name="q" type="text" values="{{request.GET.q}}" placeholder="search">
               </div>
               <button type="submit">Search</button>
             </form>

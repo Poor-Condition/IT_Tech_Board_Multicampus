@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class Articles(models.Model):
-    objects = None
     news_title = models.CharField(db_column="제목", max_length=400)
     news_url = models.URLField(db_column="링크", max_length=400)
     image_link = models.CharField(db_column="이미지", max_length=400)
@@ -21,8 +20,6 @@ class Articles(models.Model):
 
 
 class Jobs(models.Model):
-    objects = None
-
     company = models.CharField(db_column='기업명', max_length=100)
     job_title = models.CharField(db_column='직무', max_length=300)
     experience = models.CharField(db_column='경력사항', max_length=300)
@@ -42,7 +39,6 @@ class Jobs(models.Model):
 
 
 class Contest_game(models.Model):
-    objects=None
     #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
     contest_title=models.CharField(db_column="공모이름", max_length=400)
     contest_image = models.CharField(db_column="이미지", max_length=400)
