@@ -1,0 +1,133 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- 내 정보 -->
+<section id="my-info">
+  <div class="row">
+    <div class="col-lg-3 mr-auto">
+      <div class="border p-4 rounded">
+        <ul class="list-unstyled block__47528 mb-0">
+          <li><span class="active">Welcome Minji!</span></li>
+          <li><a href="#profile">내 정보</a></li>
+          <li><a href="#">내 정보 수정</a></li>
+          <li><a href="#study">내 스터디 관리</a></li>
+          <li><a href="#liked_posts">좋아요한 게시물</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-9 mt-0 pl-5">
+      <h3>My Page</h3>
+      <hr class="mb-4">
+      <div class="row" id="profile">
+        <figure class="col-2 mr-4 profile"><img src= "{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid rounded-circle"></figure>
+        <div class="col-6">
+            <h3 class="row">김민지</h3>
+            <span class="row position">kmj1995kr</span>
+            <span class="row position mt-4">Email: </span>
+            <span class="row position">핸드폰 번호: </span>
+            <span class="row position">관심사: </span>
+        </div>
+        <p><a href="#" class="btn btn-primary btn-md mt-4">내 정보 수정</a></p>
+      </div>
+    </div>  
+  </div>
+</section>
+
+<!-- 내 스터디 -->
+<section id="study">
+  <div class="row justify-content-end">
+    <div class="col-9 pl-5 mt-5">
+      <h3>My Study</h3>
+      <hr class="mb-4">
+      <div class="block__87154 bg-grey rounded">
+        <h3>요기다가 스터디 정보 넣기</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 좋아요 한 게시물 -->
+<section id="liked_posts">
+  <div class="row justify-content-end">
+    <div class="col-9 pl-5 mt-5">
+      <h3>Liked Posts</h3>
+      <hr class="mb-4">
+
+      <!-- 좋아요 한 뉴스 -->
+      <section id="liked_news" class="liked_posts mb-5">
+        <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 뉴스</h5>
+        <!-- for loop 으로 이 부분 반복 -->
+        <div class="row justify-content-between job-listings mb-3 py-2">
+          <div class="col-8 d-flex pb-3 pb-sm-0">
+              <div class="job-listing-position">
+                <h2>뉴스 타이틀</h2>
+                <span>뉴스 내용</span>
+              </div>
+          </div>
+          <div class="col-3 job-listing d-flex pb-3 pb-sm-0">
+            <div class="job-listing-location">
+              게시 날짜
+            </div>
+          </div>
+        </div>
+        <!-- 요기까지 반복     -->
+      </section>
+
+      <!-- 좋아요 한 채용공고 -->
+      <section id="liked_jobs" class="liked_posts mb-5">
+        <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 채용공고</h5>
+        <!-- for loop 으로 이 부분 반복 -->
+        <div class="row justify-content-between job-listings mb-3 py-2">
+          <div class="col-6 d-sm-flex pb-3 pb-sm-0">
+              <div class="job-listing-position">
+                <h2>채용공고 타이틀</h2>
+                <strong>회사 이름</strong>
+              </div>
+          </div>
+          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
+            <div class="job-listing-location">
+              카테고리
+            </div>
+          </div>
+          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
+            <div class="job-listing-location">
+              위치
+            </div>
+          </div>
+        </div>
+        <!-- 요기까지 반복     -->
+      </section>
+
+      <!-- 좋아요 한 공모전 -->
+      <section id="liked_contests" class="liked_posts mb-5">
+        <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 공모전</h5>
+        <!-- for loop 으로 이 부분 반복 -->
+        <div class="row justify-content-between job-listings mb-3 py-2">
+          <div class="col-6 d-sm-flex pb-3 pb-sm-0">
+              <div class="job-listing-position">
+                <h2>공모전 타이틀</h2>
+                <strong>주최 기업 이름</strong>
+              </div>
+          </div>
+          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
+            <div class="job-listing-location">
+              카테고리
+            </div>
+          </div>
+          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
+            <div class="job-listing-location">
+              마감 날짜
+            </div>
+          </div>
+        </div>
+        <!-- 요기까지 반복     -->
+      </section>
+    </div>
+  </div>
+</section>
+          
+
+
+{% endblock %}

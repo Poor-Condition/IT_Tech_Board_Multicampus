@@ -147,3 +147,6 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+def mypage(request):
+    return render(request, 'blog/mypage.html')
