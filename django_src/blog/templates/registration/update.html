@@ -1,0 +1,41 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+    <form method="post" action="{% url 'update' %}">
+        {% csrf_token %}
+        <div style = "padding-left:50px; padding-top:50px;">
+            <h1>Update</h1>
+            <hr>
+            <form action = "" method = "POST">
+                {% csrf_token %}
+                아이디: {{user.username}} <br><br>
+                이름: {{user.name}} <br><br>
+                성별: <select name="성별" class="form-control" id="성별" value="{{user.성별}}">
+                        <option value="여자">여자</option>
+                        <option value="남자">남자</option>
+                    </select><br><br>
+                이메일: <input type="email" class="form-control" id="email" name="email" value="{{user.email}}"><br><br>
+                휴대폰: <input type="휴대폰번호" class="form-control" id="휴대폰번호" name="휴대폰번호" value="{{user.휴대폰번호}}"><br><br>
+                관심사1: <select name="관심사1" class="form-control" id="관심사1" value="{{user.관심사1}}">
+                            <option value="빅데이터">빅데이터</option>
+                            <option value="인공지능">인공지능(AI)</option>
+                            <option value="클라우드">클라우드</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="보안">보안</option>
+                            <option value="선택 안함" selected>선택 안함</option>
+                        </select><br>
+
+                관심사2: <select name="관심사2" class="form-control" id="관심사2" value="{{user.관심사2}}">
+                            <option value="빅데이터">빅데이터</option>
+                            <option value="인공지능">인공지능(AI)</option>
+                            <option value="클라우드">클라우드</option>
+                            <option value="DevOps">DevOps</option>
+                            <option value="보안">보안</option>
+                            <option value="선택 안함" selected>선택 안함</option>
+                        </select><br><br>
+
+                <input class = "btn btn-primary" type = "submit" value = "submit">
+            </form>
+        </div>
+    </form>
+{% endblock %}

@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.db.models import Max
 
-from .forms import RegisterForm
+from .forms import RegisterForm, CustomUserChangeForm
 
 from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
 
@@ -147,6 +147,31 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+@login_required
+def update(request):
+    if request.method=='POST':
+        user=request.user
+
+        gender = request.POST.get('성별')
+        email= request.POST.get('email')
+        phone = request.POST.get('휴대폰번호')
+        first_interest = request.POST.get('관심사1')
+        second_interest = request.POST.get('관심사2')
+
+        user.성별 = gender
+        user.email = email
+        user.휴대폰번호 = phone
+        user.관심사1 = first_interest
+        user.관심사2 = second_interest
+
+        user.save()
+        return render(request,'blog/main_view.html',{'user':user})
+
+    else:
+        user_change_form=CustomUserChangeForm(instance=request.user)
+        return render(request, 'registration/update.html', {'user_change_form': user_change_form})
+
 
 def mypage(request):
     return render(request, 'blog/mypage.html')

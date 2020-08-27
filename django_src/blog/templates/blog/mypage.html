@@ -9,9 +9,9 @@
     <div class="col-lg-3 mr-auto">
       <div class="border p-4 rounded">
         <ul class="list-unstyled block__47528 mb-0">
-          <li><span class="active">Welcome Minji!</span></li>
+          <li><span class="active">Welcome {{ user.이름 }}!</span></li>
           <li><a href="#profile">내 정보</a></li>
-          <li><a href="#">내 정보 수정</a></li>
+          <li><a href="{% url 'update' %}">내 정보 수정</a></li>
           <li><a href="#study">내 스터디 관리</a></li>
           <li><a href="#liked_posts">좋아요한 게시물</a></li>
         </ul>
@@ -23,13 +23,13 @@
       <div class="row">
         <figure class="col-2 mr-4 profile"><img src= "{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid rounded-circle"></figure>
         <div class="col-6">
-            <h3 class="row">김민지</h3>
-            <span class="row position">kmj1995kr</span>
-            <span class="row position mt-4">Email: </span>
-            <span class="row position">핸드폰 번호: </span>
-            <span class="row position">관심사: </span>
+            <h3 class="row">{{user.이름}}</h3>
+            <span class="row position">{{user.username}}</span>
+            <span class="row position mt-4">Email: {{user.email}}</span>
+            <span class="row position">핸드폰 번호: 0{{user.휴대폰번호}}</span>
+            <span class="row position">관심사: {{user.관심사1}}, {{user.관심사2}}</span>
         </div>
-        <p><a href="#" class="btn btn-primary btn-md mt-4">내 정보 수정</a></p>
+        <p><a href="{% url 'update' %}" class="btn btn-primary btn-md mt-4">내 정보 수정</a></p>
       </div>
     </div>  
   </div>

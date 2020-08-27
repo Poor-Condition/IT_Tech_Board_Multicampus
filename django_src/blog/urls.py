@@ -43,6 +43,9 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
+# 회원정보 수정
+    path('update/', views.update,name='update'),
+
     #마이페이지
     path('mypage/', views.mypage, name = 'mypage'),
 
