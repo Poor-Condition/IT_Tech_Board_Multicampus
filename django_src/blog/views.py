@@ -8,7 +8,7 @@ from django.db.models import Max
 
 from .forms import RegisterForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
 
 from .filters import JobFilter
 # @login_required
@@ -147,3 +147,9 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+
+def study(request):
+    studies = Study.objects.all()
+
+    return render(request, "blog/job/job_detail_list.html", {"studies": studies, "page_name":"스터디"})
