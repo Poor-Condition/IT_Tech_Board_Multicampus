@@ -49,8 +49,23 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
+<<<<<<< HEAD
     #스터디
     path('study', views.study, name='study'),
+=======
+# 회원정보 수정
+    path('update/', views.update,name='update'),
+
+    #마이페이지
+    path('mypage/', views.mypage, name = 'mypage'),
+
+    #필터된 정보
+    path('', FilterView.as_view(
+            filterset_class=JobFilter,
+            template_name='job/job_detail_list_temp.html'),
+         name='index')
+
+>>>>>>> ef3896855edbf0702baa25e252414e1f193e4adc
 
     
 
