@@ -141,6 +141,24 @@ class UserManager(BaseUserManager):
         return self._create_user(email, username, password, **extra_fields)
 
 
+class StudyManager(models.Manager):
+    def signup(self, member, max_member):
+        if self.members.count() >= max_member:
+            raise Exception("해당 스터디는 정원을 초과했습니다.")
+        self.members.add(member)
+
+    def cancel(self, member):
+        self.members.remove(member)
+
+class Study(models.Model):
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=100)
+    time = models.TimeField(auto_now=False)
+    max_member = models.IntegerField(default=4)
+
+    def __str__(self):
+        return self.name
+        
 
 GENDER_CHOICES = (
     ("여자", "여자"),
@@ -166,6 +184,7 @@ class User(AbstractUser):
     성별 = models.CharField(choices=GENDER_CHOICES, db_column="gender", max_length=30)
     관심사1 = models.CharField(choices=INTEREST_CHOICES, db_column="first_interest", max_length=30)
     관심사2 = models.CharField(choices=INTEREST_CHOICES, db_column="second_interest", max_length=30)
+    study = models.ManyToManyField(Study)
 
     class Meta:
         managed = False
@@ -174,17 +193,4 @@ class User(AbstractUser):
     def __str__(self):
         return "<%d %s>" %(self.pk, self.username)
 
-class Study(models.Model):
-    name = models.CharField(max_length=50)
-    members = models.ManyToManyField(User)
-    location = models.CharField(max_length=100)
-    time = models.TimeField(auto_now=False)
 
-    def __str__(self):
-        return self.name
-    
-    def signup(cls, current_member, join_study):
-        join_study.members.add(current_member)
-
-    def cancel(cls, current_member, cancel_study):
-        cancel_study.members.remove(current_member)
