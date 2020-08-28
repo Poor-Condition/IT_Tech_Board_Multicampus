@@ -174,3 +174,17 @@ class User(AbstractUser):
     def __str__(self):
         return "<%d %s>" %(self.pk, self.username)
 
+class Study(models.Model):
+    name = models.CharField(max_length=50)
+    members = models.ManyToManyField(User)
+    location = models.CharField(max_length=100)
+    time = models.TimeField(auto_now=False)
+
+    def __str__(self):
+        return self.name
+    
+    def signup(cls, current_member, join_study):
+        join_study.members.add(current_member)
+
+    def cancel(cls, current_member, cancel_study):
+        cancel_study.members.remove(current_member)

@@ -35,7 +35,7 @@ urlpatterns = [
     path('', FilterView.as_view(
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
-         name='index')
+         name='index'),
 
     #트렌드
     path('trend/', views.trend, name='trend'),
@@ -49,10 +49,6 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
-<<<<<<< HEAD
-    #스터디
-    path('study', views.study, name='study'),
-=======
 # 회원정보 수정
     path('update/', views.update,name='update'),
 
@@ -65,7 +61,6 @@ urlpatterns = [
             template_name='job/job_detail_list_temp.html'),
          name='index')
 
->>>>>>> ef3896855edbf0702baa25e252414e1f193e4adc
 
     
 

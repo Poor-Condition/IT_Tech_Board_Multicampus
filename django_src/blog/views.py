@@ -8,7 +8,7 @@ from django.db.models import Max
 
 from .forms import RegisterForm, CustomUserChangeForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
+from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
 
 from .filters import JobFilter
 # @login_required
