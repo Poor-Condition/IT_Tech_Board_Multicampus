@@ -28,10 +28,16 @@ urlpatterns = [
     path('contest/contest_job/', views.contest_job_list, name='contest_job_list'),
     
 
-    #취업
+    #채용공고
     path('job/', views.job_list, name='job_list'),
 
-    # 트렌드
+    #채용공고 필터
+    path('', FilterView.as_view(
+            filterset_class=JobFilter,
+            template_name='job/job_detail_list_temp.html'),
+         name='index'),
+
+    #트렌드
     path('trend/', views.trend, name='trend'),
 
     #로그인
@@ -43,18 +49,19 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
-# 회원정보 수정
+    #회원정보 수정
     path('update/', views.update,name='update'),
 
     #마이페이지
     path('mypage/', views.mypage, name = 'mypage'),
 
-    #필터된 정보
-    path('', FilterView.as_view(
-            filterset_class=JobFilter,
-            template_name='job/job_detail_list_temp.html'),
-         name='index')
+    #스터디 리스트 페이지
+    path('study/', views.study, name='study'),
+
+    #스터디 만들기
+    path('study/create', views.create_study, name='create_study')
 
 
+    
 
 ]

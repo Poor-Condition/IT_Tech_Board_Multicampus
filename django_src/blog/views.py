@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.db.models import Max
 
-from .forms import RegisterForm, CustomUserChangeForm
+from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
 
 from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
 
@@ -172,6 +172,18 @@ def update(request):
         user_change_form=CustomUserChangeForm(instance=request.user)
         return render(request, 'registration/update.html', {'user_change_form': user_change_form})
 
-
+@login_required
 def mypage(request):
     return render(request, 'blog/mypage.html')
+
+def study(request):
+    return render(request, 'blog/study/study.html')
+
+def create_study(request):
+    form = CreateStudyForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('study')
+    return render(request, 'blog/study/create_study.html', {'form':form})
