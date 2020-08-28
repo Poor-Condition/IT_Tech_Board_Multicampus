@@ -47,8 +47,10 @@ urlpatterns = [
     path('', FilterView.as_view(
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
-         name='index')
+         name='index'),
 
-
+    # 스터디 채팅
+    path("study/", views.study_chat, name="study_chat"),
+    path('study/<str:room_name>/', views.room, name='room'),
 
 ]

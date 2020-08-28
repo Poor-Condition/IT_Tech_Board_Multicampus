@@ -7,9 +7,7 @@ from django.views.generic import TemplateView
 from django.db.models import Max
 
 from .forms import RegisterForm
-
 from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
-
 from .filters import JobFilter
 # @login_required
 
@@ -147,3 +145,11 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+def study_chat(request):
+    return render(request, "study/chat.html", {})
+
+def room(request, room_name):
+    return render(request, 'study/room.html', {
+        'room_name': room_name
+    })
