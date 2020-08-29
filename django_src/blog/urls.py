@@ -53,8 +53,9 @@ urlpatterns = [
     path('', FilterView.as_view(
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
-         name='index')
+         name='index'),
 
-
+    #좋아요
+    path('like/', views.articles_like, name='articles_like'),
 
 ]

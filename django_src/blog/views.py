@@ -1,14 +1,15 @@
 from django.contrib.auth import login
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView
-from django.db.models import Max
+from django.views.decorators.http import require_POST
+import json
+
 
 from .forms import RegisterForm, CustomUserChangeForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .models import Jobs, Contest, Articles, Like
 
 from .filters import JobFilter
 # @login_required
@@ -95,36 +96,36 @@ def job_db_list(request):
 
 
 # 공모전
+
+def contest_set_view(request, model_name, field_name, page_name):
+    obj = model_name.objects.filter(field=field_name)
+
+    first = obj.order_by('-contest_views')[0]
+    second = obj.order_by('-contest_views')[1]
+    third = obj.order_by('-contest_views')[2]
+
+    return render(request, "blog/contest/contest_detail_list.html",
+                  {"contests": obj, "page_name": page_name, "first": first, "second": second, "third": third})
+
+
 def contest_list(request):
-    return render(request, "blog/contest/contest_list.html",)
+    contest = Contest.objects.all()
+    first = Contest.objects.order_by('-contest_views')[0]
+    second = Contest.objects.order_by('-contest_views')[1]
+    third = Contest.objects.order_by('-contest_views')[2]
+
+    return render(request, "blog/contest/contest_detail_list.html",
+                  {"contests": contest, "page_name": "공모전", "first": first, "second": second, "third": third})
 
 
 def contest_game_list(request):
-    contest_game = Contest_game.objects.all()
-    first = Contest_game.objects.order_by('-contest_views')[0]
-    second = Contest_game.objects.order_by('-contest_views')[1]
-    third = Contest_game.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전", "first":first, "second":second, "third":third})
-
+    return contest_set_view(request, Contest, '게임/소프트웨어', '게임/소프트웨어')
 
 def contest_science_list(request):
-    contest_science = Contest_science.objects.all()
-    first = Contest_science.objects.order_by('-contest_views')[0]
-    second = Contest_science.objects.order_by('-contest_views')[1]
-    third = Contest_science.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전", "first":first, "second":second, "third":third})
-
+    return contest_set_view(request, Contest, '과학/공학', '과학/공학')
 
 def contest_job_list(request):
-    contest_job = Contest_job.objects.all()
-    first = Contest_job.objects.order_by('-contest_views')[0]
-    second = Contest_job.objects.order_by('-contest_views')[1]
-    third = Contest_job.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전", "first":first, "second":second, "third":third})
-
+    return contest_set_view(request, Contest, '취업/창업', '취업/창업')
 
 def register(request):
     if request.method == 'POST':
@@ -175,3 +176,18 @@ def update(request):
 
 def mypage(request):
     return render(request, 'blog/mypage.html')
+
+
+@login_required
+# @require_POST # 해당 뷰는 POST method 만 받는다.
+def articles_like(request, articles_id):
+    user = request.user  # 로그인된 유저 객체를 가져오기
+    article = get_object_or_404(Articles, pk=articles_id)
+    # article라는 변수 안에 게시물들 중에 article_id 를 pk를 기준으로 선별해서 하나의 게시물을 가져오기
+    articles_like, articles_like_created=article.like_set.get_or_create(user=request.user)
+    # 가져온 게시물의 like 값을 가져오거나 가져온 게시물의 like 값을 새로 만듭니다 이때 like의 user값은 현재 요청한 user로 설정합니다
+    if not articles_like_created:
+        articles_like.delete()
+        #게시물의 like가 새로 만들어지 지지 않으면 가져온 게시물의 like 값을 삭제합니다
+        return redirect('/article/'+str(article.id))
+    return redirect('/article/' + str(article.id))

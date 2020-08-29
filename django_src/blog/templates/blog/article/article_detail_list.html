@@ -34,7 +34,21 @@
               </div>
             </div>
             <div class="col-10 mb-1 pt-3 px-4 py-2 border">
-              <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
+
+              <form action="{% url 'articles_like' details.id%}" method="POST">
+<!--              form이 실행되면 post 형식으로 details.id(게시물의 id 값)을 담아서 post_like url을 실행해라-->
+                {% csrf_token %}
+                <button type="submit" value="Like">좋아요</button>
+                </form>
+                <p>좋아요 {{ details.like_count }}개</p>
+<!--            게시물의 좋아요 갯수-->
+                {% for like_user in details.likes.all %}
+<!--              게시물을 좋아요 누른 user들을 각각 like_user에 담고-->
+                  <p>{{ like_user.username }}</p>
+<!--            like_user에 담긴 유저들의 이름을 나타내라-->
+                {% endfor %}
+
+                <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
               <div>{{article.published_date}}</div>
               <div>{{ article.news_text }}</div>
             </div>

@@ -1,10 +1,14 @@
+from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
 from django.db import models
 
+
+
 class Articles(models.Model):
     objects = None
+    # id=models.IntegerField(db_column="id")
     news_title = models.CharField(db_column="제목", max_length=400)
     news_url = models.URLField(db_column="링크", max_length=400)
     image_link = models.CharField(db_column="이미지", max_length=400)
@@ -12,9 +16,23 @@ class Articles(models.Model):
     field = models.CharField(db_column="분류", max_length=50)
     news_text = models.CharField(db_column="내용", max_length=500)
 
+    author=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
     class Meta:
         managed = False
         db_table = "articles"
+
+    likes = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,  # User 모델과 Articles 모델을 M:N 관계로 두겠다.
+        through='Like',  # Like라는 중개 모델을 통해 M:N 관계를 맺는다
+        through_fields=('news_title','username'),  # Like에 news_id 속성, user 속성을 추가하겠다.(타겟,지정)
+        related_name='likes'  # related_name을 설정하면 blog.like_set이 아니라 blog.likes로 like를 가져올 수 있다.
+    )
+
+    @property
+    def like_count(self):
+        return self.likes.count()  # 몇 개의 Likes와 연결되어 있는가
+
 
     def __str__(self):
         return self.news_title
@@ -41,7 +59,7 @@ class Jobs(models.Model):
         return self.job_title
 
 
-class Contest_game(models.Model):
+class Contest(models.Model):
     objects=None
     #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
     contest_title=models.CharField(db_column="공모이름", max_length=400)
@@ -56,57 +74,11 @@ class Contest_game(models.Model):
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
     contest_views = models.IntegerField(db_column="조회수")
+    field = models.CharField(db_column="분류", max_length=50)
 
     class Meta:
         managed = False
-        db_table = "contest_game"
-
-    def __str__(self):
-        return self.contest_title
-
-class Contest_science(models.Model):
-    objects=None
-    #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
-    contest_title = models.CharField(db_column="공모이름", max_length=400)
-    contest_image = models.CharField(db_column="이미지", max_length=400)
-    contest_category = models.CharField(db_column="분야", max_length=400)
-    contest_participant = models.CharField(db_column="응모대상", max_length=400)
-    contest_organizer = models.CharField(db_column="주최/주관", max_length=400)
-    contest_sponsor = models.CharField(db_column="후원/협찬", max_length=400)
-    contest_period = models.CharField(db_column="접수기간", max_length=400)
-    contest_money = models.CharField(db_column="총 상금", max_length=400)
-    contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
-    contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
-    contest_file = models.CharField(db_column="첨부파일", max_length=400)
-    contest_views = models.IntegerField(db_column="조회수")
-
-    class Meta:
-        managed = False
-        db_table = "contest_science"
-
-    def __str__(self):
-        return self.contest_title
-
-
-class Contest_job(models.Model):
-    objects=None
-    #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
-    contest_title = models.CharField(db_column="공모이름", max_length=400)
-    contest_image = models.CharField(db_column="이미지", max_length=400)
-    contest_category = models.CharField(db_column="분야", max_length=400)
-    contest_participant = models.CharField(db_column="응모대상", max_length=400)
-    contest_organizer = models.CharField(db_column="주최/주관", max_length=400)
-    contest_sponsor = models.CharField(db_column="후원/협찬", max_length=400)
-    contest_period = models.CharField(db_column="접수기간", max_length=400)
-    contest_money = models.CharField(db_column="총 상금", max_length=400)
-    contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
-    contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
-    contest_file = models.CharField(db_column="첨부파일", max_length=400)
-    contest_views = models.IntegerField(db_column="조회수")
-
-    class Meta:
-        managed = False
-        db_table = "contest_job"
+        db_table = "contest"
 
     def __str__(self):
         return self.contest_title
@@ -141,7 +113,6 @@ class UserManager(BaseUserManager):
         return self._create_user(email, username, password, **extra_fields)
 
 
-
 GENDER_CHOICES = (
     ("여자", "여자"),
     ("남자", "남자")
@@ -174,3 +145,13 @@ class User(AbstractUser):
     def __str__(self):
         return "<%d %s>" %(self.pk, self.username)
 
+class Like(models.Model):
+    #through_fileds와 순서가 같아야 한다.
+    news_title = models.ForeignKey(Articles, on_delete=models.CASCADE)
+    username=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together=(('news_title','username'))
