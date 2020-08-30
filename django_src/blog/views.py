@@ -3,10 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, View
 from django.db.models import Max
+from django.http import HttpResponseForbidden
 
-from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
+from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm, StudyMemberChange
 
 from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
 
@@ -194,15 +195,45 @@ def study_confirmation(request):
     return render(request, 'blog/study/study_confirmation.html')
 
 
+# def study(request):
+#     studies = Study.objects.all()
+#     form = StudyMemberChange(request.POST)
+#     if request.method == 'POST':
+#         user = request.user
+#         if form.is_valid():
+#             form.instance.members.add(user)
+#             post=form.save(commit=False)
+#             post.save()
+#             return redirect('study_confirmation')
+#     return render(request, 'blog/study/study.html', {'studies': studies})
+
 def study(request):
     studies = Study.objects.all()
+    form = StudyMemberChange(request.POST)
+    return render(request, 'blog/study/study.html', {'studies':studies, 'form':form})
 
-    return render(request, 'blog/study/study.html', {'studies': studies})
+def cancel_study(request, id):
+    user = request.user
+    study = Study.objects.get(pk='id')
+    study.members.remove(user)
+    return render(request, 'blog/study/study_confirmation.html')
+
+def join_study(request, id):
+    user = request.user
+    study = Study.objects.get(pk=id)
+    study.members.add(user)
+    return render(request, 'blog/study/study_confirmation.html')
 
 
-# form = StudyMemberChange(request.POST)
-    
-    # if request.method == 'POST':
-    #     user = request.user
-    #     if form.is_valid():
-    #         return redirect('blog/study/study_confirmation.html')
+# class StudyJoin(View):
+#     def get (self, request, *args, **kwargs):
+#         studies = Study.objects.all()
+#         if 'id' in kwargs:
+#             id = kwargs['id']
+#             study = Study.objects.get(pk='id')
+#             user = request.user
+#             if user in study.members.all():
+#                 study.members.remove(user)
+#             else:
+#                 study.members.add(user)
+#         return render(request, 'blog/study/study.html', {'studies':studies})

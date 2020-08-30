@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-{% for study  in studies %}
+{% for study in studies %}
     이름: {{study.name}} <br>
     장소: {{study.location}} <br>
     시간: {{study.time}}<br>
@@ -10,8 +10,13 @@
     {% for member in study.members.all %}
         멤버: {{member}}
     {% endfor %}
-    <input type="submit" name="signup" value="signup">
-    <input type="submit" name="cancel" value="cancel">
+    {% if user.is_authenticated %}
+        {% if user in study.members.all %}
+            <a href="{% url 'cancel_study' study.id %}"> cancel </a>
+        {% else %}
+            <a href="{% url 'join_study' study.id %}"> join </a>
+        {% endif %}
+    {% endif %}
     <br>
     <hr>
 {% endfor %}
