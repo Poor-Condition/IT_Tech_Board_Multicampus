@@ -30,3 +30,18 @@ class CreateStudyForm(forms.ModelForm):
     class Meta:
         model = Study
         fields = ['name', 'location', 'time', 'max_member']
+
+
+# class StudyMemberChange(forms.ModelForm):
+#     def member_change(self):
+#         if "signup" in self.data:
+#             if self.members.count() >= max_member:
+#                 raise Exception("해당 스터디는 정원을 초과했습니다.")
+#             else:
+#                 self.members.add(user)
+#         elif "cancel" in self.data:
+#             self.members.remove(user)
+
+#     class Meta:
+#         model = Study
+#         fields = ['members', 'max_member']

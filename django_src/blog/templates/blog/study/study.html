@@ -1,5 +1,18 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-
+{% for study  in studies %}
+    이름: {{study.name}} <br>
+    장소: {{study.location}} <br>
+    시간: {{study.time}}<br>
+    스터디장: {{study.owner}}<br>
+    멤버수: {{study.members.all.count}}<br>
+    {% for member in study.members.all %}
+        멤버: {{member}}
+    {% endfor %}
+    <input type="submit" name="signup" value="signup">
+    <input type="submit" name="cancel" value="cancel">
+    <br>
+    <hr>
+{% endfor %}
 {% endblock %}

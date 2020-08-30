@@ -59,7 +59,10 @@ urlpatterns = [
     path('study/', views.study, name='study'),
 
     #스터디 만들기
-    path('study/create', views.create_study, name='create_study')
+    path('study/create', views.create_study, name='create_study'),
+
+    #스터디 confirmation
+    path('study/confirmation', views.study_confirmation, name='study_confirmation')
 
 
     

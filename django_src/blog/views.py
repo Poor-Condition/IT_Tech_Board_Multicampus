@@ -8,7 +8,7 @@ from django.db.models import Max
 
 from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
 
 from .filters import JobFilter
 # @login_required
@@ -176,14 +176,33 @@ def update(request):
 def mypage(request):
     return render(request, 'blog/mypage.html')
 
-def study(request):
-    return render(request, 'blog/study/study.html')
 
+@login_required
 def create_study(request):
     form = CreateStudyForm(request.POST)
     if request.method == 'POST':
+        user = request.user
         if form.is_valid():
+            form.instance.owner = user
             post = form.save(commit=False)
             post.save()
+            form.instance.members.add(user)
             return redirect('study')
     return render(request, 'blog/study/create_study.html', {'form':form})
+
+def study_confirmation(request):
+    return render(request, 'blog/study/study_confirmation.html')
+
+
+def study(request):
+    studies = Study.objects.all()
+
+    return render(request, 'blog/study/study.html', {'studies': studies})
+
+
+# form = StudyMemberChange(request.POST)
+    
+    # if request.method == 'POST':
+    #     user = request.user
+    #     if form.is_valid():
+    #         return redirect('blog/study/study_confirmation.html')
