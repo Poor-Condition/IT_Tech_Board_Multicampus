@@ -187,3 +187,4 @@ def create_study(request):
             post.save()
             return redirect('study')
     return render(request, 'blog/study/create_study.html', {'form':form})
+    
