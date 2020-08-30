@@ -201,7 +201,7 @@ def study(request):
 
 def cancel_study(request, id):
     user = request.user
-    study = Study.objects.get(pk='id')
+    study = Study.objects.get(pk=id)
     study.members.remove(user)
     return render(request, 'blog/study/study_confirmation.html')
 

@@ -172,14 +172,6 @@ class User(AbstractUser):
     def __str__(self):
         return "<%d %s>" %(self.pk, self.username)
 
-# class StudyManager(models.Manager):
-#     def signup(self, member, max_member):
-#         if self.members.count() >= max_member:
-#             raise Exception("해당 스터디는 정원을 초과했습니다.")
-#         self.members.add(member)
-
-#     def cancel(self, member):
-#         self.members.remove(member)
 
 class Study(models.Model):
     name = models.CharField(max_length=50)
@@ -189,20 +181,6 @@ class Study(models.Model):
 
     owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, default=1)
     members = models.ManyToManyField(User, related_name='members', null=True)
-
-    # @classmethod
-    # def addself(self):
-    #     self.members.add(self)
-
-    @classmethod
-    def signup(self, member, max_member):
-        if self.members.count() >= max_member:
-            raise Exception("해당 스터디는 정원을 초과했습니다.")
-        self.members.add(member)
-
-    @classmethod
-    def cancel(self, member):
-        self.members.remove(member)
     
     class Meta:
         db_table = "study"
