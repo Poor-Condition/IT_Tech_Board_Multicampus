@@ -210,18 +210,3 @@ class Study(models.Model):
     def __str__(self):
         return self.name
         
-
-class Study(models.Model):
-    name = models.CharField(max_length=50)
-    location = models.CharField(max_length=100)
-    time = models.TimeField(auto_now=False)
-    max_member = models.IntegerField(default=4)
-
-    owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, default=1)
-    members = models.ManyToManyField(User, related_name='members', null=True)
-
-    class Meta:
-        db_table = "study"
-
-    def __str__(self):
-        return self.name
