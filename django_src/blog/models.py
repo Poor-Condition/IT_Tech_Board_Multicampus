@@ -112,6 +112,25 @@ class Contest_job(models.Model):
         return self.contest_title
 
 
+class StudyManager(models.Manager):
+    def signup(self, member, max_member):
+        if self.members.count() >= max_member:
+            raise Exception("해당 스터디는 정원을 초과했습니다.")
+        self.members.add(member)
+
+    def cancel(self, member):
+        self.members.remove(member)
+
+class Study(models.Model):
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=100)
+    time = models.TimeField(auto_now=False)
+    max_member = models.IntegerField(default=4)
+
+    def __str__(self):
+        return self.name
+        
+
 class UserManager(BaseUserManager):
     def _create_user(self, email, username, password, gender=1, **extra_fields):
         if not email:
@@ -141,24 +160,7 @@ class UserManager(BaseUserManager):
         return self._create_user(email, username, password, **extra_fields)
 
 
-class StudyManager(models.Manager):
-    def signup(self, member, max_member):
-        if self.members.count() >= max_member:
-            raise Exception("해당 스터디는 정원을 초과했습니다.")
-        self.members.add(member)
 
-    def cancel(self, member):
-        self.members.remove(member)
-
-class Study(models.Model):
-    name = models.CharField(max_length=50)
-    location = models.CharField(max_length=100)
-    time = models.TimeField(auto_now=False)
-    max_member = models.IntegerField(default=4)
-
-    def __str__(self):
-        return self.name
-        
 
 GENDER_CHOICES = (
     ("여자", "여자"),
