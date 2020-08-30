@@ -30,3 +30,5 @@ class CreateStudyForm(forms.ModelForm):
     class Meta:
         model = Study
         fields = ['name', 'location', 'time', 'max_member']
+
+

@@ -3,12 +3,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, View
 from django.db.models import Max
+from django.http import HttpResponseForbidden
 
 from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
 
 from .filters import JobFilter
 # @login_required
@@ -176,15 +177,38 @@ def update(request):
 def mypage(request):
     return render(request, 'blog/mypage.html')
 
-def study(request):
-    return render(request, 'blog/study/study.html')
 
+@login_required
 def create_study(request):
     form = CreateStudyForm(request.POST)
     if request.method == 'POST':
+        user = request.user
         if form.is_valid():
+            form.instance.owner = user
             post = form.save(commit=False)
             post.save()
+            form.instance.members.add(user)
             return redirect('study')
     return render(request, 'blog/study/create_study.html', {'form':form})
-    
+
+def study_confirmation(request):
+    return render(request, 'blog/study/study_confirmation.html')
+
+
+def study(request):
+    studies = Study.objects.all()
+    return render(request, 'blog/study/study.html', {'studies':studies})
+
+def cancel_study(request, id):
+    user = request.user
+    study = Study.objects.get(pk='id')
+    study.members.remove(user)
+    return render(request, 'blog/study/study_confirmation.html')
+
+def join_study(request, id):
+    user = request.user
+    study = Study.objects.get(pk=id)
+    study.members.add(user)
+    return render(request, 'blog/study/study_confirmation.html')
+
+
