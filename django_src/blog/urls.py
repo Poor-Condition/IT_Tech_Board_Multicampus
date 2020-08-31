@@ -61,20 +61,20 @@ urlpatterns = [
     #마이페이지
     path('mypage/', views.mypage, name = 'mypage'),
 
-    #스터디 리스트 페이지
+    #스터디 전체 리스트 페이지
     path('study/', views.study, name='study'),
+
+    #내 스터디 페이지
+    path('study/my', views.my_study, name='my_study'),
 
     #스터디 만들기
     path('study/create', views.create_study, name='create_study'),
 
     #스터디 join
-    path('study/join/(?<id>+)$', views.join_study, name='join_study'),
+    path('study/join/<id>', views.join_study, name='join_study'),
 
     #스터디 cancel
-    path('study/cancel/(?<id>+)$', views.cancel_study, name='cancel_study'),
-
-    #스터디 confirmation
-    path('study/confirmation', views.study_confirmation, name='study_confirmation'),
+    path('study/cancel/<id>', views.cancel_study, name='cancel_study'),
 
     # 스터디 채팅
     path("chat/", views.study_chat, name="study_chat"),

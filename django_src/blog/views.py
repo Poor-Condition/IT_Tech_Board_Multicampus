@@ -127,7 +127,6 @@ def contest_science_list(request):
 def contest_job_list(request):
     return contest_set_view(request, Contest, '취업/창업', '취업/창업')
 
-
 def register(request):
     if request.method == 'POST':
         user_form = RegisterForm(request.POST)
@@ -200,13 +199,15 @@ def create_study(request):
             return redirect('study')
     return render(request, 'blog/study/create_study.html', {'form':form})
 
-def study_confirmation(request):
-    return render(request, 'blog/study/study_confirmation.html')
-
-
 def study(request):
     studies = Study.objects.all()
-    return render(request, 'blog/study/study.html', {'studies':studies})
+    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디"})
+
+def my_study(request):
+    user = request.user
+    studies = Study.objects.filter(members=user)
+
+    return render(request, 'blog/study/my_study.html', {'studies':studies, "page_name":"스터디"})
 
 @login_required
 def cancel_study(request, id):
@@ -216,7 +217,7 @@ def cancel_study(request, id):
         study.delete()
     else:
         study.members.remove(user)
-    return render(request, 'blog/study/study_confirmation.html')
+    return render(request, 'blog/study/cancel_study.html', {"page_name":"스터디"})
 
 @login_required
 def join_study(request, id):
@@ -226,6 +227,6 @@ def join_study(request, id):
         return render(request, 'blog/study/max.html')
     else:
         study.members.add(user)
-    return render(request, 'blog/study/study_confirmation.html')
+    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
 
 

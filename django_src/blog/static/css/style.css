@@ -63,6 +63,12 @@ input.btn{
 
 }
 
+.study{
+  background-color: lightgray;
+  border: solid transparent;
+  border-color: #7f848c;
+}
+
 
 /* 여기서부터 부트스트랩 */
 .site-navbar {
@@ -495,6 +501,10 @@ body {
 
 h1, h2, h3, h4 {
   color: #000; }
+
+.study-section{
+  position: relative;
+}
 
 .site-section {
   padding-top: 3rem;

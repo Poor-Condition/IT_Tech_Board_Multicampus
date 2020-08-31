@@ -40,7 +40,6 @@ class Jobs(models.Model):
     def __str__(self):
         return self.job_title
 
-
 class Contest(models.Model):
     objects=None
     #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
