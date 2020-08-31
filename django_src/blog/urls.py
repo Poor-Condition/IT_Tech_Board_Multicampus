@@ -77,7 +77,7 @@ urlpatterns = [
     path('study/confirmation', views.study_confirmation, name='study_confirmation'),
 
     # 스터디 채팅
-    path("study/", views.study_chat, name="study_chat"),
-    path('study/<str:room_name>/', views.room, name='room'),
+    path("chat/", views.study_chat, name="study_chat"),
+    path('chat/<str:room_name>/', views.room, name='room'),
 
 ]

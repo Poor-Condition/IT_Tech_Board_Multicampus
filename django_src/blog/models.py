@@ -41,7 +41,7 @@ class Jobs(models.Model):
         return self.job_title
 
 
-class Contest_game(models.Model):
+class Contest(models.Model):
     objects=None
     #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
     contest_title=models.CharField(db_column="공모이름", max_length=400)
@@ -56,57 +56,10 @@ class Contest_game(models.Model):
     contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
     contest_views = models.IntegerField(db_column="조회수")
+    field = models.CharField(db_column="분류", max_length=50)
 
     class Meta:
-        managed = False
-        db_table = "contest_game"
-
-    def __str__(self):
-        return self.contest_title
-
-class Contest_science(models.Model):
-    objects=None
-    #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
-    contest_title = models.CharField(db_column="공모이름", max_length=400)
-    contest_image = models.CharField(db_column="이미지", max_length=400)
-    contest_category = models.CharField(db_column="분야", max_length=400)
-    contest_participant = models.CharField(db_column="응모대상", max_length=400)
-    contest_organizer = models.CharField(db_column="주최/주관", max_length=400)
-    contest_sponsor = models.CharField(db_column="후원/협찬", max_length=400)
-    contest_period = models.CharField(db_column="접수기간", max_length=400)
-    contest_money = models.CharField(db_column="총 상금", max_length=400)
-    contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
-    contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
-    contest_file = models.CharField(db_column="첨부파일", max_length=400)
-    contest_views = models.IntegerField(db_column="조회수")
-
-    class Meta:
-        managed = False
-        db_table = "contest_science"
-
-    def __str__(self):
-        return self.contest_title
-
-
-class Contest_job(models.Model):
-    objects=None
-    #'공모이름', '이미지', '분야', '응모대상', '주최/주관', '후원/협찬', '접수기간', '총 상금', '1등 상금', '홈페이지', '첨부파일'
-    contest_title = models.CharField(db_column="공모이름", max_length=400)
-    contest_image = models.CharField(db_column="이미지", max_length=400)
-    contest_category = models.CharField(db_column="분야", max_length=400)
-    contest_participant = models.CharField(db_column="응모대상", max_length=400)
-    contest_organizer = models.CharField(db_column="주최/주관", max_length=400)
-    contest_sponsor = models.CharField(db_column="후원/협찬", max_length=400)
-    contest_period = models.CharField(db_column="접수기간", max_length=400)
-    contest_money = models.CharField(db_column="총 상금", max_length=400)
-    contest_firstmoney = models.CharField(db_column="1등 상금", max_length=400)
-    contest_homepage = models.CharField(db_column="홈페이지", max_length=400)
-    contest_file = models.CharField(db_column="첨부파일", max_length=400)
-    contest_views = models.IntegerField(db_column="조회수")
-
-    class Meta:
-        managed = False
-        db_table = "contest_job"
+        db_table = "contest"
 
     def __str__(self):
         return self.contest_title
@@ -153,6 +106,7 @@ INTEREST_CHOICES = (
     ('보안', '보안'),
     ('선택 안함', '선택 안함')
 )
+
 class User(AbstractUser):
     objects = UserManager()
 
