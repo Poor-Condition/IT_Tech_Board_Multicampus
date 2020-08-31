@@ -55,8 +55,11 @@ urlpatterns = [
     #마이페이지
     path('mypage/', views.mypage, name = 'mypage'),
 
-    #스터디 리스트 페이지
+    #스터디 전체 리스트 페이지
     path('study/', views.study, name='study'),
+
+    #내 스터디 페이지
+    path('study/my', views.my_study, name='my_study'),
 
     #스터디 만들기
     path('study/create', views.create_study, name='create_study'),

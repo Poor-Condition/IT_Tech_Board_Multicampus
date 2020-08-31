@@ -2,11 +2,6 @@
 {% block content %}
 <div class="site-section services-section block__62849" id="next-section">
     <div class="container">
-      <div class="row mb-5">
-          <div class="col-md-10 offset-md-10">
-            <a href="{% url 'create_study' %}"><button type="button" class="btn btn-success">새 스터디 등록</button></a>
-          </div>
-      </div>  
       <div class="row">
         {% for study in studies %}
             <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
