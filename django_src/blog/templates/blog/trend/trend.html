@@ -1,188 +1,86 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<h1>How About Programming Language?</h1>
-<div class="row pt-4 mb-5">
-    <div class="col-5 mb-5 pt-4">
-        <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-    </div>
+<div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <h1>How About Programming Language?</h1>
+    <div class="row pt-4 mb-5">
+        <div class="col-5 mb-5 pt-4">
+            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
+        </div>
 
-    <div class="col-7 mt-3 mb-5" style="width:450px">
-        <canvas id="myChart_Programming_Language"></canvas>
+        <div class="col-7 mt-3 mb-5" style="width:450px">
+            <canvas id="myChart_Programming_Language"></canvas>
+        </div>
     </div>
+    <hr>
+
+    <h1 class="mt-5">What kind of DB do you use?</h1>
+    <div class="row pt-3 mb-5">
+        <div class="col-5 mt-3 pt-3">
+            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
+        </div>
+
+        <div class="col-7 mt-3 mb-5" style="width:800px; height: 600px;">
+            <canvas id="myChart_DB"></canvas>
+        </div>
+    </div>
+    <hr>
+
+    <h1>Which of the following IDE do you use on a regular basis?</h1>
+    <div class="row pt-3">
+        <div class="col-12 mt-3 pt-3">
+            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
+        </div>
+
+        <div class="col-12 pt-3" style="width:1000px; height: 600px;">
+            <canvas id="myChart_IDE"></canvas>
+        </div>
+    </div>
+    <hr>
+
+    <h1>How about ML Frameworks & Tools?</h1>
+    <div class="row pt-5 mb-5">
+        <div class="col-5 mt-5 pt-3">
+            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
+        </div>
+
+        <div class="col-7 mt-3 mb-5" style="width:600px; height: 600px;">
+            <canvas id="myChart_ML"></canvas>
+        </div>
+    </div>
+    <hr>
+
+    <h1 class="mt-5">Favorite Source to Study Machine Learning</h1>
+    <div class="row pt-3 mb-5">
+        <div class="col-5 mt-3 pt-3">
+            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
+        </div>
+
+        <div class="col-7 mt-3 mb-5" style="width:800px; height: 600px;">
+            <canvas id="myChart_Study_ML"></canvas>
+        </div>
+    </div>
+    <hr>
+
 </div>
-<hr>
 
-<h1 class="mt-5">What kind of DB do you use?</h1>
-<div class="row pt-3 mb-5">
-    <div class="col-5 mt-3 pt-3">
-        <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-    </div>
 
-    <div class="col-7 mt-3 mb-5" style="width:800px; height: 600px;">
-        <canvas id="myChart_DB"></canvas>
-    </div>
-</div>
-<hr>
-
-<h1>Which of the following IDE do you use on a regular basis?</h1>
-<div class="row pt-3">
-    <div class="col-12 mt-3 pt-3">
-        <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-    </div>
-
-    <div class="col-12 pt-3" style="width:1000px; height: 600px;">
-        <canvas id="myChart_IDE"></canvas>
-    </div>
-</div>
-<hr>
-
-<h1>How about ML Frameworks & Tools?</h1>
-<div class="row pt-5 mb-5">
-    <div class="col-5 mt-5 pt-3">
-        <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-    </div>
-
-    <div class="col-7 mt-3 mb-5" style="width:600px; height: 600px;">
-        <canvas id="myChart_ML"></canvas>
-    </div>
-</div>
-<hr>
-
-<script>
-// 우선 컨텍스트를 가져옵니다. 
-var ctx = document.getElementById("myChart_Programming_Language").getContext('2d');
-/*
-- Chart를 생성하면서, 
-- ctx를 첫번째 argument로 넘겨주고, 
-- 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-*/
-var myChart_Programming_Language = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ["Python","R","SQL","C++","MATLAB","C","Other","Java","None","Javascript","Bash","TypeScript"],
-        datasets: [{
-            label: '# of Votes',
-            data: [11316,1343,817,199,162,153,127,104,69,47,35,5],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(23, 159, 64, 0.2)',
-                'rgba(53, 6, 64, 0.2)',
-                'rgba(93, 159, 64, 0.2)',
-                'rgba(164, 25, 64, 0.2)',
-                'rgba(207, 82, 64, 0.2)',
-                'rgba(173, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(23, 159, 64, 1)',
-                'rgba(53, 6, 64, 1)',
-                'rgba(93, 159, 64, 1)',
-                'rgba(164, 25, 64, 1)',
-                'rgba(207, 82, 64, 1)',
-                'rgba(173, 159, 64, 1)'
-            ],
-            borderWidth: 2
-        }]
-    },
-    options: {
-        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
-
-<script>
+    <script>
     // 우선 컨텍스트를 가져옵니다. 
-    var ctx = document.getElementById("myChart_DB").getContext('2d');
+    var ctx = document.getElementById("myChart_Programming_Language").getContext('2d');
     /*
     - Chart를 생성하면서, 
     - ctx를 첫번째 argument로 넘겨주고, 
     - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
     */
-    var myChart_DB = new Chart(ctx, {
-        type: 'horizontalBar',
+    var myChart_Programming_Language = new Chart(ctx, {
+        type: 'pie',
         data: {
-            labels: ["MySQL","PostgresSQL","SQLite","Microsoft SQL Server","Oracle Database","Microsoft Access","AWS Relational Database Service","AWS DynamoDB","Azure SQL Database","Google Cloud SQL","None","Other"],
-            datasets: [{
-                label: "# of Votes",
-                data: [3122,2160,1527,1852,1192,547,588,415,479,526,1245,287],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                    'rgba(23, 159, 64, 0.2)',
-                    'rgba(53, 6, 64, 0.2)',
-                    'rgba(93, 159, 64, 0.2)',
-                    'rgba(164, 25, 64, 0.2)',
-                    'rgba(207, 82, 64, 0.2)',
-                    'rgba(173, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                    'rgba(23, 159, 64, 1)',
-                    'rgba(53, 6, 64, 1)',
-                    'rgba(93, 159, 64, 1)',
-                    'rgba(164, 25, 64, 1)',
-                    'rgba(207, 82, 64, 1)',
-                    'rgba(173, 159, 64, 1)'
-                ],
-                borderWidth: 2
-            }]
-        },
-        options: {
-            maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
-    </script>
-
-<script>
-    // 우선 컨텍스트를 가져옵니다. 
-    var ctx = document.getElementById("myChart_ML").getContext('2d');
-    /*
-    - Chart를 생성하면서, 
-    - ctx를 첫번째 argument로 넘겨주고, 
-    - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-    */
-    var myChart_ML = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ["Scikit-learn ","TensorFlow ","Keras","RandomForest","Xgboost","PyTorch","Caret","LightGBM","Spark MLib","Fast.ai","None","Other"],
+            labels: ["Python","R","SQL","C++","MATLAB","C","Other","Java","None","Javascript","Bash","TypeScript"],
             datasets: [{
                 label: '# of Votes',
-                data: [9390,5822,5756,4524,4243,3412,1139,2166,910,949,1720,342],
+                data: [11316,1343,817,199,162,153,127,104,69,47,35,5],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -225,23 +123,200 @@ var myChart_Programming_Language = new Chart(ctx, {
             }
         }
     });
-</script>
+    </script>
+
+    <script>
+        // 우선 컨텍스트를 가져옵니다. 
+        var ctx = document.getElementById("myChart_DB").getContext('2d');
+        /*
+        - Chart를 생성하면서, 
+        - ctx를 첫번째 argument로 넘겨주고, 
+        - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+        */
+        var myChart_DB = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ["MySQL","PostgresSQL","SQLite","Microsoft SQL Server","Oracle Database","Microsoft Access","AWS Relational Database Service","AWS DynamoDB","Azure SQL Database","Google Cloud SQL","None","Other"],
+                datasets: [{
+                    label: "# of Votes",
+                    data: [3122,2160,1527,1852,1192,547,588,415,479,526,1245,287],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(23, 159, 64, 0.2)',
+                        'rgba(53, 6, 64, 0.2)',
+                        'rgba(93, 159, 64, 0.2)',
+                        'rgba(164, 25, 64, 0.2)',
+                        'rgba(207, 82, 64, 0.2)',
+                        'rgba(173, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(23, 159, 64, 1)',
+                        'rgba(53, 6, 64, 1)',
+                        'rgba(93, 159, 64, 1)',
+                        'rgba(164, 25, 64, 1)',
+                        'rgba(207, 82, 64, 1)',
+                        'rgba(173, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <script>
+        // 우선 컨텍스트를 가져옵니다. 
+        var ctx = document.getElementById("myChart_ML").getContext('2d');
+        /*
+        - Chart를 생성하면서, 
+        - ctx를 첫번째 argument로 넘겨주고, 
+        - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+        */
+        var myChart_ML = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ["Scikit-learn ","TensorFlow ","Keras","RandomForest","Xgboost","PyTorch","Caret","LightGBM","Spark MLib","Fast.ai","None","Other"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [9390,5822,5756,4524,4243,3412,1139,2166,910,949,1720,342],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(23, 159, 64, 0.2)',
+                        'rgba(53, 6, 64, 0.2)',
+                        'rgba(93, 159, 64, 0.2)',
+                        'rgba(164, 25, 64, 0.2)',
+                        'rgba(207, 82, 64, 0.2)',
+                        'rgba(173, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(23, 159, 64, 1)',
+                        'rgba(53, 6, 64, 1)',
+                        'rgba(93, 159, 64, 1)',
+                        'rgba(164, 25, 64, 1)',
+                        'rgba(207, 82, 64, 1)',
+                        'rgba(173, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    <script>
+        // 우선 컨텍스트를 가져옵니다. 
+        var ctx = document.getElementById("myChart_IDE").getContext('2d');
+        /*
+        - Chart를 생성하면서, 
+        - ctx를 첫번째 argument로 넘겨주고, 
+        - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+        */
+        var myChart_IDE = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Jupyter (JupyterLab, Jupyter Notebooks, etc)", "RStudio", "PyCharm", "Atom", "MATLAB", "Visual Studio \/ Visual Studio Code", "Spyder", "Vim \/ Emacs", "Notepad++", "Sublime Text", "None", "Other"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [10804,4455,4224,1487,1768,4534,3085,1782,3281,2655,238,691],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(23, 159, 64, 0.2)',
+                        'rgba(53, 6, 64, 0.2)',
+                        'rgba(93, 159, 64, 0.2)',
+                        'rgba(164, 25, 64, 0.2)',
+                        'rgba(207, 82, 64, 0.2)',
+                        'rgba(173, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(23, 159, 64, 1)',
+                        'rgba(53, 6, 64, 1)',
+                        'rgba(93, 159, 64, 1)',
+                        'rgba(164, 25, 64, 1)',
+                        'rgba(207, 82, 64, 1)',
+                        'rgba(173, 159, 64, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 
 <script>
     // 우선 컨텍스트를 가져옵니다. 
-    var ctx = document.getElementById("myChart_IDE").getContext('2d');
+    var ctx = document.getElementById("myChart_Study_ML").getContext('2d');
     /*
     - Chart를 생성하면서, 
     - ctx를 첫번째 argument로 넘겨주고, 
     - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
     */
-    var myChart_IDE = new Chart(ctx, {
-        type: 'bar',
+    var myChart_Study_ML = new Chart(ctx, {
+        type: 'horizontalBar',
         data: {
-            labels: ["Jupyter (JupyterLab, Jupyter Notebooks, etc)", "RStudio", "PyCharm", "Atom", "MATLAB", "Visual Studio \/ Visual Studio Code", "Spyder", "Vim \/ Emacs", "Notepad++", "Sublime Text", "None", "Other"],
+            labels: ["Udacity","Coursera","edX","DataCamp","DataQuest","Kaggle Courses (i.e. Kaggle Learn)","Fast.ai","Udemy","LinkedIn Learning","University Courses (resulting in a university degree)","None","Other"],
             datasets: [{
                 label: '# of Votes',
-                data: [10804,4455,4224,1487,1768,4534,3085,1782,3281,2655,238,691],
+                data: [2953,8685,3150,3843,743,5119,1520,4804,1283,4478,1491,1872],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -284,5 +359,5 @@ var myChart_Programming_Language = new Chart(ctx, {
             }
         }
     });
-    </script>
+</script>
 {% endblock %}

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/custom-bs.css.map' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/quill.snow.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
 </head>
 
 <body>
@@ -56,6 +56,9 @@
                   <ul class="dropdown">
                     <li><a href="{% url 'study' %}">스터디</a></li>
                   </ul>
+                </li>
+                <li class="has-children">
+                  <a href="{% url 'trend' %}">Trend</a>
                 </li>
                 <li><a href="contact.html">Contact</a></li>
               </ul>
