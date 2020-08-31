@@ -76,9 +76,6 @@ urlpatterns = [
     #스터디 cancel
     path('study/cancel/<id>', views.cancel_study, name='cancel_study'),
 
-    #스터디 confirmation
-    path('study/confirmation', views.study_confirmation, name='study_confirmation'),
-
     # 스터디 채팅
     path("chat/", views.study_chat, name="study_chat"),
     path('chat/<str:room_name>/', views.room, name='room'),

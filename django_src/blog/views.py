@@ -216,7 +216,7 @@ def cancel_study(request, id):
         study.delete()
     else:
         study.members.remove(user)
-    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
+    return render(request, 'blog/study/cancel_study.html', {"page_name":"스터디"})
 
 @login_required
 def join_study(request, id):

@@ -1,6 +1,5 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<<<<<<< HEAD
 <div class="site-section services-section block__62849" id="next-section">
     <div class="container">
       <div class="row mb-5">
@@ -24,6 +23,7 @@
                     {% if user.is_authenticated %}
                         {% if user in study.members.all %}
                             <a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">Cancel</button></a>
+                            <a href="{% url 'room' study.id %}"> chat </a>
                         {% else %}
                             <a href="{% url 'join_study' study.id %}"><button type="button" class="btn btn-success">Join</button></a>
                         {% endif %}
@@ -36,26 +36,3 @@
 </div>
 {% endblock %}
 </div>
-=======
-{% for study in studies %}
-    이름: {{study.name}} <br>
-    장소: {{study.location}} <br>
-    시간: {{study.time}}<br>
-    스터디장: {{study.owner}}<br>
-    멤버수: {{study.members.all.count}}<br>
-    {% for member in study.members.all %}
-        멤버: {{member}}
-    {% endfor %}
-    {% if user.is_authenticated %}
-        {% if user in study.members.all %}
-            <a href="{% url 'cancel_study' study.id %}"> cancel </a>
-            <a href="{% url 'room' study.id %}"> chat </a>
-        {% else %}
-            <a href="{% url 'join_study' study.id %}"> join </a>
-        {% endif %}
-    {% endif %}
-    <br>
-    <hr>
-{% endfor %}
-{% endblock %}
->>>>>>> 677f16bcb2b70a29190eb4176efb0bafdb1d87cd
