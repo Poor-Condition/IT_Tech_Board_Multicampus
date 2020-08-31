@@ -183,7 +183,9 @@ def update(request):
 
 @login_required
 def mypage(request):
-    return render(request, 'blog/mypage.html')
+    user = request.user
+    studies = Study.objects.filter(members=user)[0:3]
+    return render(request, 'blog/mypage.html', {'studies':studies, "page_name":"My Page"})
 
 
 @login_required
