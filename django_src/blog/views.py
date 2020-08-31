@@ -3,11 +3,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, View
 from django.db.models import Max
+from django.http import HttpResponseForbidden
 
-from .forms import RegisterForm
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles
+from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
+
+from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
+
 from .filters import JobFilter
 # @login_required
 
@@ -153,3 +156,67 @@ def room(request, room_name):
     return render(request, 'study/room.html', {
         'room_name': room_name
     })
+
+@login_required
+def update(request):
+    if request.method=='POST':
+        user=request.user
+
+        gender = request.POST.get('성별')
+        email= request.POST.get('email')
+        phone = request.POST.get('휴대폰번호')
+        first_interest = request.POST.get('관심사1')
+        second_interest = request.POST.get('관심사2')
+
+        user.성별 = gender
+        user.email = email
+        user.휴대폰번호 = phone
+        user.관심사1 = first_interest
+        user.관심사2 = second_interest
+
+        user.save()
+        return render(request,'blog/main_view.html',{'user':user})
+
+    else:
+        user_change_form=CustomUserChangeForm(instance=request.user)
+        return render(request, 'registration/update.html', {'user_change_form': user_change_form})
+
+@login_required
+def mypage(request):
+    return render(request, 'blog/mypage.html')
+
+
+@login_required
+def create_study(request):
+    form = CreateStudyForm(request.POST)
+    if request.method == 'POST':
+        user = request.user
+        if form.is_valid():
+            form.instance.owner = user
+            post = form.save(commit=False)
+            post.save()
+            form.instance.members.add(user)
+            return redirect('study')
+    return render(request, 'blog/study/create_study.html', {'form':form})
+
+def study_confirmation(request):
+    return render(request, 'blog/study/study_confirmation.html')
+
+
+def study(request):
+    studies = Study.objects.all()
+    return render(request, 'blog/study/study.html', {'studies':studies})
+
+def cancel_study(request, id):
+    user = request.user
+    study = Study.objects.get(pk=id)
+    study.members.remove(user)
+    return render(request, 'blog/study/study_confirmation.html')
+
+def join_study(request, id):
+    user = request.user
+    study = Study.objects.get(pk=id)
+    study.members.add(user)
+    return render(request, 'blog/study/study_confirmation.html')
+
+

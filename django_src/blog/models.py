@@ -127,6 +127,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', False)
         extra_fields.setdefault('is_superuser', False)
         return self._create_user(email, username, password, **extra_fields)
+
     #관리자 유저 생성
     def create_superuser(self, email, username ,password, **extra_fields):
         extra_fields.setdefault('is_staff', True)
@@ -141,33 +142,50 @@ class UserManager(BaseUserManager):
 
 
 GENDER_CHOICES = (
-    (0, '여자'),
-    (1, '남자')
+    ("여자", "여자"),
+    ("남자", "남자")
 )
 INTEREST_CHOICES = (
-    (0, '빅데이터'),
-    (1, '인공지능(AI)'),
-    (2, '클라우드'),
-    (3, 'DevOps'),
-    (4, '보안'),
-    (5, '선택 안함')
+    ('빅데이터', '빅데이터'),
+    ('인공지능', '인공지능(AI)'),
+    ('클라우드', '클라우드'),
+    ('DevOps', 'DevOps'),
+    ('보안', '보안'),
+    ('선택 안함', '선택 안함')
 )
 class User(AbstractUser):
     objects = UserManager()
 
-    email = models.EmailField(verbose_name = "email", max_length = 255, db_column="email")
-    username = models.CharField(max_length=30, unique = True, db_column="username")
-    이름=models.CharField(max_length=30, db_column="name")
-    휴대폰번호 =models.BigIntegerField(db_column="phone")
+    email = models.EmailField(verbose_name="email", max_length=255, db_column="email")
+    username = models.CharField(max_length=30, unique=True, db_column="username")
+    이름 = models.CharField(max_length=30, db_column="name")
+    휴대폰번호 = models.BigIntegerField(db_column="phone")
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
-    성별 = models.SmallIntegerField(choices=GENDER_CHOICES, db_column="gender")
-    관심사1 = models.SmallIntegerField(choices=INTEREST_CHOICES, db_column="first_interest")
-    관심사2 = models.SmallIntegerField(choices=INTEREST_CHOICES, db_column="second_interest")
+    성별 = models.CharField(choices=GENDER_CHOICES, db_column="gender", max_length=30)
+    관심사1 = models.CharField(choices=INTEREST_CHOICES, db_column="first_interest", max_length=30)
+    관심사2 = models.CharField(choices=INTEREST_CHOICES, db_column="second_interest", max_length=30)
 
     class Meta:
-        managed = False
         db_table = "auth_user"
 
     def __str__(self):
-        return "<%d %s>" %(self.pk, self.email)
+        return "<%d %s>" %(self.pk, self.username)
+
+
+class Study(models.Model):
+    objects=None
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=100)
+    time = models.TimeField(auto_now=False)
+    max_member = models.IntegerField(default=4)
+
+    owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, default=1)
+    members = models.ManyToManyField(User, related_name='members', null=True)
+    
+    class Meta:
+        db_table = "study"
+    
+    def __str__(self):
+        return self.name
+        

@@ -1,6 +1,8 @@
 from django import forms
-from .models import User, Jobs
+from .models import User, Jobs, Study
 
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth import get_user_model
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(label='비밀번호', widget=forms.PasswordInput)
@@ -16,3 +18,17 @@ class RegisterForm(forms.ModelForm):
             raise forms.ValidationError('비밀번호가 일치하지 않습니다.')
 
         return cd['re_password']
+
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = get_user_model()
+        fields = ['성별', 'email', '휴대폰번호', '관심사1', '관심사2']
+
+
+class CreateStudyForm(forms.ModelForm):
+    class Meta:
+        model = Study
+        fields = ['name', 'location', 'time', 'max_member']
+
+

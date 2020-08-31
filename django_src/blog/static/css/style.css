@@ -6,6 +6,7 @@
        url('../static/fonts/icomoon/fonts/icomoon.ttf') format("truetype");
 }
 
+
 .page_header{
     background-color: darkgray;
     margin-top: 0px;
@@ -61,6 +62,7 @@ input.btn{
 .news-image{
 
 }
+
 
 /* 여기서부터 부트스트랩 */
 .site-navbar {
