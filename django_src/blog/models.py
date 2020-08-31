@@ -105,6 +105,7 @@ INTEREST_CHOICES = (
     ('보안', '보안'),
     ('선택 안함', '선택 안함')
 )
+
 class User(AbstractUser):
     objects = UserManager()
 
@@ -126,6 +127,7 @@ class User(AbstractUser):
 
 
 class Study(models.Model):
+    objects=None
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=100)
     time = models.TimeField(auto_now=False)

@@ -32,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'blog',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'django_filters',
 ]
 
@@ -70,8 +71,17 @@ TEMPLATES = [
     },
 ]
 
+ASGI_APPLICATION = "mydjango.routing.application"
 WSGI_APPLICATION = 'mydjango.wsgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -93,9 +103,9 @@ DATABASES = {
      'default': {
      'ENGINE': 'django.db.backends.mysql',
      'NAME': 'poor_db',  # DB명
-     'USER': 'python',  # 데이터베이스 계정
-     'PASSWORD': 'python',   # 계정 비밀번호
-     'HOST': 'localhost',  # 데이테베이스 IP
+     'USER': 'django',  # 데이터베이스 계정
+     'PASSWORD': 'poordjango',   # 계정 비밀번호
+     'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
      'PORT': '3306',  # 데이터베이스 port
      }
 }

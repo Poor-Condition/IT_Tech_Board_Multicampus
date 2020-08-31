@@ -49,6 +49,12 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
+    #필터된 정보
+    path('', FilterView.as_view(
+            filterset_class=JobFilter,
+            template_name='job/job_detail_list_temp.html'),
+         name='index'),
+         
     #회원정보 수정
     path('update/', views.update,name='update'),
 
@@ -69,5 +75,12 @@ urlpatterns = [
 
     #스터디 cancel
     path('study/cancel/<id>', views.cancel_study, name='cancel_study'),
+
+    #스터디 confirmation
+    path('study/confirmation', views.study_confirmation, name='study_confirmation'),
+
+    # 스터디 채팅
+    path("chat/", views.study_chat, name="study_chat"),
+    path('chat/<str:room_name>/', views.room, name='room'),
 
 ]

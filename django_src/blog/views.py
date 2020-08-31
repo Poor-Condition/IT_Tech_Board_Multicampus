@@ -95,6 +95,8 @@ def job_db_list(request):
     return set_view(request, Jobs, "db", "job", "DB 채용공고")
 
 
+# 공모전
+
 def contest_set_view(request, model_name, field_name, page_name):
     obj = model_name.objects.filter(field=field_name)
 
@@ -113,7 +115,7 @@ def contest_list(request):
     third = Contest.objects.order_by('-contest_views')[2]
 
     return render(request, "blog/contest/contest_detail_list.html",
-                  {"contests": contest, "page_name": "공모전", "first": first, "second": second, "third": third})
+        {"contests": contest, "page_name": "공모전", "first": first, "second": second, "third": third})
 
 
 def contest_game_list(request):
@@ -146,6 +148,14 @@ def register(request):
         return redirect('main_view')
 
     return render(request, 'registration/signup.html', {'user_form': user_form})
+
+def study_chat(request):
+    return render(request, "chat/chat.html", {})
+
+def room(request, room_name):
+    return render(request, 'chat/room.html', {
+        'room_name': room_name
+    })
 
 @login_required
 def update(request):
