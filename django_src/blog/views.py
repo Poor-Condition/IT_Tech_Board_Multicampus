@@ -199,16 +199,24 @@ def study(request):
     studies = Study.objects.all()
     return render(request, 'blog/study/study.html', {'studies':studies})
 
+@login_required
 def cancel_study(request, id):
     user = request.user
     study = Study.objects.get(pk=id)
-    study.members.remove(user)
+    if user == study.owner:
+        study.delete()
+    else:
+        study.members.remove(user)
     return render(request, 'blog/study/study_confirmation.html')
 
+@login_required
 def join_study(request, id):
     user = request.user
     study = Study.objects.get(pk=id)
-    study.members.add(user)
+    if study.members.count() >= study.max_member:
+        return render(request, 'blog/study/max.html')
+    else:
+        study.members.add(user)
     return render(request, 'blog/study/study_confirmation.html')
 
 
