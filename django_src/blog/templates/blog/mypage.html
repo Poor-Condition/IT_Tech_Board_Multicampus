@@ -9,7 +9,7 @@
     <div class="col-lg-3 mr-auto">
       <div class="border p-4 rounded">
         <ul class="list-unstyled block__47528 mb-0">
-          <li><span class="active">Welcome {{ user.이름 }}!</span></li>
+          <li><span class="active">Welcome {{ user.이름 }}!</span></li><br>
           <li><a href="#profile">내 정보</a></li>
           <li><a href="{% url 'update' %}">내 정보 수정</a></li>
           <li><a href="#study">내 스터디 관리</a></li>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="col-lg-9 mt-0 pl-5" id="profile">
-      <h3>My Page</h3>
+      <h3>내 정보</h3>
       <hr class="mb-4">
       <div class="row">
         <figure class="col-2 mr-4 profile"><img src= "{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid rounded-circle"></figure>
@@ -36,14 +36,35 @@
 </section>
 
 <!-- 내 스터디 -->
-<section id="study">
+<section id="study" class="site-section services-section block__62849">
   <div class="row justify-content-end">
     <div class="col-9 pl-5 mt-5">
-      <h3>My Study</h3>
+      <h3>내 스터디 관리</h3>
       <hr class="mb-4">
-      <div class="block__87154 bg-grey rounded">
-        <h3>요기다가 스터디 정보 넣기</h3>
-      </div>
+        <div class="row">
+          {% for study in studies %}
+          <div class="col-4 border border-white block__16443 bg-light">
+              <div class="row pl-3"><h4>{{study.name}}</h4></div>
+              <div class="row pl-3">장소: {{study.location}}</div>
+              <div class="row pl-3">시간: {{study.time}}</div>
+              <div class="row pl-3">스터디장: {{study.owner}}</div>
+              <div class="row pl-3">멤버수: {{study.members.all.count}}</div>
+              <div class="row pl-3">
+                  멤버:
+                  {% for member in study.members.all %}
+                      {{member}}
+                  {% endfor %}<br><br>
+            </div>
+              <div class="row">
+                <div class="col"><a href="{% url 'room' study.id %}"><button type="button" class="btn btn-success">채팅하기</button></a></div>
+                <div class="col"><a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">나가기</button></a></div>
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row mt-3">
+          <div class="col-11 offset-11"><a href="{% url 'my_study' %}">더보기>></a></div>
+        </div>
     </div>
   </div>
 </section>
@@ -51,8 +72,8 @@
 <!-- 좋아요 한 게시물 -->
 <section id="liked_posts">
   <div class="row justify-content-end">
-    <div class="col-9 pl-5 mt-5">
-      <h3>Liked Posts</h3>
+    <div class="col-9 pl-5">
+      <h3>좋아요 한 게시물</h3>
       <hr class="mb-4">
 
       <!-- 좋아요 한 뉴스 -->
