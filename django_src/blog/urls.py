@@ -67,8 +67,4 @@ urlpatterns = [
     #스터디 cancel
     path('study/cancel/<id>', views.cancel_study, name='cancel_study'),
 
-    #스터디 confirmation
-    path('study/confirmation', views.study_confirmation, name='study_confirmation'),
-
-
 ]

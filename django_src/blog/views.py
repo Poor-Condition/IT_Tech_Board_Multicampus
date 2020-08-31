@@ -9,7 +9,7 @@ from django.http import HttpResponseForbidden
 
 from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
 
-from .models import Jobs, Contest_game, Contest_job, Contest_science, Articles, Study
+from .models import Jobs, Contest, Articles, Study
 
 from .filters import JobFilter
 # @login_required
@@ -95,37 +95,35 @@ def job_db_list(request):
     return set_view(request, Jobs, "db", "job", "DB 채용공고")
 
 
-# 공모전
+def contest_set_view(request, model_name, field_name, page_name):
+    obj = model_name.objects.filter(field=field_name)
+
+    first = obj.order_by('-contest_views')[0]
+    second = obj.order_by('-contest_views')[1]
+    third = obj.order_by('-contest_views')[2]
+
+    return render(request, "blog/contest/contest_detail_list.html",
+                  {"contests": obj, "page_name": page_name, "first": first, "second": second, "third": third})
+
+
 def contest_list(request):
-    return render(request, "blog/contest/contest_list.html",)
+    contest = Contest.objects.all()
+    first = Contest.objects.order_by('-contest_views')[0]
+    second = Contest.objects.order_by('-contest_views')[1]
+    third = Contest.objects.order_by('-contest_views')[2]
+
+    return render(request, "blog/contest/contest_detail_list.html",
+                  {"contests": contest, "page_name": "공모전", "first": first, "second": second, "third": third})
 
 
 def contest_game_list(request):
-    contest_game = Contest_game.objects.all()
-    first = Contest_game.objects.order_by('-contest_views')[0]
-    second = Contest_game.objects.order_by('-contest_views')[1]
-    third = Contest_game.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_game, "page_name":"게임 공모전", "first":first, "second":second, "third":third})
-
+    return contest_set_view(request, Contest, '게임/소프트웨어', '게임/소프트웨어')
 
 def contest_science_list(request):
-    contest_science = Contest_science.objects.all()
-    first = Contest_science.objects.order_by('-contest_views')[0]
-    second = Contest_science.objects.order_by('-contest_views')[1]
-    third = Contest_science.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_science, "page_name":"과학 공모전", "first":first, "second":second, "third":third})
-
+    return contest_set_view(request, Contest, '과학/공학', '과학/공학')
 
 def contest_job_list(request):
-    contest_job = Contest_job.objects.all()
-    first = Contest_job.objects.order_by('-contest_views')[0]
-    second = Contest_job.objects.order_by('-contest_views')[1]
-    third = Contest_job.objects.order_by('-contest_views')[2]
-
-    return render(request, "blog/contest/contest_detail_list.html", {"contests": contest_job, "page_name":"취업/창업 공모전", "first":first, "second":second, "third":third})
-
+    return contest_set_view(request, Contest, '취업/창업', '취업/창업')
 
 def register(request):
     if request.method == 'POST':
@@ -191,13 +189,9 @@ def create_study(request):
             return redirect('study')
     return render(request, 'blog/study/create_study.html', {'form':form})
 
-def study_confirmation(request):
-    return render(request, 'blog/study/study_confirmation.html')
-
-
 def study(request):
     studies = Study.objects.all()
-    return render(request, 'blog/study/study.html', {'studies':studies})
+    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디"})
 
 @login_required
 def cancel_study(request, id):
@@ -207,7 +201,7 @@ def cancel_study(request, id):
         study.delete()
     else:
         study.members.remove(user)
-    return render(request, 'blog/study/study_confirmation.html')
+    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
 
 @login_required
 def join_study(request, id):
@@ -217,6 +211,6 @@ def join_study(request, id):
         return render(request, 'blog/study/max.html')
     else:
         study.members.add(user)
-    return render(request, 'blog/study/study_confirmation.html')
+    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
 
 

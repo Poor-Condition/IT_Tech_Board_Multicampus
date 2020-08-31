@@ -86,7 +86,6 @@
               <h1 class="text-white">{{page_name}}</h1>
               <div class="custom-breadcrumbs">
                 <a href="{% url 'main_view' %}">Home</a> <span class="mx-2 slash">/</span>
-                <a href="#">Job</a> <span class="mx-2 slash">/</span>
                 <span class="text-white"><strong>{{page_name}}</strong></span>
               </div>
             </div>
@@ -94,13 +93,9 @@
         </div>
       </section>
 
-      <div class="container mt-5">
-          <div class="row">
-              <div class="col-lg-12 img-fluid">
-                  {% block content %}
-                  {% endblock %}
-              </div>
-          </div>
+      <div class="container overlay mt-5">
+        {% block content %}
+        {% endblock %}
       </div>
     </div>
   </body>
