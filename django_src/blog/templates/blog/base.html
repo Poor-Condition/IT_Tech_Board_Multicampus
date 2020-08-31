@@ -52,7 +52,7 @@
                   <a href="{% url 'job_list' %}">Job Listings</a>
                 </li>
                 <li class="has-children">
-                  <a href="{% url 'job_list' %}">Community</a>
+                  <a href="{% url 'study' %}">Community</a>
                   <ul class="dropdown">
                     <li><a href="{% url 'study' %}">스터디</a></li>
                   </ul>
@@ -68,6 +68,7 @@
               <div class="ml-auto">
                 {% if user.is_authenticated %}
                     <a href="{% url 'mypage' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>mypage</a>
+                    <a href="{% url 'my_study' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>my_study</a>
                     <a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log out</a>
                   {% endif %}
                   {% if not user.is_authenticated %}

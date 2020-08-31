@@ -1,32 +1,36 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<div class="site-section services-section block__62849" id="next-section">
+<section class="site-section services-section block__62849" id="next-section">
     <div class="container">
       <div class="row">
         {% for study in studies %}
             <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
                 <div class = "block__16443 bg-light">
-                    <h2>{{study.name}}</h2> <br>
-                    장소: {{study.location}} <br>
-                    시간: {{study.time}}<br>
-                    스터디장: {{study.owner}}<br>
-                    멤버수: {{study.members.all.count}}<br>
-                    멤버:
-                    {% for member in study.members.all %}
-                        {{member}}
-                    {% endfor %}<br><br>
-                    {% if user.is_authenticated %}
-                        {% if user in study.members.all %}
-                            <a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">Cancel</button></a>
-                        {% else %}
-                            <a href="{% url 'join_study' study.id %}"><button type="button" class="btn btn-success">Join</button></a>
+                    <div class="row"><h2>{{study.name}}</h2></div>
+                    <div class="row">장소: {{study.location}}</div>
+                    <div class="row">시간: {{study.time}}</div>
+                    <div class="row">스터디장: {{study.owner}}</div>
+                    <div class="row">멤버수: {{study.members.all.count}}</div>
+                    <div class="row">
+                        멤버:
+                        {% for member in study.members.all %}
+                            {{member}}
+                        {% endfor %}<br><br>
+                    </div>
+                    <div class="row">
+                        {% if user.is_authenticated %}
+                            {% if user in study.members.all %}
+                                <div class="col"><a href="{% url 'room' study.id %}"><button type="button" class="btn btn-success">채팅하기</button></a></div>
+                                <div class="col"><a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">스터디 나가기</button></a></div>
+                            {% else %}
+                                <a href="{% url 'join_study' study.id %}"><button type="button" class="btn btn-success">스터디 등록하기</button></a>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}<br>
+                    </div>
                 </div>
             </div>
         {% endfor %}
     </div>
-    </div>
-</div>
+</section>
 {% endblock %}
-</div>
+

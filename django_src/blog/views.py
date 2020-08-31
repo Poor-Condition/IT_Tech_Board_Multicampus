@@ -205,8 +205,9 @@ def study(request):
 
 def my_study(request):
     user = request.user
-    studies = Study.objects.filter(members__contains=user)
-    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디"})
+    studies = Study.objects.filter(members=user)
+
+    return render(request, 'blog/study/my_study.html', {'studies':studies, "page_name":"스터디"})
 
 @login_required
 def cancel_study(request, id):
