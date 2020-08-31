@@ -13,6 +13,7 @@
     {% if user.is_authenticated %}
         {% if user in study.members.all %}
             <a href="{% url 'cancel_study' study.id %}"> cancel </a>
+            <a href="{% url 'room' study.id %}"> chat </a>
         {% else %}
             <a href="{% url 'join_study' study.id %}"> join </a>
         {% endif %}
