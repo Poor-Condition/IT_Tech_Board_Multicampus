@@ -62,10 +62,10 @@ urlpatterns = [
     path('study/create', views.create_study, name='create_study'),
 
     #스터디 join
-    path('study/join/(?<id>+)$', views.join_study, name='join_study'),
+    path('study/join/<id>', views.join_study, name='join_study'),
 
     #스터디 cancel
-    path('study/cancel/(?<id>+)$', views.cancel_study, name='cancel_study'),
+    path('study/cancel/<id>', views.cancel_study, name='cancel_study'),
 
     #스터디 confirmation
     path('study/confirmation', views.study_confirmation, name='study_confirmation'),
