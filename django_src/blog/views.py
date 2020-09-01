@@ -203,7 +203,7 @@ def study_confirmation(request):
 
 def study(request):
     studies = Study.objects.all()
-    return render(request, ['blog/study/study.html', 'chat/room.html'], {'studies':studies})
+    return render(request, 'blog/study/study.html', {'studies':studies})
 
 def cancel_study(request, id):
     user = request.user
