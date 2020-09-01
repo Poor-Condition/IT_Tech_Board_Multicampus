@@ -10,6 +10,10 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('', views.main_view, name='main_view'),
+
+    #search
+    path('search/', views.main_search, name='main_search'),
+    
     # 뉴스
     path('article', views.article_list, name='article_list'),
     path('article/dev/', views.article_dev_list, name='article_dev_list'),
