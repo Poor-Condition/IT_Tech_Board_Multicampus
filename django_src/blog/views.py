@@ -77,10 +77,23 @@ def trend(request):
 
 def job_list(request):
     
-    posts = Jobs.objects.all()
-    job_filter = JobFilter(request.GET, queryset=posts)
+    job_list = Jobs.objects.all()
+    job_filter = JobFilter(request.GET, queryset=job_list)
+    job_list = job_filter.qs
 
-    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'filter':job_filter})
+    paginator = Paginator(job_list, 10)
+    page = request.GET.get("page", 1)
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'paginator': paginator, 'filter':job_filter, 'posts':posts})
 
 
 def job_python_list(request):
