@@ -39,7 +39,7 @@ urlpatterns = [
     path('', FilterView.as_view(
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
-         name='index'),
+         name='job_filter_list'),
 
     #트렌드
     path('trend/', views.trend, name='trend'),
