@@ -163,8 +163,10 @@ def study_chat(request):
     return render(request, "chat/chat.html", {})
 
 def room(request, room_name):
+    study = Study.objects.get(pk=room_name)
     return render(request, 'chat/room.html', {
-        'room_name': room_name
+        'room_name': room_name,
+        'study':study
     })
 
 @login_required

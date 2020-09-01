@@ -1,4 +1,3 @@
-<!-- chat/templates/chat/index.html -->
 {% extends "blog/base.html" %}
 
 {% block content %}
@@ -31,9 +30,12 @@
                 <div id="memberList">
                     <div id="memberHeader">사람</div>
                     <div id="memberSelect">
+                        {% for member in study.members.all %}
                         <div class="memberEl active" data-id="1">
-                            123123
+                            {{member.이름}}
                         </div>
+                        {% endfor %}
+                        
                     </div>
                     
                 </div>
