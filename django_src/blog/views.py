@@ -1,15 +1,16 @@
 from django.contrib.auth import login
+from django.core.serializers import json
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView, View
-from django.db.models import Max
-from django.http import HttpResponseForbidden
+
+from django.views.decorators.http import require_POST
+
 
 from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
 
-from .models import Jobs, Contest, Articles, Study
+from .models import Jobs, Contest, Articles, User, Study
 
 from .filters import JobFilter
 # @login_required
@@ -63,10 +64,10 @@ def article_devops_list(request):
     return set_view(request, Articles, "DevOps", "article", "DevOps 뉴스")
 
 def article_secure_list(request):
-    return set_view(request, Articles, "보안", "article", "보안 뉴스")    
+    return set_view(request, Articles, "보안", "article", "보안 뉴스")
 
 def article_new_tech_list(request):
-    return set_view(request, Articles, "신기술", "article", "신기술 뉴스") 
+    return set_view(request, Articles, "신기술", "article", "신기술 뉴스")
 
 
 def trend(request):
@@ -76,7 +77,7 @@ def trend(request):
 # 채용공고
 
 def job_list(request):
-    
+
     posts = Jobs.objects.all()
     job_filter = JobFilter(request.GET, queryset=posts)
 
@@ -140,7 +141,7 @@ def register(request):
 
     elif request.method == 'GET':
         user_form = RegisterForm()
-    
+
     if request.user.is_authenticated:
         return redirect('main_view')
 
@@ -230,3 +231,65 @@ def join_study(request, id):
     return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
 
 
+@login_required
+@require_POST
+def article_like(request, article_id):
+    article = get_object_or_404(Articles, id=article_id)
+    user = request.user
+
+    check_like_post = article.article_likes.filter(id=user.id)
+
+    if check_like_post.exists():
+        article.article_likes.remove(user.id)
+        article.article_like_count -= 1
+        article.save()
+    else:
+        article.article_likes.add(user.id)
+        article.article_like_count += 1
+        article.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+@require_POST
+def contest_like(request, contest_id):
+    contest = get_object_or_404(Contest, id=contest_id)
+    user = request.user
+
+    check_like_post = contest.contest_likes.filter(id=user.id)
+
+    if check_like_post.exists():
+        contest.contest_likes.remove(user.id)
+        contest.contest_like_count -= 1
+        contest.save()
+    else:
+        contest.contest_likes.add(user.id)
+        contest.contest_like_count += 1
+        contest.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+
+
+@login_required
+@require_POST
+def job_like(request, job_id):
+    job = get_object_or_404(Jobs, id=job_id)
+    user = request.user
+    # profile = User.objects.get(id=user.id)
+
+    check_like_post = job.job_likes.filter(id=user.id)
+
+    if check_like_post.exists():
+        job.job_likes.remove(user.id)
+        job.job_like_count -= 1
+        job.save()
+    else:
+        job.job_likes.add(user.id)
+        job.job_like_count += 1
+        job.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

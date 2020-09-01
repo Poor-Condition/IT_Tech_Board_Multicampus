@@ -28,28 +28,20 @@
                       <img src={{ contest.contest_image }} class="img-fluid">
                    </div>
 
-                    <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
-                      <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                    <div class="row job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                      <div class="col-6 job-listing-position custom-width w-50 mb-3 mb-sm-0">
                           <h2><a href="{{contest.contest_homepage}}">{{contest.contest_title}}</a></h2>
                       </div>
 
                       <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
                         {{contest.contest_period}}
                       </div>
-                      {% if "정규직" in job.type %}
-                      <div class="job-listing-meta">
-                        <span class="badge badge-success">정규직</span>
-                      </div>
-                      {% elif "프리랜서" in job.type %}
-                      <div class="job-listing-info">
-                        <span class="badge badge-info">프리랜서/계약직</span>
-                      </div>
-                      {% else %}
-                      <div class="job-listing-info">
-                        <span class="badge badge-danger">교육생/인턴</span>
-                      </div>
-                      {% endif %}
+                      <form action = "{% url 'contest_like' contest.id %}" method = "POST">{% csrf_token %}
+                            <input class = "btn btn-primary" type = "submit" value = "like">
+                          <div>좋아요 {{ contest.contest_like_count }} 개</div>
+                        </form>
                     </div>
+
                   </li>
                 </ul>
                 {% empty %}
