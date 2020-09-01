@@ -23,16 +23,17 @@ def main_view(request):
 #메인 화면 검색
 def main_search(request):
     q = request.GET['search_query']
-    articles = Articles.objects.filter(news_title__icontains=q)
-    contests = Contest.objects.filter(contest_title__icontains=q)
-    jobs = Jobs.objects.filter(Q(job_title__icontains=q) | Q(company__icontains=q))
+    articles = Articles.objects.filter(news_title__icontains=q)[0:5]
+    contests = Contest.objects.filter(contest_title__icontains=q)[0:5]
+    jobs = Jobs.objects.filter(Q(job_title__icontains=q) | Q(company__icontains=q))[0:5]
     return render(request, "blog/main_search.html", {'articles':articles, 'contests':contests, 'jobs':jobs, 'page_name':'검색 결과', 'q':q})
+
 
 # view
 def set_view(request, model_name, field_name, path, page_name):
     obj = model_name.objects.filter(field=field_name)
     paginator = Paginator(obj, 10)
-    page = request.GET.get("page")
+    page = request.GET.get("page", 1)
 
     try:
         posts = paginator.page(page)
@@ -43,14 +44,14 @@ def set_view(request, model_name, field_name, path, page_name):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name, "page":page})
 
 
 # 뉴스
 def article_list(request):
     obj = Articles.objects.all()
     paginator = Paginator(obj, 10)
-    page = request.GET.get("page")
+    page = request.GET.get("page", 1)
 
     try:
         posts = paginator.page(page)
@@ -60,7 +61,7 @@ def article_list(request):
 
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/article/article_detail_list.html', {"posts": posts, "page_name":"뉴스"})
+    return render(request, 'blog/article/article_detail_list.html', {"posts": posts, "page_name":"뉴스", "page":page})
 
 
 def article_dev_list(request):
@@ -113,7 +114,7 @@ def job_list(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'paginator': paginator, 'filter':job_filter, 'posts':posts})
+    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'paginator': paginator, 'filter':job_filter, 'page':page})
 
 
 def job_python_list(request):
