@@ -40,7 +40,19 @@ def set_view(request, model_name, field_name, path, page_name):
 
 # 뉴스
 def article_list(request):
-    return render(request, "blog/article/article_list.html", "뉴스")
+    obj = Articles.objects.all()
+    paginator = Paginator(obj, 10)
+    page = request.GET.get("page")
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/article/article_detail_list.html', {"posts": posts, "page_name":"뉴스"})
 
 
 def article_dev_list(request):
