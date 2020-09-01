@@ -24,28 +24,42 @@
         <div class="row justify-content-end pr-2 pt-2">
             <a>더보기 >></a>
         </div>
-        <hr>
+        <hr class="mb-5">
     </section>
 
     <section class="search-job">
+        <div class="row mb-4"><h4>채용 공고</h4></div>
         {% for job in jobs %}
-            <div class="row">{{job.job_title}}</div>
+            <hr>
+            <div class="row">
+                <div class="col-8">
+                    <h4><a href="{{job.link}}">{{job.job_title}}</a></h4>
+                </div>
+                <div class="col-2">
+                {{job.experience}} | {{job.edu_level}}
+                </div>
+            </div>
         {% endfor %}
+        <div class="row justify-content-end pr-2 pt-2">
+            <a>더보기 >></a>
+        </div>
         <hr>
     </section>
     <section class="search-contests">
-        <div class="row mb-4"><h4>공모전</h4></div>
+        <div class="row mb-4 mt-5"><h4>공모전</h4></div>
         <div class="row align-content-center mb-5">
             {% for contest in contests %}
             <div class="item web col-4 mb-4 align-content-center">
                 <div class="row">
+                    <div class = "col justify-content-center">
                     <a href="portfolio-single.html" class="item-wrap">
                         <span class="icon-add"></span>
-                        <img class="img-fluid" src={{ contest.contest_image }}>
+                        <img class="img-fluid mb-3" src={{ contest.contest_image }}>
                     </a>
+                    </div>
                 </div>
-                <div class="row">
-                    {{ contest.contest_title}}
+                <div class="row mb-4 pr-4">
+                    <a href={{contest.contest_homepage}}><h5>{{ contest.contest_title}}</h5></a>
                 </div>
             </div>
             {% endfor %}
