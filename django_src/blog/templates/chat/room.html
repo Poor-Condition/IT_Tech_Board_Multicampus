@@ -19,19 +19,28 @@
             <div id="chatWrap">
                 <div id="chatHeader">[Room_Name]</div>
                 <div id="chatLog"></div>
+                
+                
                 <div id="chatForm">
                     <input id="chat-message-input" type="text" autocomplete="off" size="30" placeholder="메시지를 입력하세요">
                     <input id="chat-message-submit" type="submit" value="보내기">
                 </div>
+
             </div>
             <div id="memberWrap">
                 <div id="memberList">
-                    <div id="memberHeader" stle>사람</div>
-                    <div id="memberSelect"></div>
+                    <div id="memberHeader">사람</div>
+                    <div id="memberSelect">
+                        <div class="memberEl active" data-id="1">
+                            123123
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
+    
 
     {{ room_name|json_script:"room-name" }}
     <script>
@@ -81,6 +90,7 @@
             socketId = chatSocket.id
             chatSocket.send(JSON.stringify({
                 'message': message,
+                "name": "{{ user.이름 }}"
             }));
             messageInputDom.value = '';
         };
