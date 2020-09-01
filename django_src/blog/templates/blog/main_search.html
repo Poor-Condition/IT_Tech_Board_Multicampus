@@ -1,11 +1,54 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<h1>q에 대한 검색결과</h1>
-{% for job in jobs %}
-    <div class="row">{{job.job_title}}</div>
-{% endfor %}
-<hr>
-{% for article in articles %}
-    <div class="row">{{article.news_title}}</div>
-{% endfor %}
+<div class="container">
+    <h4 class="mb-3" style="color:#89ba16;">'{{q}}' 에 대한 검색결과</h4>
+    <section class="search-articles">
+        <hr>
+        <div class="row mb-4"><h4>뉴스</h4></div>
+        {% for article in articles %}
+        <div class="row mb-3">
+            <div class="shadow-sm col-2 mb-1 pt-4 px-2 py-2">
+              <div class = "news-image">
+                <a href={{ article.news_url }}>
+                  <img src={{ article.image_link }} alt="Image" class="img-fluid rounded mb-4" style="width: 90%">
+                </a>    
+              </div>
+            </div>
+            <div class="col-10 mb-1 pt-3 px-4 py-2">
+              <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
+              <div>{{article.published_date}}</div>
+              <div>{{ article.news_text }}</div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="row justify-content-end pr-2 pt-2">
+            <a>더보기 >></a>
+        </div>
+        <hr>
+    </section>
+
+    <section class="search-job">
+        {% for job in jobs %}
+            <div class="row">{{job.job_title}}</div>
+        {% endfor %}
+        <hr>
+    </section>
+    <section class="search-contests">
+        <div class="row mb-4"><h4>공모전</h4></div>
+        <div class="row align-content-center mb-5">
+            {% for contest in contests %}
+            <div class="item web col-4 mb-4 align-content-center">
+                <div class="row">
+                    <a href="portfolio-single.html" class="item-wrap">
+                        <span class="icon-add"></span>
+                        <img class="img-fluid" src={{ contest.contest_image }}>
+                    </a>
+                </div>
+                <div class="row">
+                    {{ contest.contest_title}}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
 {% endblock %}
