@@ -229,6 +229,6 @@ def join_study(request, id):
         return render(request, 'blog/study/max.html')
     else:
         study.members.add(user)
-    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
+    return render(request, 'blog/study/join_study.html', {"page_name":"스터디"})
 
 
