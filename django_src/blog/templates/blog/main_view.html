@@ -9,7 +9,7 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" type="text/css">
     <!-- Font Awesome -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0d781c52a6.js" crossorigin="anonymous"></script>
     <!-- 개발자 정의 css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
@@ -32,7 +32,7 @@
           <nav class="mx-auto site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
               <li class="has-children">
-                <a href="{% url 'article_list' %}">News</a>
+                <a href="{% url 'article_list' %}">News<i class="fas fa-chevron-down ml-2"></i></a>
                 <ul class="dropdown">
                   <li><a href="{% url 'article_dev_list' %}">개발자</a></li>
                   <li><a href="{% url 'article_cloud_list' %}">클라우드</a></li>
@@ -45,7 +45,7 @@
                 </ul>
               </li>
               <li class="has-children">
-                <a href="{% url 'contest_list' %}">Contests</a>
+                <a href="{% url 'contest_list' %}">Contests<i class="fas fa-chevron-down ml-2"></i></a>
                 <ul class="dropdown">
                   <li><a href="{% url 'contest_game_list' %}">게임 공모전</a></li>
                   <li><a href="{% url 'contest_science_list' %}">과학 공모전</a></li>
@@ -53,10 +53,10 @@
                 </ul>
               </li>
               <li class="has-children">
-                <a href="{% url 'job_list' %}">Job Listings</a>
+                <a href="{% url 'job_list' %}">Job Listings<i class="fas fa-chevron-down ml-2"></i></a>
               </li>
               <li class="has-children">
-                <a href="{% url 'study' %}">Community</a>
+                <a href="{% url 'study' %}">Community<i class="fas fa-chevron-down ml-2"></i></a>
                   <ul class="dropdown">
                     <li><a href="{% url 'study' %}">스터디</a></li>
                   </ul>
@@ -71,12 +71,12 @@
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
               {% if user.is_authenticated %}
-                <button href="{% url 'mypage' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-user"></span>mypage</a>
-                <button href="{% url 'logout' %}?next={{request.path}}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-out"></span>Log out</a>
+                <a href="{% url 'mypage' %}"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><i class="fas fa-user mr-2"></i>mypage</button></a>
+                <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>
               {% endif %}
               {% if not user.is_authenticated %}
-                <button href="{% url 'register' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-list-alt"></span>Sign Up</a>
-                <button href="{% url 'login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span>Log In</a>
+                <a href="{% url 'register' %}" style="color:white"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-list-alt"></span><i class="far fa-list-alt mr-2"></i>Sign Up</a>
+                <a href="{% url 'login' %}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span><i class="fas fa-sign-in-alt mr-2"></i>Log In</a>
               {% endif %}
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
@@ -104,25 +104,14 @@
                   <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="col-md-12 popular-keywords">
-                  <h3>Trending Keywords:</h3>
-                  <ul class="keywords list-unstyled m-0 p-0">
-                    <li><a href="#" class="">UI Designer</a></li>
-                    <li><a href="#" class="">Python</a></li>
-                    <li><a href="#" class="">Developer</a></li>
-                  </ul>
-                </div>
-              </div> -->
             </form>
           </div>
         </div>
       </div>
 
       <a href="#next" class="scroll-button smoothscroll">
-        <span class="icon-keyboard_arrow_down"></span>
+        <i class="fas fa-angle-double-down fa-2x ml-3 mt-2"></i>
       </a>
-
     </section>
 
     <section class="py-5 bg-image overlay-primary fixed overlay" id="next" style="background-image: url('{% static "images/hero_1.jpg" %}')";>
@@ -130,7 +119,7 @@
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
             <h2 class="section-title mb-2 text-white">오늘 새로 올라온 게시물</h2>
-            <p class="lead text-white">IT 취업준비생들을 위한 매일 새로운 게시물들을 만나보세요</p>
+            <p class="lead text-white">IT 취업준비생들을 위한 새로운 게시물들을 매일 만나보세요</p>
           </div>
         </div>
         <div class="row pb-0 block__19738 section-counter">
