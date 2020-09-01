@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -143,20 +144,28 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'sass_processor_finders.CssFinder',
 
 ]
+
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+
+SASS_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+SASS_PROCESSOR = True
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, STATIC_ROOT)
+SASS_OUTPUT_STYLE = 'compact'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL='/'
 
 
 AUTH_USER_MODEL = 'blog.User'
+
+

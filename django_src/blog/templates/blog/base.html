@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load sass_tags %}
 
 <html lang="en">
 <head>
@@ -7,6 +8,8 @@
     <title>Django Blog</title>
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" type="text/css">
+    <!-- Font Awesome -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 개발자 정의 css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
@@ -15,6 +18,8 @@
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/quill.snow.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+
+
 </head>
 
 <body>
@@ -101,5 +106,25 @@
         {% endblock %}
       </div>
     </div>
+
+    <!-- 자바스크립트 코드 -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/stickyfill.min.js' %}"></script>
+
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  
+  <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+
+  <script src="{% static 'js/custom.js' %}"></script>
+  
+  <script src="{% static 'js/quill.min.js' %}"></script>
+  
+
   </body>
 </html>

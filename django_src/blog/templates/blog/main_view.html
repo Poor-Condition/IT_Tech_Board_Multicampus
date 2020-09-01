@@ -1,5 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
-{%load static%}
+
 
 <html lang="en">
 <head>
@@ -7,6 +8,8 @@
     <title>Django Blog</title>
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" type="text/css">
+    <!-- Font Awesome -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 개발자 정의 css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
@@ -14,6 +17,7 @@
     <link rel="stylesheet" href="{% static 'css/custom-bs.css.map' %}">
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/quill.snow.css' %}">
+
 
 </head>
 
@@ -116,7 +120,7 @@
       </div>
 
       <a href="#next" class="scroll-button smoothscroll">
-        <span class=" icon-keyboard_arrow_down"></span>
+        <span class="icon-keyboard_arrow_down"></span>
       </a>
 
     </section>
@@ -125,38 +129,31 @@
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-md-7 text-center">
-            <h2 class="section-title mb-2 text-white">JobBoard Site Stats</h2>
-            <p class="lead text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita unde officiis recusandae sequi excepturi corrupti.</p>
+            <h2 class="section-title mb-2 text-white">오늘 새로 올라온 게시물</h2>
+            <p class="lead text-white">IT 취업준비생들을 위한 매일 새로운 게시물들을 만나보세요</p>
           </div>
         </div>
         <div class="row pb-0 block__19738 section-counter">
 
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+          <div class="col-4 col-md-6 col-lg-4 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
               <strong class="number" data-number="1930">0</strong>
             </div>
-            <span class="caption">Candidates</span>
+            <span class="caption">뉴스</span>
           </div>
 
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+          <div class="col-4 col-md-6 col-lg-4 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
               <strong class="number" data-number="54">0</strong>
             </div>
-            <span class="caption">Jobs Posted</span>
+            <span class="caption">공모전</span>
           </div>
 
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
-            <div class="d-flex align-items-center justify-content-center mb-2">
-              <strong class="number" data-number="120">0</strong>
-            </div>
-            <span class="caption">Jobs Filled</span>
-          </div>
-
-          <div class="col-6 col-md-6 col-lg-3 mb-5 mb-lg-0">
+          <div class="col-4 col-md-6 col-lg-4 mb-5 mb-lg-0">
             <div class="d-flex align-items-center justify-content-center mb-2">
               <strong class="number" data-number="550">0</strong>
             </div>
-            <span class="caption">Companies</span>
+            <span class="caption">채용공고</span>
           </div>
 
 
@@ -165,6 +162,25 @@
     </section>
 
 </div>
+
+  <!-- 자바스크립트 코드 -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/stickyfill.min.js' %}"></script>
+
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  
+  <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+
+  <script src="{% static 'js/custom.js' %}"></script>
+  
+  <script src="{% static 'js/quill.min.js' %}"></script>
+  
 
 </body>
 </html>
