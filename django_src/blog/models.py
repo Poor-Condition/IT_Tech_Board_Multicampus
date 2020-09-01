@@ -119,6 +119,15 @@ class User(AbstractUser):
     관심사1 = models.CharField(choices=INTEREST_CHOICES, db_column="first_interest", max_length=30)
     관심사2 = models.CharField(choices=INTEREST_CHOICES, db_column="second_interest", max_length=30)
 
+    news = models.ForeignKey(Articles, on_delete=models.CASCADE, default=1, null=False)
+    article_likes = models.ManyToManyField(Articles, related_name='article_likes', blank=True)
+
+    contests = models.ForeignKey(Contest, on_delete=models.CASCADE, default=1, null=False, blank=False)
+    contest_likes = models.ManyToManyField(Contest, related_name='contest_likes', blank=True)
+
+    jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE, null=False, default=1, blank=False)
+    job_likes = models.ManyToManyField(Jobs, related_name='job_likes', blank=True)
+
     class Meta:
         db_table = "auth_user"
 
