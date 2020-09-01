@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+    'sass_processor',
 ]
 
 MIDDLEWARE = [
@@ -91,14 +92,16 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-    'default': {
+    # 'default': {
     #  'ENGINE': 'django.db.backends.mysql',
     #  'NAME': 'poor_db',  # DB명
-    #  'USER': 'root',  # 데이터베이스 계정
-    #  'PASSWORD': 'root',   # 계정 비밀번호
-    #  'HOST': 'localhost',  # 데이테베이스 IP
-    #  'PORT': '3307',  # 데이터베이스 port
+    #  'USER': 'django',  # 데이터베이스 계정
+    #  'PASSWORD': 'poordjango',   # 계정 비밀번호
+    #  'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
+    #  'PORT': '3306',  # 데이터베이스 port
+    #  }
 
+     'default': {
      'ENGINE': 'django.db.backends.mysql',
      'NAME': 'poor_db',  # DB명
      'USER': 'django',  # 데이터베이스 계정
@@ -141,20 +144,28 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'sass_processor_finders.CssFinder',
 
 ]
+
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+
+SASS_ROOT = os.path.join(BASE_DIR, STATIC_URL)
+SASS_PROCESSOR = True
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, STATIC_ROOT)
+SASS_OUTPUT_STYLE = 'compact'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL='/'
 
 
 AUTH_USER_MODEL = 'blog.User'
+
+
