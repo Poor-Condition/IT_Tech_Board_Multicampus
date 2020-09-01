@@ -96,10 +96,11 @@
               <h1 class="text-white font-weight-bold">나에게 맞는 취업 정보를 검색해보세요</h1>
               <p>오늘의 뉴스부터 취업, 공모전 정보까지 필요한 정보를 한번에</p>
             </div>
-            <form method="post" class="search-jobs-form">
+            <form method="get" class="search-jobs-form" action="{% url 'main_search'%}">
+              {% csrf_token %}
               <div class="row mb-5">
                 <div class="col-sm-12 col-md-12 col-lg-8 mb-4 mb-lg-0">
-                  <input type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
+                  <input type="text" class="form-control form-control-lg" placeholder="Job title, Company..." name="search_query">
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-4 mb-4 mb-lg-0">
                   <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>

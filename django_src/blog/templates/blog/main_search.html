@@ -1,0 +1,11 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<h1>q에 대한 검색결과</h1>
+{% for job in jobs %}
+    <div class="row">{{job.job_title}}</div>
+{% endfor %}
+<hr>
+{% for article in articles %}
+    <div class="row">{{article.news_title}}</div>
+{% endfor %}
+{% endblock %}

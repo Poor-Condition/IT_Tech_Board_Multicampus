@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, View
 from django.db.models import Max
 from django.http import HttpResponseForbidden
+from django.db.models import Q
 
 from .forms import RegisterForm, CustomUserChangeForm, CreateStudyForm
 
@@ -19,6 +20,13 @@ from .filters import JobFilter
 def main_view(request):
     return render(request, "blog/main_view.html", )
 
+#메인 화면 검색
+def main_search(request):
+    q = request.GET['search_query']
+    articles = Articles.objects.filter(news_title__icontains=q)
+    contests = Contest.objects.filter(contest_title__icontains=q)
+    jobs = Jobs.objects.filter(Q(job_title__icontains=q) | Q(company__icontains=q))
+    return render(request, "blog/main_search.html", {'articles':articles, 'contests':contests, 'jobs':jobs, 'page_name':'검색 결과', 'q':q})
 
 # view
 def set_view(request, model_name, field_name, path, page_name):
