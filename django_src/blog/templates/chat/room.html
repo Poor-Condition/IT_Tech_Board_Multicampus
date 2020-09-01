@@ -3,17 +3,40 @@
 
 {% block content %}
 <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    
-
+    <div id="contentWrap">
+        <div id="contentCover">
+            <div id="roomWrap">
+                <div id="roomList">
+                    <div id="roomHeader">채팅 방 목록</div>
+                    <div id="roomSelect">
+                        <div class="roomEl active" data-id="1">[Room_Name]</div>
+                        <div class="roomEl" data-id="2">[Room_Name]</div>
+                        <div class="roomEl" data-id="3">[Room_Name]</div>
+                        <div class="roomEl" data-id="4">[Room_Name]</div>
+                    </div>
+                </div>
+            </div>
+            <div id="chatWrap">
+                <div id="chatHeader">[Room_Name]</div>
+                <div id="chatLog"></div>
+                <div id="chatForm">
+                    <input id="chat-message-input" type="text" autocomplete="off" size="30" placeholder="메시지를 입력하세요">
+                    <input id="chat-message-submit" type="submit" value="보내기">
+                </div>
+            </div>
+            <div id="memberWrap">
+                <div id="memberList">
+                    <div id="memberHeader" stle>사람</div>
+                    <div id="memberSelect"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{ room_name|json_script:"room-name" }}
     <script>
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
-
+        var socketId = "";
         const chatSocket = new WebSocket(
             'ws://'
             + window.location.host
@@ -24,7 +47,21 @@
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
+            var newDiv = document.createElement('div');
+            var myStr = `<span class="msg">${data.message}</span>`
+            var otherStr = `<span class="anotherName">${data.name}</span><span class="msg">${data.message}</span>`
+            
+            if(data.socketId === socketId){
+                newDiv.innerHTML = myStr;
+                newDiv.setAttribute("class", "myMsg")
+                document.getElementById('chatLog').appendChild(newDiv);
+            }
+            else{
+                newDiv.innerHTML = otherStr;
+                newDiv.setAttribute("class", "anotherMsg msgEl")
+                document.getElementById('chatLog').appendChild(newDiv);
+            }
+            socketId = ""
         };
 
         chatSocket.onclose = function(e) {
@@ -41,12 +78,12 @@
         document.querySelector('#chat-message-submit').onclick = function(e) {
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
+            socketId = chatSocket.id
             chatSocket.send(JSON.stringify({
-                'message': message
+                'message': message,
             }));
             messageInputDom.value = '';
         };
-
     </script>
 </body>
 {% endblock %}

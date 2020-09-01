@@ -145,9 +145,6 @@ def register(request):
     if request.user.is_authenticated:
         return redirect('main_view')
 
-    if request.user.is_authenticated:
-        return redirect('main_view')
-
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
 def study_chat(request):
@@ -219,5 +216,3 @@ def join_study(request, id):
     study = Study.objects.get(pk=id)
     study.members.add(user)
     return render(request, 'blog/study/study_confirmation.html')
-
-
