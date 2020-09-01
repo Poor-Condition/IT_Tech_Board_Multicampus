@@ -157,9 +157,6 @@ def register(request):
     if request.user.is_authenticated:
         return redirect('main_view')
 
-    if request.user.is_authenticated:
-        return redirect('main_view')
-
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
 def study_chat(request):
@@ -238,10 +235,9 @@ def cancel_study(request, id):
 def join_study(request, id):
     user = request.user
     study = Study.objects.get(pk=id)
+
     if study.members.count() >= study.max_member:
         return render(request, 'blog/study/max.html')
     else:
         study.members.add(user)
     return render(request, 'blog/study/join_study.html', {"page_name":"스터디"})
-
-

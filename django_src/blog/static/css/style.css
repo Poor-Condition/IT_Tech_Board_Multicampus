@@ -59,16 +59,11 @@ input.btn{
     margin: 20px 0px 20px 20px;
 }
 
-.news-image{
-
-}
-
 .study{
   background-color: lightgray;
   border: solid transparent;
   border-color: #7f848c;
 }
-
 
 /* 여기서부터 부트스트랩 */
 .site-navbar {
