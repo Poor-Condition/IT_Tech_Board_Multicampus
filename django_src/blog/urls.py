@@ -88,4 +88,9 @@ urlpatterns = [
     path('article_like/<int:article_id>/', views.article_like, name='article_like'),
     path('contest_like/<int:contest_id>/', views.contest_like, name='contest_like'),
     path('job_like/<int:job_id>/', views.job_like, name='job_like'),
+
+    #좋아요한 게시물
+    path('liked_articles/', views.liked_articles, name='liked_articles'),
+    path('liked_contests/', views.liked_contests, name='liked_contests'),
+    path('liked_jobs/', views.liked_jobs, name='liked_jobs'),
 ]
