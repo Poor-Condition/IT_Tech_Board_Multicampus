@@ -220,7 +220,11 @@ def create_study(request):
             post.save()
             form.instance.members.add(user)
             return redirect('study')
-    return render(request, 'blog/study/create_study.html', {'form':form, 'page_name':"새 스터디 등록"})
+    return render(request, 'blog/study/create_study.html', {'form':form, "page_name":"새 스터디 등록"})
+
+def confirm_study(request):
+    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디 등록 완료"})
+
 
 def study(request):
     studies = Study.objects.all()
