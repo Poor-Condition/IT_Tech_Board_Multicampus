@@ -36,7 +36,6 @@
             <div class="col-10 mb-1 pt-3 px-4 py-2">
               <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
               <div>{{article.published_date}}</div>
-              <div>{{article.id}}</div>
               <div>{{ article.news_text }}</div>
 
               <form action = "{% url 'article_like' article.id %}" method = "POST">{% csrf_token %}

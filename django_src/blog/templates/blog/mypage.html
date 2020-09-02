@@ -79,72 +79,64 @@
       <!-- 좋아요 한 뉴스 -->
       <section id="liked_news" class="liked_posts mb-5">
         <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 뉴스</h5>
-        <!-- for loop 으로 이 부분 반복 -->
-        <div class="row justify-content-between job-listings mb-3 py-2">
-          <div class="col-8 d-flex pb-3 pb-sm-0">
-              <div class="job-listing-position">
-                <h2>뉴스 타이틀</h2>
-                <div></div>
-                <span>뉴스 내용</span>
+        <hr class="mb-4">
+        {% for article in articles %}
+        <div class="row mb-3">
+            <div class="shadow-sm col-2 mb-1 pt-4 px-2 py-2">
+              <div class = "news-image">
+                <a href={{ article.news_url }}>
+                  <img src={{ article.image_link }} alt="Image" class="img-fluid rounded mb-4" style="width: 90%">
+                </a>
               </div>
-          </div>
-          <div class="col-3 job-listing d-flex pb-3 pb-sm-0">
-            <div class="job-listing-location">
-              게시 날짜
             </div>
-          </div>
+            <div class="col-10 mb-1 pt-3 px-4 py-2">
+              <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
+              <div>{{article.published_date}}</div>
+              <div>{{ article.news_text }}</div>
+            </div>
         </div>
-        <!-- 요기까지 반복     -->
+        {% endfor %}
+        <div class="col-11 offset-11"><a href="{% url 'liked_articles' %}">더보기>></a></div>
       </section>
 
       <!-- 좋아요 한 채용공고 -->
       <section id="liked_jobs" class="liked_posts mb-5">
         <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 채용공고</h5>
-        <!-- for loop 으로 이 부분 반복 -->
-        <div class="row justify-content-between job-listings mb-3 py-2">
-          <div class="col-6 d-sm-flex pb-3 pb-sm-0">
-              <div class="job-listing-position">
-                <h2>채용공고 타이틀</h2>
-                <strong>회사 이름</strong>
-              </div>
-          </div>
-          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
-            <div class="job-listing-location">
-              카테고리
+        <hr class="mb-4">
+        {% for job in jobs %}
+            <hr>
+            <div class="row">
+                <div class="col-8">
+                    <h4><a href="{{job.link}}">{{job.job_title}}</a></h4>
+                </div>
+                <div class="col-2">
+                {{job.experience}} | {{job.edu_level}}
+                </div>
             </div>
-          </div>
-          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
-            <div class="job-listing-location">
-              위치
-            </div>
-          </div>
-        </div>
-        <!-- 요기까지 반복     -->
+        {% endfor %}
+        <div class="col-11 offset-11"><a href="{% url 'liked_jobs' %}">더보기>></a></div>
       </section>
 
       <!-- 좋아요 한 공모전 -->
       <section id="liked_contests" class="liked_posts mb-5">
         <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 공모전</h5>
-        <!-- for loop 으로 이 부분 반복 -->
-        <div class="row justify-content-between job-listings mb-3 py-2">
-          <div class="col-6 d-sm-flex pb-3 pb-sm-0">
-              <div class="job-listing-position">
-                <h2>공모전 타이틀</h2>
-                <strong>주최 기업 이름</strong>
-              </div>
-          </div>
-          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
-            <div class="job-listing-location">
-              카테고리
+        <hr class="mb-4">
+        {% for contest in contests %}
+            <div class="item web col-4 mb-4 align-content-center">
+                <div class="row">
+                    <div class = "col justify-content-center">
+                    <a href="portfolio-single.html" class="item-wrap">
+                        <span class="icon-add"></span>
+                        <img class="img-fluid mb-3" src={{ contest.contest_image }}>
+                    </a>
+                    </div>
+                </div>
+                <div class="row mb-4 pr-4">
+                    <a href={{contest.contest_homepage}}><h5>{{ contest.contest_title}}</h5></a>
+                </div>
             </div>
-          </div>
-          <div class="col-3 d-sm-flex pb-3 pb-sm-0">
-            <div class="job-listing-location">
-              마감 날짜
-            </div>
-          </div>
-        </div>
-        <!-- 요기까지 반복     -->
+            {% endfor %}
+        <div class="col-11 offset-11"><a href="{% url 'liked_contests' %}">더보기>></a></div>
       </section>
     </div>
   </div>
