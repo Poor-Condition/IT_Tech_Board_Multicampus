@@ -33,7 +33,7 @@
 }
 
 #chatWrap {
-  width: 600px;
+  width: 100%;
   border: 1px solid #ddd;
 }
 
@@ -93,7 +93,7 @@
 }
 
 #chat-message-input {
-  width: 85%;
+  width: 75%;
   height: calc(100% - 1px);
   border: none;
   padding-bottom: 0;
@@ -141,4 +141,27 @@
   padding-top: 20px;
   display: flex;
   justify-content: space-around;
+}
+
+table {
+  width: 120%;
+  /* border: 1px solid #444444; */
+  align-content: center;
+  margin-bottom: 100px;
+}
+th, td {
+  /* border: 1px solid #444444; */
+  width: 53%
+}
+.chat-study{
+   width: 40%
+}
+.starpline{
+  text-align: left;
+  font-size: 28px;
+  font-weight: bold;
+}
+.study-detail{
+  text-align: center;
+  font-size: 23px;
 }

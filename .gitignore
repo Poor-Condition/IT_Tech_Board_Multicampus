@@ -2,6 +2,7 @@
 .idea/
 
 */__pycache__/*
+*/migrations/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,django,jupyternotebooks
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,django,jupyternotebooks

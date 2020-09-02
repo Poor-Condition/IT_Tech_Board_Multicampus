@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_filters',
+
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -100,7 +102,7 @@ DATABASES = {
     #  'PORT': '3306',  # 데이터베이스 port
     #  }
 
-     'default': {
+    'default': {
      'ENGINE': 'django.db.backends.mysql',
      'NAME': 'poor_db',  # DB명
      'USER': 'django',  # 데이터베이스 계정
@@ -110,11 +112,11 @@ DATABASES = {
      }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
+
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },

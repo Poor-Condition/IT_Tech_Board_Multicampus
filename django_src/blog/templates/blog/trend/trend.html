@@ -1,71 +1,119 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-<div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <h1>How About Programming Language?</h1>
-    <div class="row pt-4 mb-5">
-        <div class="col-5 mb-5 pt-4">
-            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-        </div>
-
-        <div class="col-7 mt-3 mb-5" style="width:450px">
-            <canvas id="myChart_Programming_Language"></canvas>
-        </div>
-    </div>
-    <hr>
-
-    <h1 class="mt-5">What kind of DB do you use?</h1>
-    <div class="row pt-3 mb-5">
-        <div class="col-5 mt-3 pt-3">
-            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-        </div>
-
-        <div class="col-7 mt-3 mb-5" style="width:800px; height: 600px;">
-            <canvas id="myChart_DB"></canvas>
+<div class="row ml-1" style="width: 110%; margin-top: 100px;">
+    <div class="col-lg-2 mr-auto" style="margin-left: -150px;">
+        <div class="border p-4 rounded">
+          <ul class="list-unstyled block__47528 mb-0">
+            <li><span class="active">Welcome {{ user.이름 }}!</span></li><br>
+            <li><a href="#profile" class="smoothscroll">내 정보</a></li>
+            <li><a href="{% url 'update' %}">내 정보 수정</a></li>
+            <li><a href="#study" class="smoothscroll">내 스터디 관리</a></li>
+            <li><a href="#liked_posts" class="smoothscroll">좋아요한 게시물</a></li>
+          </ul>
         </div>
     </div>
-    <hr>
+    <div class="col-lg-10 mt-0 pl-5">
+        <div style="margin-left: -150px;">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+            <h1>How About Programming Language?</h1>
+            <div class="row pt-4 mb-5">
+                <div class="col-6 mb-5 pt-4">
+                    <h5>2019년 Data Science Platform인 Kaggle에서 19,717명의 Kaggler들을 대상으로 [정기적으로 사용하는 프로그래밍 언어는 무엇인가?]라는 질문에 설문 응답자 대부분은 [Python]을 선택하였습니다.
+                        두번 째로 많이 사용되는 언어로 [R]이 선택되었습니다. <br><br>
+                        반면, 가장 사용하지 않는 프로그래밍 언어 두가지로 [Javascript]와 [Typescript] 두 프로그래밍 언어가 선택되었습니다.<br><br><br>
+                        
+                        <div style="font-weight: bold;">[상위 두 개의 프로그래밍 언어 공식 홈페이지]</div>
+                        <a href="https://www.python.org/">1. Python</a><br>
+                        <a href="https://www.r-project.org/">2. R</a>
+                        
+                    </h5>
+                </div>
 
-    <h1>Which of the following IDE do you use on a regular basis?</h1>
-    <div class="row pt-3">
-        <div class="col-12 mt-3 pt-3">
-            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-        </div>
+                <div class="col-6 mt-3 mb-5" style="width:450px">
+                    <canvas id="myChart_Programming_Language"></canvas>
+                </div>
+            </div>
+            <hr>
 
-        <div class="col-12 pt-3" style="width:1000px; height: 600px;">
-            <canvas id="myChart_IDE"></canvas>
+            <h1 class="mt-5">What kind of DB do you use?</h1>
+            <div class="row pt-3 mb-5">
+                <div class="col-12 mt-3 pt-3">
+                    <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [정기적으로 사용하는 관계형 데이터베이스는 무엇인가?]라는 질문에 가장 많은 수의 설문 응답자가 [MySQL]을 선택하였습니다.
+                        두번 째로 많이 사용되는 관계형 데이터베이스로 [PostgreSQL]이 선택되었습니다. <br><br>
+                        반면, 가장 사용하지 않는 관계형 데이터베이스 두가지로 [AWS DynamoDB]와 [Azure SQL Database] 두 데이터베이스가 선택되었습니다.<br><br><br>
+                        <div style="font-weight: bold;">[상위 두 개의 관계형 데이터베이스 공식 홈페이지]</div>
+                        <a href="https://www.mysql.com/">1. MySQL</a><br>
+                        <a href="https://www.postgresql.org/">2. PostgreSQL</a>
+                    </h5>
+                </div>
+
+                <div class="col-12 mt-3 mb-5" style="width:800px; height: 600px;">
+                    <canvas id="myChart_DB"></canvas>
+                </div>
+            </div>
+            <hr>
+
+            <h1>Which of the following IDE do you use on a regular basis?</h1>
+            <div class="row pt-3">
+                <div class="col-12 mt-3 pt-3">
+                    <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [정기적으로 사용하는 IDE(Integrated Development Environment, 통합 개발 환경)는 무엇인가?]라는 질문에 가장 많은 수의 설문 응답자가 [Jupyter Notebook]을 선택하였습니다.
+                        두번 째로 많이 사용되는 IDE로 [Visual Studio/visual Studio Code]가 선택되었습니다. <br><br>
+                        반면, 가장 사용하지 않는 IDE 두가지로 [Atom]와 [Matlab] 두 IDE가 선택되었습니다.<br><br><br>
+                        
+                        <div style="font-weight: bold;">[상위 두 개의 IDE 공식 홈페이지]</div>
+                        <a href="https://jupyter.org/">1. Jupyter Notebook</a><br>
+                        <a href="https://visualstudio.microsoft.com/">2. Visual Studio/visual Studio Code</a>
+                    </h5>
+                </div>
+
+                <div class="col-12 pt-3" style="width:1000px; height: 600px;">
+                    <canvas id="myChart_IDE"></canvas>
+                </div>
+            </div>
+            <hr>
+
+            <h1>How about ML Frameworks & Tools?</h1>
+            <div class="row pt-5 mb-5">
+                <div class="col-5 mt-5 pt-3">
+                    <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [정기적으로 사용하는 Machine Learning Framework는 무엇인가?]라는 질문에 가장 많은 수의 설문 응답자가 [Scikit-learn]을 선택하였습니다.
+                        두번 째로 많이 사용되는 ML Framework로 [TensorFlow]가 선택되었습니다. 세 번째 ML Framework로 [Keras]가 2위인 [TensorFlow]와 비슷한 투표 수를 받았습니다.<br><br>
+                        반면, 가장 사용하지 않는 ML Framework 두가지로 [Spark MLlib]와 [fast.ai] 두 ML Framework가 선택되었습니다.<br><br><br>
+                        
+                        <div style="font-weight: bold;">[상위 두 개의 IDE 공식 홈페이지]</div>
+                        <a href="https://scikit-learn.org/">1. Scikit-learn</a><br>
+                        <a href="https://www.tensorflow.org/">2. TensorFlow</a>
+                    </h5>
+                </div>
+
+                <div class="col-7 mt-3 mb-5" style="width:600px; height: 600px;">
+                    <canvas id="myChart_ML"></canvas>
+                </div>
+            </div>
+            <hr>
+
+            <h1 class="mt-5">Favorite Source to Study Machine Learning</h1>
+            <div class="row pt-3 mb-5">
+                <div class="col-12 mt-3 pt-3">
+                    <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [Data Science를 시작하고 배우는데 이용한 플랫폼은 무엇인가?]라고 물은 결과,<br>
+                        가장 많은 수의 설문 응답자가 [Coursera]에서 Data Science를 학습하였다고 답하였습니다. 
+                        두번 째로 많이 사용되는 학습 플랫폼으로 [Kaggle Courses]가 선택되었습니다.<br><br>
+                        반면, 가장 사용하지 않는 학습 플랫폼 두가지로 [Data Quest]와 [LinkedIn Learning] 두 플랫폼이 선택되었습니다.<br><br><br>
+                        
+                        <div style="font-weight: bold;">[상위 두 개의 Data Science 학습 플랫폼 공식 홈페이지]</div>
+                        <a href="https://www.coursera.org/">1. Coursera</a><br>
+                        <a href="https://www.kaggle.com/learn/overview">2. Kaggle Courses</a>
+                    </h5>
+                </div>
+
+                <div class="pt-3" style="width:100%; height: 700px;">
+                    <canvas id="myChart_Study_ML"></canvas>
+                </div>
+            </div>
+            <hr>
         </div>
     </div>
-    <hr>
-
-    <h1>How about ML Frameworks & Tools?</h1>
-    <div class="row pt-5 mb-5">
-        <div class="col-5 mt-5 pt-3">
-            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-        </div>
-
-        <div class="col-7 mt-3 mb-5" style="width:600px; height: 600px;">
-            <canvas id="myChart_ML"></canvas>
-        </div>
-    </div>
-    <hr>
-
-    <h1 class="mt-5">Favorite Source to Study Machine Learning</h1>
-    <div class="row pt-3 mb-5">
-        <div class="col-5 mt-3 pt-3">
-            <h4>여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!여기에다가 그래프에 대한 설명, 데이터에 대한 설명 등등.. 작성하기..!</h4>
-        </div>
-
-        <div class="col-7 mt-3 mb-5" style="width:800px; height: 600px;">
-            <canvas id="myChart_Study_ML"></canvas>
-        </div>
-    </div>
-    <hr>
-
 </div>
-
-
     <script>
     // 우선 컨텍스트를 가져옵니다. 
     var ctx = document.getElementById("myChart_Programming_Language").getContext('2d');
@@ -311,7 +359,7 @@
     - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
     */
     var myChart_Study_ML = new Chart(ctx, {
-        type: 'horizontalBar',
+        type: 'bar',
         data: {
             labels: ["Udacity","Coursera","edX","DataCamp","DataQuest","Kaggle Courses (i.e. Kaggle Learn)","Fast.ai","Udemy","LinkedIn Learning","University Courses (resulting in a university degree)","None","Other"],
             datasets: [{
