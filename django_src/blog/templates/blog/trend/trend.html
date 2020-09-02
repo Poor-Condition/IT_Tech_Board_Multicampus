@@ -5,18 +5,20 @@
     <div class="col-lg-2 mr-auto" style="margin-left: -150px;">
         <div class="border p-4 rounded">
           <ul class="list-unstyled block__47528 mb-0">
-            <li><span class="active">Welcome {{ user.이름 }}!</span></li><br>
-            <li><a href="#profile" class="smoothscroll">내 정보</a></li>
-            <li><a href="{% url 'update' %}">내 정보 수정</a></li>
-            <li><a href="#study" class="smoothscroll">내 스터디 관리</a></li>
-            <li><a href="#liked_posts" class="smoothscroll">좋아요한 게시물</a></li>
+            <li><span class="active" style="font-weight: bold; color: black;">IT Trend</span></li><br>
+            <li><a href="#Programming-Languages" class="smoothscroll">Programming Languages</a></li><br>
+            <li><a href="#DataBases" class="smoothscroll">DataBases</a></li><br>
+            <li><a href="#IDE" class="smoothscroll">IDE</a></li><br>
+            <li><a href="#ML-Frameworks" class="smoothscroll">ML Frameworks</a></li><br>
+            <li><a href="#Study-ML" class="smoothscroll">Study ML</a></li><br>
+            <li><a href="#about-survey" class="smoothscroll">About Survey</a></li><br>
           </ul>
         </div>
     </div>
     <div class="col-lg-10 mt-0 pl-5">
         <div style="margin-left: -150px;">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-            <h1>How About Programming Language?</h1>
+            <h1 id="Programming-Languages">How About Programming Language?</h1>
             <div class="row pt-4 mb-5">
                 <div class="col-6 mb-5 pt-4">
                     <h5>2019년 Data Science Platform인 Kaggle에서 19,717명의 Kaggler들을 대상으로 [정기적으로 사용하는 프로그래밍 언어는 무엇인가?]라는 질문에 설문 응답자 대부분은 [Python]을 선택하였습니다.
@@ -36,7 +38,7 @@
             </div>
             <hr>
 
-            <h1 class="mt-5">What kind of DB do you use?</h1>
+            <h1 id="DataBases" class="mt-5">What kind of DB do you use?</h1>
             <div class="row pt-3 mb-5">
                 <div class="col-12 mt-3 pt-3">
                     <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [정기적으로 사용하는 관계형 데이터베이스는 무엇인가?]라는 질문에 가장 많은 수의 설문 응답자가 [MySQL]을 선택하였습니다.
@@ -54,7 +56,7 @@
             </div>
             <hr>
 
-            <h1>Which of the following IDE do you use on a regular basis?</h1>
+            <h1 id="IDE">Which of the following IDE do you use on a regular basis?</h1>
             <div class="row pt-3">
                 <div class="col-12 mt-3 pt-3">
                     <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [정기적으로 사용하는 IDE(Integrated Development Environment, 통합 개발 환경)는 무엇인가?]라는 질문에 가장 많은 수의 설문 응답자가 [Jupyter Notebook]을 선택하였습니다.
@@ -73,7 +75,7 @@
             </div>
             <hr>
 
-            <h1>How about ML Frameworks & Tools?</h1>
+            <h1 id="ML-Frameworks">How about ML Frameworks & Tools?</h1>
             <div class="row pt-5 mb-5">
                 <div class="col-5 mt-5 pt-3">
                     <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [정기적으로 사용하는 Machine Learning Framework는 무엇인가?]라는 질문에 가장 많은 수의 설문 응답자가 [Scikit-learn]을 선택하였습니다.
@@ -93,7 +95,7 @@
             <hr>
 
             <h1 class="mt-5">Favorite Source to Study Machine Learning</h1>
-            <div class="row pt-3 mb-5">
+            <div id="Study-ML" class="row pt-3 mb-5">
                 <div class="col-12 mt-3 pt-3">
                     <h5>2019년 Kaggle에서 Kaggler들을 대상으로 [Data Science를 시작하고 배우는데 이용한 플랫폼은 무엇인가?]라고 물은 결과,<br>
                         가장 많은 수의 설문 응답자가 [Coursera]에서 Data Science를 학습하였다고 답하였습니다. 
@@ -111,12 +113,59 @@
                 </div>
             </div>
             <hr>
+
+            
+            <h3 class="mt-5">About Survey</h3>
+            <div  id="about-survey"class="row mb-5">
+                <div class="col-12 mt-3 pt-3">
+                    <h5 style="color: darkgray; font-weight: bold;">
+                        Kaggle의 2019년 기계 학습 및 데이터 과학 설문 조사와 설문 조사 데이터 과제에 오신 것을 환영합니다.
+
+                        데이터 과학 및 머신 러닝 상태에 대한 진정으로 포괄적 인 견해를 제시하는 업계 전반의 설문 조사를 실시하기 시작했습니다. 
+                        설문 조사는 2019년 10 월에 3 주 동안 진행되었으며 데이터를 정리 한 후 19,717 개의 응답 수로 완료되었습니다!
+                        
+                        결과에는 누가 데이터를 사용하고 있는지, 다양한 산업에서 머신 러닝에 무슨 일이 일어나고 있는지, 새로운 데이터 과학자가 현장에 뛰어들 수있는 가장 좋은 방법에 대한 원시 수치가 포함됩니다. 
+                        익명화를 손상시키지 않고 가능한 한 원시 형식으로 데이터를 게시했습니다.<br><br><br>
+                    </h5>
+                    <h5 class="mb-5">
+                        - 이 설문 조사에는 171 개 국가 및
+                        지역 에서 19,717 명의 사용 가능한 응답자가 참여했습니다 .
+                        응답자 가 50 명 미만인 국가 또는 지역의 경우
+                        익명 성을 위해 "기타"라는 그룹으로 그룹화했습니다 .<br><br>
+                        
+                        - 설문 조사 시스템에서
+                        "스팸" 으로 신고 된 응답자는 제외되었습니다 .<br><br>
+                        
+                        - 대부분의 응답자는 주로
+                        이메일 목록, 토론 포럼 및 소셜 미디어 채널과 같은 Kaggle 채널을 통해 발견되었습니다 .<br><br>
+                        
+                        - 설문 조사는 2019년 10 월 8 일부터 10 월 28 일까지 진행되었습니다.
+                        응답자가 해당 기간 동안 언제든지 설문 조사를 완료 할 수 있도록 허용 했습니다.<br>
+                        설문에 참여한 사람들의 평균 응답 시간은
+                        약 10 분이었습니다.<br><br>
+                        
+                        - 모든 응답자에게 모든 질문이 표시되는 것은 아닙니다.
+                        Survey_schema.csv 파일에서 사용한 다양한 세그먼트에 대해 자세히 알아볼 수 있습니다 . 
+                        일반적으로 경험이 많은 응답자는 더 많은 질문을 받았으며 경험이 적은 응답자는 적은 질문을 받았습니다.<br><br>
+                        
+                        - 응답자의 신원을 보호하기 위해 객관식
+                        질문에 대한 답변은 개방형 답변 과 별도의 데이터 파일로 분리되었습니다 .
+                        객관식 및 자유 형식 응답 을 일치시키는 키는 제공하지 않습니다 . 또한, 자유 형식 응답은 동일한 행에 나타나는 응답 이 반드시 동일한
+                        설문 조사 참여자 로부터 온 것이 아니 도록 열 단위로 무작위 화되었습니다.<br><br>
+                        
+                        - 객관식 단일 응답 질문은 개별 열에 적합하지만 객관식 객관식 질문은 여러 열로 분할되었습니다. 사용자 개인 정보를 보호하기 위해 텍스트 응답이 인코딩되었으며 응답자가 50 명 미만인 국가는 "기타"범주로 분류되었습니다.<br><br><br>
+                        
+                        <a href="https://www.kaggle.com/learn/overview">2019 Kaggle ML & DS Survey</a>
+                    </h5>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-    <script>
+<script>
     // 우선 컨텍스트를 가져옵니다. 
     var ctx = document.getElementById("myChart_Programming_Language").getContext('2d');
+    Chart.defaults.global.animation.duration = 5000;
     /*
     - Chart를 생성하면서, 
     - ctx를 첫번째 argument로 넘겨주고, 
@@ -124,6 +173,7 @@
     */
     var myChart_Programming_Language = new Chart(ctx, {
         type: 'pie',
+        
         data: {
             labels: ["Python","R","SQL","C++","MATLAB","C","Other","Java","None","Javascript","Bash","TypeScript"],
             datasets: [{
