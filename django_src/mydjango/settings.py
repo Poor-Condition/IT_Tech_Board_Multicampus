@@ -108,6 +108,7 @@ DATABASES = {
      'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
      'PORT': '3306',  # 데이터베이스 port
      }
+}
 
 
 # Password validation
