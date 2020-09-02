@@ -26,7 +26,7 @@
                         {% if user.is_authenticated %}
                             {% if user in study.members.all %}
                                 <div class="col"><a href="{% url 'room' study.id %}"><button type="button" class="btn btn-success">채팅하기</button></a></div>
-                                <div class="col"><a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">스터디 나가기</button></a></div>
+                                <div class="col"><a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger" style="font-size: 15px;">스터디 나가기</button></a></div>
                             {% else %}
                                 <a href="{% url 'join_study' study.id %}"><button type="button" class="btn btn-success">스터디 등록하기</button></a>
                             {% endif %}
