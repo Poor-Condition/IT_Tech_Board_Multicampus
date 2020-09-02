@@ -73,7 +73,7 @@ urlpatterns = [
 
     #스터디 만들기
     path('study/create', views.create_study, name='create_study'),
-    
+
     #스터디 join
     path('study/join/<id>', views.join_study, name='join_study'),
 

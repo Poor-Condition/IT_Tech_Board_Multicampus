@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.core.serializers import json
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -220,11 +220,7 @@ def create_study(request):
             post.save()
             form.instance.members.add(user)
             return redirect('study')
-    return render(request, 'blog/study/create_study.html', {'form':form, "page_name":"새 스터디 등록"})
-
-def confirm_study(request):
-    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디 등록 완료"})
-
+    return render(request, 'blog/study/create_study.html', {'form':form})
 
 def study(request):
     studies = Study.objects.all()
@@ -274,6 +270,7 @@ def article_like(request, article_id):
         article.article_likes.add(user.id)
         article.article_like_count += 1
         article.save()
+
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
