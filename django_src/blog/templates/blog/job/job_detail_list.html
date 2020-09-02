@@ -5,7 +5,13 @@
       <div class="container">
         {% block content %}
         {% load widget_tweaks %}
+        <div class = "container px-5 py-5" style="border:1px solid #cecece; border-radius:25px;">
           <form method="get">
+            <div class="row">
+              <div class="col">
+                <strong>채용 공고</strong>
+              </div>
+            </div>
             <div class="row mb-3">
               <div class="col-9">{% render_field filter.form.job_title class="form-control" %}</div>
               <div class="col-3"><button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search</button></div>
@@ -21,12 +27,13 @@
               <div class="col-4">{% render_field filter.form.experience class="form-control" %}</div>
             </div>
           </form>
+        </div>
           <div class="job-list-container mt-5">
             <hr>
             {% for job in posts %}
 
               <div class="row">
-                <div class="col-8">
+                <div class="col-6">
                   <h4><a href="{{job.link}}">{{job.job_title}}</a></h4>
                 </div>
                 <div class="col-2">
@@ -46,10 +53,13 @@
                       <span class="badge badge-danger">교육생/인턴</span>
                     </div>
                   {% endif %}
-                    <form action = "{% url 'job_like' job.id %}" method = "POST">{% csrf_token %}
-                        <input class = "btn btn-primary" type = "submit" value = "like">
-                      <div>좋아요 {{ job.job_like_count }} 개</div>
-                    </form>
+                </div>
+                <div class="col-2">
+                  <form action = "{% url 'job_like' job.id %}" method = "POST">{% csrf_token %}
+                    <input class = "btn btn-primary" type = "submit" value = "like">
+                    <a><i class="far fa-heart"></i></a>
+                    <div>좋아요 {{ job.job_like_count }} 개</div>
+                </form>
                 </div>
               </div>
               <div class="row">
