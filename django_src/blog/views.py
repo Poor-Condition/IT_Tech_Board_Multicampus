@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.core.serializers import json
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -270,6 +270,7 @@ def article_like(request, article_id):
         article.article_likes.add(user.id)
         article.article_like_count += 1
         article.save()
+
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
