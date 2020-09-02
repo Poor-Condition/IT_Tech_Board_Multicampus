@@ -32,7 +32,6 @@ def main_search(request):
     jobs = Jobs.objects.filter(Q(job_title__icontains=q) | Q(company__icontains=q))[0:5]
     return render(request, "blog/main_search.html", {'articles':articles, 'contests':contests, 'jobs':jobs, 'page_name':'검색 결과', 'q':q})
 
-
 # view
 def set_view(request, model_name, field_name, path, page_name):
     obj = model_name.objects.filter(field=field_name)
@@ -50,7 +49,6 @@ def set_view(request, model_name, field_name, path, page_name):
 
     return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name, "page":page})
 
-
 # 뉴스
 def article_list(request):
     obj = Articles.objects.all()
@@ -66,7 +64,6 @@ def article_list(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/article/article_detail_list.html', {"posts": posts, "page_name":"뉴스", "page":page})
-
 
 def article_dev_list(request):
     return set_view(request, Articles, "개발자", "article", "개발자 뉴스")
@@ -116,18 +113,6 @@ def job_list(request):
         posts = paginator.page(paginator.num_pages)
 
     return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'paginator': paginator, 'filter':job_filter, 'page':page})
-
-
-def job_python_list(request):
-    return set_view(request, Jobs, "", "job", "파이썬 채용공고")
-
-
-def job_cloud_list(request):
-    return set_view(request, Jobs, "cloud", "job", "클라우드 채용공고")
-
-
-def job_db_list(request):
-    return set_view(request, Jobs, "db", "job", "DB 채용공고")
 
 
 # 공모전
@@ -218,8 +203,10 @@ def update(request):
 def mypage(request):
     user = request.user
     studies = Study.objects.filter(members=user)[0:3]
-    return render(request, 'blog/mypage.html', {'studies':studies, "page_name":"My Page"})
-
+    articles=Articles.objects.filter(article_likes=user)[0:3]
+    contests=Contest.objects.filter(contest_likes=user)[0:3]
+    jobs=Jobs.objects.filter(job_likes=user)[0:3]
+    return render(request, 'blog/mypage.html', {'studies':studies,'articles':articles, 'contests':contests, 'jobs':jobs, "page_name":"My Page"})
 
 @login_required
 def create_study(request):
@@ -265,6 +252,7 @@ def join_study(request, id):
         study.members.add(user)
     return render(request, 'blog/study/join_study.html', {"page_name":"스터디"})
 
+#좋아요
 @login_required
 @require_POST
 def article_like(request, article_id):
@@ -304,10 +292,6 @@ def contest_like(request, contest_id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
-
-
-
 @login_required
 @require_POST
 def job_like(request, job_id):
@@ -327,3 +311,53 @@ def job_like(request, job_id):
         job.save()
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+#좋아요된 게시물
+def liked_articles(request):
+    user = request.user
+    articles = Articles.objects.filter(article_likes=user)
+    paginator = Paginator(articles, 10)
+    page = request.GET.get("page", 1)
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, "blog/article/article_detail_list.html",{"posts": posts, "page_name":'내가 찜한 뉴스', "page": page})
+
+def liked_contests(request):
+    user = request.user
+    contests = Contest.objects.filter(contest_likes=user)
+
+    first = contests.order_by('-contest_views')[0]
+    second = contests.order_by('-contest_views')[1]
+    third = contests.order_by('-contest_views')[2]
+
+    return render(request, "blog/contest/contest_detail_list.html",
+                  {"contests": contests, "page_name": '내가 찜한 공모전', "first": first, "second": second, "third": third})
+
+def liked_jobs(request):
+    user = request.user
+    job_list = Jobs.objects.filter(job_likes=user)
+    job_filter = JobFilter(request.GET, queryset=job_list)
+    job_list = job_filter.qs
+
+    paginator = Paginator(job_list, 10)
+    page = request.GET.get("page", 1)
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, "blog/job/job_detail_list.html",
+                  {"posts": posts, "page_name": "내가 찜한 채용공고", 'paginator': paginator, 'filter': job_filter, 'page': page})
