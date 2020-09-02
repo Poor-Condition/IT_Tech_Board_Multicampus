@@ -72,11 +72,8 @@ def article_new_tech_list(request):
 def trend(request):
     return render(request, "blog/trend/trend.html",)
 
-
 # 채용공고
-
 def job_list(request):
-    
     job_list = Jobs.objects.all()
     job_filter = JobFilter(request.GET, queryset=job_list)
     job_list = job_filter.qs
@@ -109,7 +106,6 @@ def job_db_list(request):
 
 
 # 공모전
-
 def contest_set_view(request, model_name, field_name, page_name):
     obj = model_name.objects.filter(field=field_name)
 
@@ -163,8 +159,10 @@ def study_chat(request):
     return render(request, "chat/chat.html", {})
 
 def room(request, room_name):
+    study = Study.objects.get(pk=room_name)
     return render(request, 'chat/room.html', {
-        'room_name': room_name
+        'room_name': room_name,
+        'study':study
     })
 
 @login_required
