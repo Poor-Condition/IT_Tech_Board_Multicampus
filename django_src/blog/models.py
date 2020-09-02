@@ -150,6 +150,7 @@ class Study(models.Model):
     location = models.CharField(max_length=100)
     time = models.TimeField(auto_now=False)
     max_member = models.IntegerField(default=4)
+    description = models.CharField(max_length=500, null=True)
 
     owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, default=1)
     members = models.ManyToManyField(User, related_name='members', null=True)

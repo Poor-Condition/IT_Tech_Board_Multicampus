@@ -44,17 +44,18 @@
         <div class="row">
           {% for study in studies %}
           <div class="col-4 border border-white block__16443 bg-light">
-              <div class="row pl-3"><h4>{{study.name}}</h4></div>
-              <div class="row pl-3">장소: {{study.location}}</div>
-              <div class="row pl-3">시간: {{study.time}}</div>
-              <div class="row pl-3">스터디장: {{study.owner}}</div>
-              <div class="row pl-3">멤버수: {{study.members.all.count}}</div>
-              <div class="row pl-3">
+              <div class="row"><h2>{{study.name}}</h2></div>
+              <div class="row">{{study.description}}</div><br>
+              <div class="row">장소: {{study.location}}</div>
+              <div class="row">시간: {{study.time}}</div>
+              <div class="row">스터디장: {{study.owner.이름}}</div>
+              <div class="row">스터디 정원: {{study.max_member}}</div>
+              <div class="row">
                   멤버:
                   {% for member in study.members.all %}
-                      {{member}}
+                      {{member.이름}}
                   {% endfor %}<br><br>
-            </div>
+              </div>
               <div class="row">
                 <div class="col"><a href="{% url 'room' study.id %}"><button type="button" class="btn btn-success">채팅하기</button></a></div>
                 <div class="col"><a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">나가기</button></a></div>

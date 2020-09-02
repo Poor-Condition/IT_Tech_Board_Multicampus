@@ -1,9 +1,14 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
+{% load widget_tweaks %}
 <form action = "" method = "POST">
-    {{form.as_p }}
     {% csrf_token %}
+    <div class="col-10">스터디명: {% render_field form.name class="form-control" %}</div>
+    <div class="col-10">한줄 소개: {% render_field form.description class="form-control" %}</div>
+    <div class="col-4">장소: {% render_field form.location class="form-control" %}</div>
+    <div class="col-4">시간: {% render_field form.time class="form-control" %}</div>
+    <div class="col-4 mb-4">최대 인원 수: {% render_field form.max_member class="form-control" %}</div>
     <input class = "btn btn-primary" type = "submit" value = "submit">
 </form>
 <a href="{% url 'study' %}">리스트로 돌아가기</a>

@@ -12,10 +12,11 @@
             <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
                 <div class = "block__16443 bg-light">
                     <div class="row"><h2>{{study.name}}</h2></div>
+                    <div class="row"><h2>{{study.description}}</h2></div><br>
                     <div class="row">장소: {{study.location}}</div>
                     <div class="row">시간: {{study.time}}</div>
-                    <div class="row">스터디장: {{study.owner}}</div>
-                    <div class="row">멤버수: {{study.members.all.count}}</div>
+                    <div class="row">스터디장: {{study.owner.이름}}</div>
+                    <div class="row">스터디 정원: {{study.max_member}}</div>
                     <div class="row">
                         멤버:
                         {% for member in study.members.all %}
@@ -28,7 +29,7 @@
                                 <div class="col"><a href="{% url 'room' study.id %}"><button type="button" class="btn btn-success">채팅하기</button></a></div>
                                 <div class="col"><a href="{% url 'cancel_study' study.id %}"><button type="button" class="btn btn-danger">스터디 나가기</button></a></div>
                             {% else %}
-                                <a href="{% url 'join_study' study.id %}"><button type="button" class="btn btn-success">스터디 등록하기</button></a>
+                                <a href="{% url 'join_study' study.id %}"><button type="button" class="btn btn-success">스터디 들어가기</button></a>
                             {% endif %}
                         {% endif %}
                     </div>

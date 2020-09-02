@@ -220,7 +220,7 @@ def create_study(request):
             post.save()
             form.instance.members.add(user)
             return redirect('study')
-    return render(request, 'blog/study/create_study.html', {'form':form})
+    return render(request, 'blog/study/create_study.html', {'form':form, 'page_name':"새 스터디 등록"})
 
 def study(request):
     studies = Study.objects.all()
