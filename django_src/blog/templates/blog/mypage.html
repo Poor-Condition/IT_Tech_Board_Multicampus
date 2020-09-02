@@ -121,21 +121,21 @@
       <section id="liked_contests" class="liked_posts mb-5">
         <h5 class="liked_posts_title mb-3" style="color: #89ba16;">내가 찜한 공모전</h5>
         <hr class="mb-4">
-        {% for contest in contests %}
-            <div class="item web col-4 mb-4 align-content-center">
+        <div class="row">
+          {% for contest in contests %}
+              <div class = "col-4 justify-content-center">
                 <div class="row">
-                    <div class = "col justify-content-center">
-                    <a href="portfolio-single.html" class="item-wrap">
-                        <span class="icon-add"></span>
-                        <img class="img-fluid mb-3" src={{ contest.contest_image }}>
-                    </a>
-                    </div>
+                  <a href="portfolio-single.html" class="item-wrap">
+                      <span class="icon-add"></span>
+                      <img class="img-fluid mb-3" src={{ contest.contest_image }}>
+                  </a>
                 </div>
                 <div class="row mb-4 pr-4">
-                    <a href={{contest.contest_homepage}}><h5>{{ contest.contest_title}}</h5></a>
-                </div>
-            </div>
-            {% endfor %}
+                  <a href={{contest.contest_homepage}}><h5>{{ contest.contest_title}}</h5></a>
+              </div>
+              </div>
+        {% endfor %}
+        </div>
         <div class="col-11 offset-11"><a href="{% url 'liked_contests' %}">더보기>></a></div>
       </section>
     </div>
