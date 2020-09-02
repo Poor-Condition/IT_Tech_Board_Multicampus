@@ -1,71 +1,115 @@
 {% extends "blog/base.html" %}
+{% load blog_extras %}
 
 <section class="site-section">
       <div class="container">
         {% block content %}
           <form method="get">
+            <div class="row">
+              <div class="col-9">
+                <input type="text" class="form-control form-control-lg" placeholder="Job title, Company..." name="search_query">
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
+                  <option>Anywhere</option>
+                  <option>San Francisco</option>
+                  <option>Palo Alto</option>
+                  <option>New York</option>
+                  <option>Manhattan</option>
+                  <option>Ontario</option>
+                  <option>Toronto</option>
+                  <option>Kansas</option>
+                  <option>Mountain View</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
+                  <option>Part Time</option>
+                  <option>Full Time</option>
+                </select>
+              </div>
+              <div class="col-4">
+                <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
+                  <option>Part Time</option>
+                  <option>Full Time</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
               {{ filter.form.job_title }}
               {{ filter.form.field }}
               {{ filter.form.edu_level }}
               {{ filter.form.experience }}
-          <button type="submit">Search</button>
+            </div>
           </form>
           <div class="job-list-container mt-5">
+            <hr>
             {% for job in posts %}
-            
-              <row>
-                <h4><a href="{{job.link}}">{{job.job_title}}</a></h2>
-                {{job.experience}}
-                {{job.edu_level}}
-                {% if "정규직" in job.type %}
-                <div class="job-listing-meta">
-                  <span class="badge badge-success">정규직</span>
-                </div>
-                {% elif "프리랜서" in job.type %}
-                <div class="job-listing-info">
-                  <span class="badge badge-info">프리랜서/계약직</span>
-                </div>
-                {% else %}
-                <div class="job-listing-info">
-                  <span class="badge badge-danger">교육생/인턴</span>
-                </div>
-                {% endif %}
-              </row>
-                <!-- <ul class="job-listings mb-2 py-2">
-                  <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
 
-                    <div class="job-listing-about d-sm-flex justify-content-between mx-4">
-                      <div class="job-listing-position pb-3 mb-sm-0">
-                          <h2><a href="{{job.link}}">{{job.job_title}}</a></h2>
-                      </div>
-
-                      <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                        {{job.experience}}
-                          {{job.edu_level}}
-                      </div>
-                      {% if "정규직" in job.type %}
-                      <div class="job-listing-meta">
-                        <span class="badge badge-success">정규직</span>
-                      </div>
-                      {% elif "프리랜서" in job.type %}
-                      <div class="job-listing-info">
-                        <span class="badge badge-info">프리랜서/계약직</span>
-                      </div>
-                      {% else %}
-                      <div class="job-listing-info">
-                        <span class="badge badge-danger">교육생/인턴</span>
-                      </div>
-                      {% endif %}
+              <div class="row">
+                <div class="col-8">
+                  <h4><a href="{{job.link}}">{{job.job_title}}</a></h4>
+                </div>
+                <div class="col-2">
+                  {{job.experience}} | {{job.edu_level}}
+                </div>
+                <div class="col-2">
+                  {% if "정규직" in job.type %}
+                  <div class="job-listing-info">
+                    <span class="badge badge-success">정규직</span>
+                  </div>
+                  {% elif "프리랜서" in job.type %}
+                    <div class="job-listing-info">
+                      <span class="badge badge-info">프리랜서/계약직</span>
                     </div>
-                  </li>
-                </ul> -->
-
+                  {% else %}
+                    <div class="job-listing-info">
+                      <span class="badge badge-danger">교육생/인턴</span>
+                    </div>
+                  {% endif %}
+                    <form action = "{% url 'job_like' job.id %}" method = "POST">{% csrf_token %}
+                        <input class = "btn btn-primary" type = "submit" value = "like">
+                      <div>좋아요 {{ job.job_like_count }} 개</div>
+                    </form>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <h5>{{ job.company }}</h5>
+                </div>
+              </div>
+              <hr>
                 {% empty %}
                 <div> 요청하신 Post가 없습니다. </div>
             {% endfor %}
           </div>
-          <div class="row mt-5 align-self-center">
-            {% include "blog/pagination.html" %}
+          <div class="row mt-5 align-self-center justify-content-center">
+            <nav aria-label="Page navigation example" >
+              <ul class="pagination">
+
+                  <li class="page-item">
+                      {% if posts.has_previous %}
+                          <a class="page-link" href="?{% url_replace request 'page' posts.previous_page_number %}">Previous</a>
+                      {% endif %}
+
+                  </li>
+
+                  <li class="page-item">
+                      <a class="page-link">Page {{page}} of {{posts.paginator.num_pages}}</a>
+                  </li>
+
+                  <li class="page-item">
+                      {% if posts.has_next %}
+                          <a class="page-link" href="?{% url_replace request 'page' posts.next_page_number %}">Next</a>
+                      {% endif %}
+                  </li>
+              </ul>
+            </nav>
           </div>
         {% endblock %}
 

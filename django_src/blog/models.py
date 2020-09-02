@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 
 from django.db import models
 
@@ -12,8 +13,13 @@ class Articles(models.Model):
     field = models.CharField(db_column="분류", max_length=50)
     news_text = models.CharField(db_column="내용", max_length=500)
 
+    article_like_count = models.PositiveIntegerField(default=0)
+
+    article_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
+    article_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='article_user_likes', blank=True, db_constraint=False,
+                                           null=True)
+
     class Meta:
-        managed = False
         db_table = "articles"
 
     def __str__(self):
@@ -33,8 +39,13 @@ class Jobs(models.Model):
     link = models.CharField(db_column='상세링크', max_length=300)
     field = models.CharField(db_column="분류필터", max_length=50)
 
+    job_like_count = models.PositiveIntegerField(default=0)
+
+    job_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
+    job_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='job_user_likes', blank=True, db_constraint=False, null=True)
+
+
     class Meta:
-        managed = False
         db_table = "job_list"
 
     def __str__(self):
@@ -56,6 +67,12 @@ class Contest(models.Model):
     contest_file = models.CharField(db_column="첨부파일", max_length=400)
     contest_views = models.IntegerField(db_column="조회수")
     field = models.CharField(db_column="분류", max_length=50)
+
+    contest_like_count = models.PositiveIntegerField(default=0)
+
+    contest_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
+    contest_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='contest_user_likes', blank=True, db_constraint=False,
+                                           null=True)
 
     class Meta:
         db_table = "contest"
@@ -119,14 +136,6 @@ class User(AbstractUser):
     관심사1 = models.CharField(choices=INTEREST_CHOICES, db_column="first_interest", max_length=30)
     관심사2 = models.CharField(choices=INTEREST_CHOICES, db_column="second_interest", max_length=30)
 
-    # news = models.ForeignKey(Articles, on_delete=models.CASCADE, default=1, null=False)
-    # article_likes = models.ManyToManyField(Articles, related_name='article_likes', blank=True)
-
-    # contests = models.ForeignKey(Contest, on_delete=models.CASCADE, default=1, null=False, blank=False)
-    # contest_likes = models.ManyToManyField(Contest, related_name='contest_likes', blank=True)
-
-    # jobs = models.ForeignKey(Jobs, on_delete=models.CASCADE, null=False, default=1, blank=False)
-    # job_likes = models.ManyToManyField(Jobs, related_name='job_likes', blank=True)
 
     class Meta:
         db_table = "auth_user"
@@ -147,7 +156,6 @@ class Study(models.Model):
     
     class Meta:
         db_table = "study"
-    
+
     def __str__(self):
         return self.name
-        

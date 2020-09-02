@@ -10,6 +10,10 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('', views.main_view, name='main_view'),
+
+    #search
+    path('search/', views.main_search, name='main_search'),
+    
     # 뉴스
     path('article', views.article_list, name='article_list'),
     path('article/dev/', views.article_dev_list, name='article_dev_list'),
@@ -26,7 +30,7 @@ urlpatterns = [
     path('contest/contest_game/', views.contest_game_list, name='contest_game_list'),
     path('contest/contest_science/', views.contest_science_list, name='contest_science_list'),
     path('contest/contest_job/', views.contest_job_list, name='contest_job_list'),
-    
+
 
     #채용공고
     path('job/', views.job_list, name='job_list'),
@@ -35,7 +39,7 @@ urlpatterns = [
     path('', FilterView.as_view(
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
-         name='index'),
+         name='job_filter_list'),
 
     #트렌드
     path('trend/', views.trend, name='trend'),
@@ -54,7 +58,7 @@ urlpatterns = [
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
          name='index'),
-         
+
     #회원정보 수정
     path('update/', views.update,name='update'),
 
@@ -80,4 +84,8 @@ urlpatterns = [
     path("chat/", views.study_chat, name="study_chat"),
     path('chat/<str:room_name>/', views.room, name='room'),
 
+    #좋아요
+    path('article_like/<int:article_id>/', views.article_like, name='article_like'),
+    path('contest_like/<int:contest_id>/', views.contest_like, name='contest_like'),
+    path('job_like/<int:job_id>/', views.job_like, name='job_like'),
 ]
