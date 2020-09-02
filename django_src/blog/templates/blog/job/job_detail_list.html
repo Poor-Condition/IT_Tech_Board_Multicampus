@@ -50,7 +50,7 @@
           <div class="job-list-container mt-5">
             <hr>
             {% for job in posts %}
-            
+
               <div class="row">
                 <div class="col-8">
                   <h4><a href="{{job.link}}">{{job.job_title}}</a></h4>
@@ -72,6 +72,10 @@
                       <span class="badge badge-danger">교육생/인턴</span>
                     </div>
                   {% endif %}
+                    <form action = "{% url 'job_like' job.id %}" method = "POST">{% csrf_token %}
+                        <input class = "btn btn-primary" type = "submit" value = "like">
+                      <div>좋아요 {{ job.job_like_count }} 개</div>
+                    </form>
                 </div>
               </div>
               <div class="row">
@@ -87,18 +91,18 @@
           <div class="row mt-5 align-self-center justify-content-center">
             <nav aria-label="Page navigation example" >
               <ul class="pagination">
-          
+
                   <li class="page-item">
                       {% if posts.has_previous %}
                           <a class="page-link" href="?{% url_replace request 'page' posts.previous_page_number %}">Previous</a>
                       {% endif %}
-          
+
                   </li>
-          
+
                   <li class="page-item">
                       <a class="page-link">Page {{page}} of {{posts.paginator.num_pages}}</a>
                   </li>
-          
+
                   <li class="page-item">
                       {% if posts.has_next %}
                           <a class="page-link" href="?{% url_replace request 'page' posts.next_page_number %}">Next</a>
