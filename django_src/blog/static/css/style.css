@@ -211,6 +211,9 @@ input.btn{
   justify-content: space-around;
 }
 
+.like{
+  content: "\f095";
+}
 
 
 
