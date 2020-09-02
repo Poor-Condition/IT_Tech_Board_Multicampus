@@ -4,7 +4,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, ListView, View
+from django.db.models import Max
+from django.http import HttpResponseForbidden
+from django.db.models import Q
 from django.views.decorators.http import require_POST
 
 
@@ -20,12 +24,20 @@ from .filters import JobFilter
 def main_view(request):
     return render(request, "blog/main_view.html", )
 
+#메인 화면 검색
+def main_search(request):
+    q = request.GET['search_query']
+    articles = Articles.objects.filter(news_title__icontains=q)[0:5]
+    contests = Contest.objects.filter(contest_title__icontains=q)[0:5]
+    jobs = Jobs.objects.filter(Q(job_title__icontains=q) | Q(company__icontains=q))[0:5]
+    return render(request, "blog/main_search.html", {'articles':articles, 'contests':contests, 'jobs':jobs, 'page_name':'검색 결과', 'q':q})
+
 
 # view
 def set_view(request, model_name, field_name, path, page_name):
     obj = model_name.objects.filter(field=field_name)
     paginator = Paginator(obj, 10)
-    page = request.GET.get("page")
+    page = request.GET.get("page", 1)
 
     try:
         posts = paginator.page(page)
@@ -36,12 +48,24 @@ def set_view(request, model_name, field_name, path, page_name):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name})
+    return render(request, "blog/{path}/{path}_detail_list.html".format(path=path), {"posts": posts, "page_name":page_name, "page":page})
 
 
 # 뉴스
 def article_list(request):
-    return render(request, "blog/article/article_list.html", "뉴스")
+    obj = Articles.objects.all()
+    paginator = Paginator(obj, 10)
+    page = request.GET.get("page", 1)
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/article/article_detail_list.html', {"posts": posts, "page_name":"뉴스", "page":page})
 
 
 def article_dev_list(request):
@@ -64,10 +88,10 @@ def article_devops_list(request):
     return set_view(request, Articles, "DevOps", "article", "DevOps 뉴스")
 
 def article_secure_list(request):
-    return set_view(request, Articles, "보안", "article", "보안 뉴스")
+    return set_view(request, Articles, "보안", "article", "보안 뉴스")    
 
 def article_new_tech_list(request):
-    return set_view(request, Articles, "신기술", "article", "신기술 뉴스")
+    return set_view(request, Articles, "신기술", "article", "신기술 뉴스") 
 
 
 def trend(request):
@@ -77,11 +101,24 @@ def trend(request):
 # 채용공고
 
 def job_list(request):
+    
+    job_list = Jobs.objects.all()
+    job_filter = JobFilter(request.GET, queryset=job_list)
+    job_list = job_filter.qs
 
-    posts = Jobs.objects.all()
-    job_filter = JobFilter(request.GET, queryset=posts)
+    paginator = Paginator(job_list, 10)
+    page = request.GET.get("page", 1)
 
-    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'filter':job_filter})
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, "blog/job/job_detail_list.html", {"posts": posts, "page_name":"채용공고", 'paginator': paginator, 'filter':job_filter, 'page':page})
 
 
 def job_python_list(request):
@@ -145,17 +182,16 @@ def register(request):
     if request.user.is_authenticated:
         return redirect('main_view')
 
-    if request.user.is_authenticated:
-        return redirect('main_view')
-
     return render(request, 'registration/signup.html', {'user_form': user_form})
 
 def study_chat(request):
     return render(request, "chat/chat.html", {})
 
 def room(request, room_name):
+    study = Study.objects.get(pk=room_name)
     return render(request, 'chat/room.html', {
-        'room_name': room_name
+        'room_name': room_name,
+        'study':study
     })
 
 @login_required
@@ -184,7 +220,9 @@ def update(request):
 
 @login_required
 def mypage(request):
-    return render(request, 'blog/mypage.html')
+    user = request.user
+    studies = Study.objects.filter(members=user)[0:3]
+    return render(request, 'blog/mypage.html', {'studies':studies, "page_name":"My Page"})
 
 
 @login_required
@@ -224,12 +262,12 @@ def cancel_study(request, id):
 def join_study(request, id):
     user = request.user
     study = Study.objects.get(pk=id)
+
     if study.members.count() >= study.max_member:
         return render(request, 'blog/study/max.html')
     else:
         study.members.add(user)
-    return render(request, 'blog/study/study_confirmation.html', {"page_name":"스터디"})
-
+    return render(request, 'blog/study/join_study.html', {"page_name":"스터디"})
 
 @login_required
 @require_POST

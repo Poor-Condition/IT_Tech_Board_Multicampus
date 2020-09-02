@@ -152,8 +152,8 @@ class Study(models.Model):
     max_member = models.IntegerField(default=4)
 
     owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, default=1)
-    members = models.ManyToManyField(User, related_name='members', blank=True)
-
+    members = models.ManyToManyField(User, related_name='members', null=True)
+    
     class Meta:
         db_table = "study"
 

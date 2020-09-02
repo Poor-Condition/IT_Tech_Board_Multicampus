@@ -59,15 +59,160 @@ input.btn{
     margin: 20px 0px 20px 20px;
 }
 
-.news-image{
-
-}
-
 .study{
   background-color: lightgray;
   border: solid transparent;
   border-color: #7f848c;
 }
+
+/* 채팅 */
+#roomWrap {
+  width: 200px;
+}
+
+#roomList {
+  border: 1px solid #0084FF;
+  border-radius: 5px;
+}
+
+#roomHeader {
+  background-color: #0084FF;
+  color: #fff;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.roomEl {
+  text-align: center;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 0px;
+  cursor: pointer;
+}
+
+.roomEl:hover{
+  background: #f0f0f0;
+}
+
+.roomEl.active{
+  background: #f0f0f0;
+}
+
+#chatWrap {
+  width: 600px;
+  border: 1px solid #ddd;
+}
+
+#chatHeader {
+  height: 60px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 25px;
+  font-weight: 900;
+  border-bottom: 1px solid #ddd;
+}
+
+#chatLog {
+  height: 700px;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.myMsg {
+  text-align: right;
+}
+
+.anotherMsg {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.msg {
+  display: inline-block;
+  border-radius: 15px;
+  padding: 7px 15px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+
+}
+
+.anotherMsg > .msg {
+  background-color: #f1f0f0;
+
+}
+
+.myMsg > .msg {
+  background-color: #0084FF;
+  color: #fff;
+}
+
+.anotherName {
+  font-size: 12px;
+  display: block;
+}
+
+#chatForm {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-top: 2px solid #f0f0f0;
+}
+
+#chat-message-input {
+  width: 85%;
+  height: calc(100% - 1px);
+  border: none;
+  padding-bottom: 0;
+}
+
+#chat-message-input:focus {
+  outline: none;
+}
+
+#chatForm > input[type=submit] {
+  outline: none;
+  border: none;
+  background: none;
+  color: #0084FF;
+  font-size: 17px;
+}
+
+#memberWrap{
+  width: 200px;
+}
+
+#memberList {
+  border: 1px solid #aaaaaa;
+  border-radius: 5px;
+}
+
+#memberHeader {
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 600;
+  text-align: center;
+}
+
+.memberEl {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+#contentCover{
+  width: 1280px;
+  margin: 0 auto;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
 
 
 /* 여기서부터 부트스트랩 */
@@ -146,7 +291,6 @@ input.btn{
           padding-right: 20px; }
           .site-navbar .site-navigation .site-menu .has-children > a:before {
             position: absolute;
-            content: "\e313";
             font-size: 16px;
             top: 50%;
             right: 0;
@@ -176,7 +320,6 @@ input.btn{
               bottom: 100%;
               left: 20%;
               border: solid transparent;
-              content: " ";
               height: 0;
               width: 0;
               position: absolute;
@@ -210,7 +353,6 @@ input.btn{
                 background: #ebeef0;
                 color: #212529; }
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a:before {
-              content: "\e315";
               right: 20px; }
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a.active {
               background: #ebeef0;
@@ -236,7 +378,6 @@ input.btn{
         .site-navbar .site-navigation .site-menu.site-menu-dark > li > a:after {
           height: 2px;
           background: #000;
-          content: "";
           position: absolute;
           bottom: 0;
           left: 20px;
@@ -347,7 +488,6 @@ input.btn{
         font-size: 12px;
         z-index: 20;
         font-family: "icomoon";
-        content: "\f078";
         position: absolute;
         top: 50%;
         left: 50%;
@@ -418,7 +558,6 @@ input.btn{
         .sticky-wrapper .site-navbar .site-menu > li > a:after {
           height: 2px;
           background: #fff;
-          content: "";
           position: absolute;
           bottom: 0;
           left: 20px;
@@ -452,7 +591,6 @@ input.btn{
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:after {
           height: 2px;
           background: #89ba16;
-          content: "";
           position: absolute;
           bottom: 0;
           left: 20px;
@@ -552,7 +690,7 @@ h1, h2, h3, h4 {
     border: none;
     display: inline-block;
     position: absolute;
-    content: "\e313";
+    /* content: "\e313"; */
     font-size: 16px;
     top: 50%;
     right: 10px;
@@ -568,7 +706,7 @@ h1, h2, h3, h4 {
     border: none;
     display: inline-block;
     position: absolute;
-    content: "\e313";
+    /* content: "\e313"; */
     font-size: 16px;
     top: 50%;
     right: 10px;
@@ -674,7 +812,7 @@ h1, h2, h3, h4 {
   border: none !important;
   display: inline-block;
   position: absolute;
-  content: "\e313";
+  /* content: "\e313"; */
   font-size: 16px;
   top: 50%;
   right: 10px;
@@ -692,7 +830,7 @@ h1, h2, h3, h4 {
   border: none;
   display: inline-block;
   position: absolute;
-  content: "\e313";
+  /* content: "\e313"; */
   font-size: 16px;
   top: 50%;
   right: 10px;
@@ -857,7 +995,7 @@ h1, h2, h3, h4 {
     position: absolute;
     z-index: -1;
     background: #fff568;
-    content: "";
+    /* content: ""; */
     width: 100%;
     -webkit-transition: .3s all ease;
     -o-transition: .3s all ease;
@@ -1273,7 +1411,7 @@ h1, h2, h3, h4 {
       color: #fff;
       border: 1px solid #89ba16; }
     .block__76208 .accordion-item .heading > a[aria-expanded="false"]:before {
-      content: "\e313";
+      /* content: "\e313"; */
       color: #ccc;
       font-family: 'icomoon';
       position: absolute;

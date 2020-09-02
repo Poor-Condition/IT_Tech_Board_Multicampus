@@ -1,0 +1,68 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container">
+    <h4 class="mb-3" style="color:#89ba16;">'{{q}}' 에 대한 검색결과</h4>
+    <section class="search-articles">
+        <hr>
+        <div class="row mb-4"><h4>뉴스</h4></div>
+        {% for article in articles %}
+        <div class="row mb-3">
+            <div class="shadow-sm col-2 mb-1 pt-4 px-2 py-2">
+              <div class = "news-image">
+                <a href={{ article.news_url }}>
+                  <img src={{ article.image_link }} alt="Image" class="img-fluid rounded mb-4" style="width: 90%">
+                </a>    
+              </div>
+            </div>
+            <div class="col-10 mb-1 pt-3 px-4 py-2">
+              <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
+              <div>{{article.published_date}}</div>
+              <div>{{ article.news_text }}</div>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="row justify-content-end pr-2 pt-2">
+            <a>더보기 >></a>
+        </div>
+        <hr class="mb-5">
+    </section>
+
+    <section class="search-job">
+        <div class="row mb-4"><h4>채용 공고</h4></div>
+        {% for job in jobs %}
+            <hr>
+            <div class="row">
+                <div class="col-8">
+                    <h4><a href="{{job.link}}">{{job.job_title}}</a></h4>
+                </div>
+                <div class="col-2">
+                {{job.experience}} | {{job.edu_level}}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="row justify-content-end pr-2 pt-2">
+            <a>더보기 >></a>
+        </div>
+        <hr>
+    </section>
+    <section class="search-contests">
+        <div class="row mb-4 mt-5"><h4>공모전</h4></div>
+        <div class="row align-content-center mb-5">
+            {% for contest in contests %}
+            <div class="item web col-4 mb-4 align-content-center">
+                <div class="row">
+                    <div class = "col justify-content-center">
+                    <a href="portfolio-single.html" class="item-wrap">
+                        <span class="icon-add"></span>
+                        <img class="img-fluid mb-3" src={{ contest.contest_image }}>
+                    </a>
+                    </div>
+                </div>
+                <div class="row mb-4 pr-4">
+                    <a href={{contest.contest_homepage}}><h5>{{ contest.contest_title}}</h5></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

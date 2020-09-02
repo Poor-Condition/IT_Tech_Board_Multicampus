@@ -7,6 +7,8 @@
     <title>Django Blog</title>
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" type="text/css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/0d781c52a6.js" crossorigin="anonymous"></script>
     <!-- 개발자 정의 css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
@@ -15,73 +17,72 @@
     <link rel="stylesheet" href="{% static 'css/jquery.fancybox.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/quill.snow.css' %}">
     <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+
 </head>
 
 <body>
   <div class="site-wrap">
       <!-- NAVBAR -->
-      <header class="site-navbar mt-3">
-        <div class="container-fluid">
-          <div class="row align-items-center">
-            <div class="site-logo col-6"><a href="{% url 'main_view' %}">PoorCondition</a></div>
+    <header class="site-navbar mt-3">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="site-logo col-6"><a href="{% url 'main_view' %}">PoorCondition</a></div>
 
-            <nav class="mx-auto site-navigation">
-              <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                <li class="has-children">
-                  <a href="{% url 'article_list' %}">News</a>
-                  <ul class="dropdown">
-                    <li><a href="{% url 'article_dev_list' %}">개발자</a></li>
-                    <li><a href="{% url 'article_cloud_list' %}">클라우드</a></li>
-                    <li><a href="{% url 'article_big_data_list' %}">Big Data</a></li>
-                    <li><a href="{% url 'article_AI_list' %}">AI</a></li>
-                    <li><a href="{% url 'article_IoT_list' %}">IoT</a></li>
-                    <li><a href="{% url 'article_devops_list' %}">DevOps</a></li>
-                    <li><a href="{% url 'article_secure_list' %}">보안</a></li>
-                    <li><a href="{% url 'article_new_tech_list' %}">신기술</a></li>
-                  </ul>
-                </li>
-                <li class="has-children">
-                  <a href="{% url 'contest_list' %}">Contests</a>
-                  <ul class="dropdown">
-                    <li><a href="{% url 'contest_game_list' %}">게임 공모전</a></li>
-                    <li><a href="{% url 'contest_science_list' %}">과학 공모전</a></li>
-                    <li><a href="{% url 'contest_job_list' %}">취업/창업 공모전</a></li>
-                  </ul>
-                </li>
-                <li class="has-children">
-                  <a href="{% url 'job_list' %}">Job Listings</a>
-                </li>
-                <li class="has-children">
-                  <a href="{% url 'study' %}">Community</a>
+          <nav class="mx-auto site-navigation">
+            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+              <li class="has-children">
+                <a href="{% url 'article_list' %}">News<i class="fas fa-chevron-down ml-2"></i></a>
+                <ul class="dropdown">
+                  <li><a href="{% url 'article_dev_list' %}">개발자</a></li>
+                  <li><a href="{% url 'article_cloud_list' %}">클라우드</a></li>
+                  <li><a href="{% url 'article_big_data_list' %}">Big Data</a></li>
+                  <li><a href="{% url 'article_AI_list' %}">AI</a></li>
+                  <li><a href="{% url 'article_IoT_list' %}">IoT</a></li>
+                  <li><a href="{% url 'article_devops_list' %}">DevOps</a></li>
+                  <li><a href="{% url 'article_secure_list' %}">보안</a></li>
+                  <li><a href="{% url 'article_new_tech_list' %}">신기술</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="{% url 'contest_list' %}">Contests<i class="fas fa-chevron-down ml-2"></i></a>
+                <ul class="dropdown">
+                  <li><a href="{% url 'contest_game_list' %}">게임 공모전</a></li>
+                  <li><a href="{% url 'contest_science_list' %}">과학 공모전</a></li>
+                  <li><a href="{% url 'contest_job_list' %}">취업/창업 공모전</a></li>
+                </ul>
+              </li>
+              <li class="has-children">
+                <a href="{% url 'job_list' %}">Job Listings</a>
+              </li>
+              <li class="has-children">
+                <a href="{% url 'study' %}">Community<i class="fas fa-chevron-down ml-2"></i></a>
                   <ul class="dropdown">
                     <li><a href="{% url 'study' %}">스터디</a></li>
                   </ul>
-                </li>
-                <li class="has-children">
-                  <a href="{% url 'trend' %}">Trend</a>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-            </nav>
+              </li>
+              <li class="has-children">
+                <a href="{% url 'trend' %}">Trend</a>
+              </li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
 
-            <div class="right-cta-menu text-right d-flex align-items-center col-6">
-              <div class="ml-auto">
-                {% if user.is_authenticated %}
-                    <a href="{% url 'mypage' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>mypage</a>
-                    <a href="{% url 'my_study' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>my_study</a>
-                    <a href="{% url 'logout' %}?next={{request.path}}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log out</a>
-                  {% endif %}
-                  {% if not user.is_authenticated %}
-                    <a href="{% url 'register' %}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Sign Up</a>
-                    <a href="{% url 'login' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Log In</a>
-                  {% endif %}
-              </div>
-              <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+          <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+            <div class="ml-auto">
+              {% if user.is_authenticated %}
+                <a href="{% url 'mypage' %}"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><i class="fas fa-user mr-2"></i>mypage</button></a>
+                <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>
+              {% endif %}
+              {% if not user.is_authenticated %}
+                <a href="{% url 'register' %}" style="color:white"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-list-alt"></span><i class="far fa-list-alt mr-2"></i>Sign Up</a>
+                <a href="{% url 'login' %}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span><i class="fas fa-sign-in-alt mr-2"></i>Log In</a>
+              {% endif %}
             </div>
-
+            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
       <section class="section-hero overlay inner-page bg-image" id="home-section" style="background-image: url('{% static "images/hero_1.jpg" %}')";>
         <div class="container">
@@ -102,5 +103,25 @@
         {% endblock %}
       </div>
     </div>
+
+    <!-- 자바스크립트 코드 -->
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{% static 'js/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'js/stickyfill.min.js' %}"></script>
+
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  
+  <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+
+  <script src="{% static 'js/custom.js' %}"></script>
+  
+  <script src="{% static 'js/quill.min.js' %}"></script>
+  
+
   </body>
 </html>

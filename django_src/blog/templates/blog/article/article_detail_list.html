@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
  
 {% block content %}
-  <div><h5>뉴스 > {{ field }}</h5></div>
+  <div><h5>뉴스 > {{page_name}}</h5></div>
     <section class="site-section">
       <div class="container">
         <!-- <h3>추천 뉴스</h3>
@@ -23,17 +23,17 @@
           {% empty %}
         {% endfor %} -->
 
-        
+          <hr>
           {% for article in posts %}
           <div class="row">
-            <div class="shadow-sm col-2 mb-1 pt-4 px-2 py-2 border">
+            <div class="shadow-sm col-2 mb-1 pt-4 px-2 py-2">
               <div class = "news-image">
                 <a href={{ article.news_url }}>
                   <img src={{ article.image_link }} alt="Image" class="img-fluid rounded mb-4" style="width: 90%">
                 </a>    
               </div>
             </div>
-            <div class="col-10 mb-1 pt-3 px-4 py-2 border">
+            <div class="col-10 mb-1 pt-3 px-4 py-2">
               <h5><a href={{ article.news_url }} class="text-black">{{ article.news_title }}</a></h5>
               <div>{{article.published_date}}</div>
               <div>{{article.id}}</div>
@@ -47,12 +47,13 @@
 
             </div>
           </div>
+          <hr>
             {% empty %}
             <div> 요청하신 Post가 없습니다. </div>
           
           {% endfor %}
         
-        <div class="row mt-5 align-self-center">
+        <div class="row mt-5 align-self-center justify-content-center">
           {% include "blog/pagination.html" %}
         </div>
       </div>
