@@ -39,9 +39,18 @@
                         {{contest.contest_period}}
                       </div>
                       <form action = "{% url 'contest_like' contest.id %}" method = "POST">{% csrf_token %}
-                            <input class = "btn btn-primary" type = "submit" value = "like">
-                          <div>좋아요 {{ contest.contest_like_count }} 개</div>
-                        </form>
+                        {% if user in contest.contest_likes.all %}
+                          <button type="submit" class="btn">
+                            <i class="fas fa-heart fa-lg" style="color:#ed4956;"></i>
+                          </button>
+                        <br>좋아요 {{ contest.contest_like_count }} 개
+                        {% else %}
+                          <button type="submit" class="btn">
+                            <i class="far fa-heart fa-lg" style="color:#ed4956;"></i>
+                          </button>
+                        <br>좋아요 {{ contest.contest_like_count }} 개
+                        {% endif %}
+                      </form>
                     </div>
 
                   </li>
