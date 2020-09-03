@@ -4,13 +4,12 @@
 {% block content %}
 {% if user in study.members.all %}
 <body>
-    <table>
-        <tr style="height: 150px;">
-            <td style="text-align: center; height: 70px;">
-                <div id="divContent" style="color: black; font-size: 55px; font-weight: bold;">{{ study.name }}</div>
-            </td>
+    <div class = container>
+        <div class="row justify-content-center">
+            <h1 class="font-weight-bold">{{ study.name }}</h1>
+        </td>
             <td style="width: 30px" rowspan=9></td>
-        </tr>
+        </div>
             <td style="vertical-align: top; padding-top: 20px; height: 30px;">
                 <div id="divBottom">
                     <div>
@@ -82,7 +81,7 @@
                 </div>
             </td>
         </tr>
-    </table>
+    
     {% else %}
         <div>[{{ study.name }}]에 가입되지 않은 사용자 입니다 :)</div>
     {% endif %}
@@ -141,5 +140,6 @@
             messageInputDom.value = '';
         };
     </script>
+    </div>
 </body>
 {% endblock %}

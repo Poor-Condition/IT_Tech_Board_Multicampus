@@ -8,20 +8,21 @@
           </div>
       </div>  
       <div class="row">
-        {% for study in studies %}
+        {% for study in posts %}
             <div class="col-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
                 <div class = "block__16443 bg-light">
-                    <div class="row"><h2>{{study.name}}</h2></div>
-                    <div class="row">장소: {{study.location}}</div>
-                    <div class="row">시간: {{study.time}}</div>
-                    <div class="row">스터디장: {{study.owner}}</div>
-                    <div class="row">멤버수: {{study.members.all.count}}</div>
-                    <div class="row">
+                    <div class="row pl-3"><h2>{{study.name}}</h2></div>
+                    <div class="row pl-3 mb-3">{{study.description}}</div>
+                    <div class="row pl-3">장소: {{study.location}}</div>
+                    <div class="row pl-3">시간: {{study.time}}</div>
+                    <div class="row pl-3">스터디장: {{study.owner.이름}}</div>
+                    <div class="row pl-3 mb-3">멤버수: {{study.members.all.count}} / {{study.max_member}}</div>
+                    <!-- <div class="row">
                         멤버:
                         {% for member in study.members.all %}
                             {{member.이름}}
                         {% endfor %}<br><br>
-                    </div>
+                    </div> -->
                     <div class="row">
                         {% if user.is_authenticated %}
                             {% if user in study.members.all %}
@@ -35,6 +36,9 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="row mt-5 justify-content-center">
+            {% include "blog/pagination.html" %}
+        </div>
     </div>
 </section>
 {% endblock %}
