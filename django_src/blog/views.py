@@ -373,3 +373,6 @@ def liked_jobs(request):
 
     return render(request, "blog/job/job_detail_list.html",
                   {"posts": posts, "page_name": "내가 찜한 채용공고", 'paginator': paginator, 'filter': job_filter, 'page': page})
+
+def contact(request):
+    return render(request, 'blog/contact/contact.html', {"page_name":"Contact"})
