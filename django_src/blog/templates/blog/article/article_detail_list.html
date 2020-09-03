@@ -40,11 +40,15 @@
 
               <form action = "{% url 'article_like' article.id %}" method = "POST">{% csrf_token %}
                 {% if user in article.article_likes.all %}
-                  <input class = "btn btn-outline-primary" type = "submit" value = "dislike">
-                {% else %}
-                  <input class = "btn btn-primary" type = "submit" value = "like">
+                  <button type="submit" class="btn">
+                    <i class="fas fa-heart fa-lg" style="color:red;"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" class="btn">
+                    <i class="far fa-heart fa-lg" style="color:red;"></i>
+                  </button>
                 {% endif %}
-              <div>좋아요 {{ article.article_like_count }} 개</div>
+              <span>좋아요 {{ article.article_like_count }} 개</span>
               </form>
 
             </div>

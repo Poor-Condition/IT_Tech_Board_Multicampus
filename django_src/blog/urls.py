@@ -93,4 +93,7 @@ urlpatterns = [
     path('liked_articles/', views.liked_articles, name='liked_articles'),
     path('liked_contests/', views.liked_contests, name='liked_contests'),
     path('liked_jobs/', views.liked_jobs, name='liked_jobs'),
+
+    #contact
+    path('contact', views.contact, name='contact'),
 ]
