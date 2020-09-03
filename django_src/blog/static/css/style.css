@@ -794,41 +794,42 @@ h1, h2, h3, h4 {
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%); }
 
-.bg-image {
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat; }
-  .bg-image.fixed {
-    background-attachment: fixed; }
-  .bg-image.overlay-primary {
-    position: relative; }
-    .bg-image.overlay-primary:before {
-      position: absolute;
-      content: "";
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(137, 186, 22, 0.9);
-      z-index: 1; }
-    .bg-image.overlay-primary > .container {
-      position: relative;
-      z-index: 2; }
-  .bg-image.overlay-blue {
-    position: relative; }
-    .bg-image.overlay-blue:before {
-      position: absolute;
-      content: "";
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(137, 186, 22, 0.9);
-      z-index: 1; }
-    .bg-image.overlay-blue > .container {
-      position: relative;
-      z-index: 2; }
 
+      .bg-image {
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat; }
+        .bg-image.fixed {
+          background-attachment: fixed; }
+        .bg-image.overlay-primary {
+          position: relative; }
+          .bg-image.overlay-primary:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(23, 162, 184, 0.8) !important;
+            z-index: 1; }
+          .bg-image.overlay-primary > .container {
+            position: relative;
+            z-index: 2; }
+        .bg-image.overlay-blue {
+          position: relative; }
+          .bg-image.overlay-blue:before {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:rgba(23, 162, 184, 0.8) !important;
+            z-index: 1; }
+          .bg-image.overlay-blue > .container {
+            position: relative;
+            z-index: 2; }
+      
 .form-group .filter-option:after {
   border: none !important;
   display: inline-block;
