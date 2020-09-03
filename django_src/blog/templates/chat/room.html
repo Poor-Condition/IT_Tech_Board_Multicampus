@@ -4,85 +4,68 @@
 {% block content %}
 {% if user in study.members.all %}
 <body>
-    <table>
-        <tr style="height: 150px;">
-            <td style="text-align: center; height: 70px;">
-                <div id="divContent" style="color: black; font-size: 55px; font-weight: bold;">{{ study.name }}</div>
-            </td>
-            <td style="width: 30px" rowspan=9></td>
-        </tr>
-            <td style="vertical-align: top; padding-top: 20px; height: 30px;">
-                <div id="divBottom">
+    <div class = container>
+       <div class="row">
+            <div class="col-4">
+                <div class="row mb-3 pl-3">
                     <div>
-                        <span class="starpline">Study Subject</span>
+                        <h2>Study Introduction</h2>
                     </div>
                     <hr>
-                    <div class="study-detail">[스터디 주제]</div>
+                    <p>
+                        안녕하세요!<br>
+                        Django Study 조장 {{study.owner.이름}}입니다.<br>
+                        저희 모임은 django를 함께 공부하는 모임입니다.<br>
+                        열심히 하실 분은 들어오세요~^^
+                    </p>
                 </div>
-            </td>
-            <td class="chat-study" rowspan=4 style="padding-top: 70px;">
-                <div id="chatWrap">
-                    <div id="chatHeader">[{{ study.name }}] Chat Room</div>
-                    <div id="chatLog"></div>
-                    <div id="chatForm">
-                        <input id="chat-message-input" type="text" autocomplete="off" size="30" placeholder="메시지를 입력하세요">
-                        <input id="chat-message-submit" type="submit" value="보내기">
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top; padding-top: 20px; height: 30px;">
-            <div>
-                <span class="starpline">Study Introduction</span>
-            </div>
-            <hr>
-                <div class="study-detail">
-                    안녕하세요!<br>
-                    Django Study 조장 OOO입니다.<br>
-                    저희 모임은 django를 함께 공부하는 모임입니다.<br>
-                    열심히 하실 분은 들어오세요~^^
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top; padding-top: 20px; height: 30px;">
-                <div id="divBottom">
-                    <div>
-                        <span class="starpline">Study Time</span>
-                    </div>
+                <hr>
+                <div class="row mb-3 pl-3">
+                    <h2>Study Time</h2><br>
                     <hr>
-                    <div class="study-detail">{{ study.time }}</div>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top; padding-top: 20px; height: 30px;">
-                <div id="divBottom">
-                    <div>
-                        <span class="starpline">Study Location</span>
-                    </div>
-                    <hr>
-                    <div class="study-detail">{{ study.location }}</div>
+                <div class="row mb-5 pl-3">
+                    <p><h5>{{ study.time }}</h5></p>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td style="vertical-align: top; padding-top: 20px; height: 30px;">
-                <div id="divBottom">
-                    <div>
-                        <span class="starpline">Study Member ({{ study.members.all.count }})</span> 
-                    </div>
+                <hr>
+                <div class="row mb-3 pl-3">
+                    <h2>Study Location</h2><br>
                     <hr>
-                    {% for member in study.members.all %}
-                    <div class="study-detail" data-id="1">
+                </div>
+                <div class="row mb-5 pl-3">
+                    <p><h5>{{ study.location }}</h5></p>
+                </div>
+                <hr>
+                <div class="row mb-3 pl-3">
+                    <h2>Study Member ({{ study.members.all.count }})</h2><br>
+                    <hr>
+                </div>
+                {% for member in study.members.all %}
+                    <div class="row mb-3 pl-3" data-id="1">
                         {{member.이름}} ({{ member.username }})
                     </div>
-                    {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="col-8 mb-5">
+                <div class="chat-container border border-secondary">
+                    <div id="chatWrap row">
+                        <div id="chatHeader">[{{ study.name }}] Chat Room</div>
+                        <div id="chatLog"></div>
+                        <div id="chatForm">
+                            <input id="chat-message-input" type="text" autocomplete="off" size="30" placeholder="메시지를 입력하세요" class="pl-3">
+                            <input id="chat-message-submit" type="submit" value="보내기">
+                        </div>
+                    </div>
                 </div>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+    </div>
+
+        
+        
+        
+        
+    
     {% else %}
         <div>[{{ study.name }}]에 가입되지 않은 사용자 입니다 :)</div>
     {% endif %}
@@ -141,5 +124,6 @@
             messageInputDom.value = '';
         };
     </script>
+    </div>
 </body>
 {% endblock %}

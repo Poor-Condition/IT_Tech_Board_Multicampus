@@ -1,6 +1,13 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    스터디 취소가 완료되었습니다.<br>
-    <a href="{% url 'study' %}">리스트로 돌아가기</a>
+    <div class="row mb-3">
+        <div class="col-3">
+            <a href="{% url 'study' %}"><< 리스트로 돌아가기</a>
+        </div>
+    </div>
+    <div class="row ml-3">
+        스터디 취소가 완료되었습니다.
+    </div>
+    
 {% endblock %}

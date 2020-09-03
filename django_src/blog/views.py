@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.core.serializers import json
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -220,11 +220,25 @@ def create_study(request):
             post.save()
             form.instance.members.add(user)
             return redirect('study')
-    return render(request, 'blog/study/create_study.html', {'form':form})
+    return render(request, 'blog/study/create_study.html', {'form':form, 'page_name':'새로운 스터디 등록'})
 
 def study(request):
     studies = Study.objects.all()
-    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디"})
+
+    paginator = Paginator(studies, 6)
+    page = request.GET.get("page", 1)
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디", "posts":posts, "page":page})
+    
 
 def my_study(request):
     user = request.user
@@ -270,6 +284,7 @@ def article_like(request, article_id):
         article.article_likes.add(user.id)
         article.article_like_count += 1
         article.save()
+
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
@@ -335,12 +350,8 @@ def liked_contests(request):
     user = request.user
     contests = Contest.objects.filter(contest_likes=user)
 
-    first = contests.order_by('-contest_views')[0]
-    second = contests.order_by('-contest_views')[1]
-    third = contests.order_by('-contest_views')[2]
-
     return render(request, "blog/contest/contest_detail_list.html",
-                  {"contests": contests, "page_name": '내가 찜한 공모전', "first": first, "second": second, "third": third})
+                  {"contests": contests, "page_name": '내가 찜한 공모전'})
 
 def liked_jobs(request):
     user = request.user
@@ -362,3 +373,6 @@ def liked_jobs(request):
 
     return render(request, "blog/job/job_detail_list.html",
                   {"posts": posts, "page_name": "내가 찜한 채용공고", 'paginator': paginator, 'filter': job_filter, 'page': page})
+
+def contact(request):
+    return render(request, 'blog/contact/contact.html', {"page_name":"Contact"})

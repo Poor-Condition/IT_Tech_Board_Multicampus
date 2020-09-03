@@ -39,19 +39,26 @@
               <div>{{ article.news_text }}</div>
 
               <form action = "{% url 'article_like' article.id %}" method = "POST">{% csrf_token %}
-                <input class = "btn btn-primary" type = "submit" value = "like">
-              <div>좋아요 {{ article.article_like_count }} 개</div>
+                {% if user in article.article_likes.all %}
+                  <button type="submit" class="btn">
+                    <i class="fas fa-heart fa-lg" style="color:red;"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" class="btn">
+                    <i class="far fa-heart fa-lg" style="color:red;"></i>
+                  </button>
+                {% endif %}
+              <span>좋아요 {{ article.article_like_count }} 개</span>
               </form>
-
 
             </div>
           </div>
           <hr>
             {% empty %}
             <div> 요청하신 Post가 없습니다. </div>
-          
+
           {% endfor %}
-        
+
         <div class="row mt-5 align-self-center justify-content-center">
           {% include "blog/pagination.html" %}
         </div>
