@@ -68,7 +68,6 @@ def article_list(request):
 def article_dev_list(request):
     return set_view(request, Articles, "개발자", "article", "개발자 뉴스")
 
-
 def article_cloud_list(request):
     return set_view(request, Articles, "클라우드", "article", "클라우드 뉴스")
 

@@ -4,25 +4,6 @@
   <div><h5>뉴스 > {{page_name}}</h5></div>
     <section class="site-section">
       <div class="container">
-        <!-- <h3>추천 뉴스</h3>
-        {% for recommend in recommends %}
-          <div class="row">
-            <div class="shadow-sm col-2 mb-2 pt-2 px-4 py-2 border">
-              <div class = "news-image">
-                <a href={{ recommend.news_url }}>
-                  <img src={{ recommend.image_link }} alt="Image" class="img-fluid rounded mb-4" style="width: 100%;">
-                </a>
-              </div>  
-            </div>
-            <div class="col-10 mb-2 pt-5 px-4 py-2 border">
-              <h4><a href={{ recommend.news_url }} class="text-black">{{recommend.news_title}}</a></h4>
-              <div>{{ recommend.news_text }}</div>
-              <div>{{ recommend.published_date }} <span class="mx-2">|</span></div>
-            </div>
-          </div>
-          {% empty %}
-        {% endfor %} -->
-
           <hr>
           {% for article in posts %}
           <div class="row">
