@@ -350,12 +350,8 @@ def liked_contests(request):
     user = request.user
     contests = Contest.objects.filter(contest_likes=user)
 
-    first = contests.order_by('-contest_views')[0]
-    second = contests.order_by('-contest_views')[1]
-    third = contests.order_by('-contest_views')[2]
-
     return render(request, "blog/contest/contest_detail_list.html",
-                  {"contests": contests, "page_name": '내가 찜한 공모전', "first": first, "second": second, "third": third})
+                  {"contests": contests, "page_name": '내가 찜한 공모전'})
 
 def liked_jobs(request):
     user = request.user
