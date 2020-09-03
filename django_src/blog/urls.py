@@ -13,7 +13,7 @@ urlpatterns = [
 
     #search
     path('search/', views.main_search, name='main_search'),
-    
+
     # 뉴스
     path('article', views.article_list, name='article_list'),
     path('article/dev/', views.article_dev_list, name='article_dev_list'),
@@ -93,4 +93,5 @@ urlpatterns = [
     path('liked_articles/', views.liked_articles, name='liked_articles'),
     path('liked_contests/', views.liked_contests, name='liked_contests'),
     path('liked_jobs/', views.liked_jobs, name='liked_jobs'),
+
 ]
