@@ -362,6 +362,7 @@ th, td {
             .site-navbar .site-navigation .site-menu .has-children .dropdown a.active {
               background: #ebeef0;
               color: #5EAAC1; }
+
           .site-navbar .site-navigation .site-menu .has-children .dropdown > li {
             list-style: none;
             padding: 0;
@@ -378,6 +379,8 @@ th, td {
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > a.active {
               background: #ebeef0;
               color: #5EAAC1; }
+
+
             .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > .dropdown, .site-navbar .site-navigation .site-menu .has-children .dropdown > li.has-children > ul {
               left: 100%;
               top: 0; }
@@ -487,6 +490,7 @@ th, td {
       color: #212529; }
       .site-mobile-menu .site-nav-wrap a:hover {
         color: #5EAAC1;
+
         text-decoration: none; }
     .site-mobile-menu .site-nav-wrap li {
       position: relative;
@@ -612,6 +616,7 @@ th, td {
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:after {
           height: 2px;
           background: #5EAAC1;
+
           position: absolute;
           bottom: 0;
           left: 20px;
@@ -624,6 +629,7 @@ th, td {
           transition: .3s all ease; }
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active {
           color: #5EAAC1;
+
           position: relative; }
           .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover:after, .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active:after {
             -webkit-transform: scale(1);
@@ -965,6 +971,7 @@ h1, h2, h3, h4 {
       transition: .3s all ease; }
       .job-listings .job-listing a:hover {
         border-left: 7px solid #5EAAC1; }
+
     .job-listings .job-listing .job-listing-logo {
       -webkit-box-flex: 0;
       -ms-flex: 0 0 150px;
@@ -1002,6 +1009,7 @@ h1, h2, h3, h4 {
 
 .custom-breadcrumbs a {
   color: #5EAAC1; }
+
   .custom-breadcrumbs a:hover {
     color: #fff; }
 
@@ -1137,6 +1145,7 @@ h1, h2, h3, h4 {
       text-decoration: none; }
       .popular-keywords .keywords li a:hover {
         background: #fff;
+
         color: #5EAAC1; }
 
 .btn:after, .btn:before {
@@ -1189,6 +1198,7 @@ h1, h2, h3, h4 {
     background: #5EAAC1;
     color: #fff;
     border-color: #5EAAC1; }
+
 
 .border-width-2 {
   border-width: 2px !important; }
@@ -1259,6 +1269,7 @@ h1, h2, h3, h4 {
       width: 90px;
       height: 90px;
       border: 1px solid rgb(182, 236, 255); }
+
   .block__62849 .block__16443 [class^="icon-"], .block__62849 .block__16443 [class^="flaticon-"] {
     font-size: 1.6rem;
     color: #fff;
@@ -1288,6 +1299,7 @@ h1, h2, h3, h4 {
       .block__62849 .block__16443:hover .custom-icon [class^="icon-"], .block__62849 .block__16443:hover .custom-icon [class^="flaticon-"] {
         color: #5eaac1; }
 
+
 .block__87154 {
   position: relative;
   background: #f8f9fa;
@@ -1297,6 +1309,7 @@ h1, h2, h3, h4 {
   .block__87154.bg-primary {
     -webkit-box-shadow: 0 5px 30px -5px rgb(94, 170, 193);
     box-shadow: 0 5px 30px -5px rgba(94, 170, 193, 0.8); }
+
     .block__87154.bg-primary p {
       font-size: 1.5rem;
       font-weight: 300;
@@ -1431,6 +1444,7 @@ h1, h2, h3, h4 {
       background: #5EAAC1;
       color: #fff;
       border: 1px solid #5EAAC1; }
+
     .block__76208 .accordion-item .heading > a[aria-expanded="false"]:before {
       /* content: "\e313"; */
       color: #ccc;
@@ -1583,6 +1597,7 @@ h1, h2, h3, h4 {
   height: 40px;
   position: relative;
   background: #5EAAC1;
+
   border-radius: 50%;
   text-decoration: none !important; }
   .footer-social a > span, .social a > span {
@@ -1597,6 +1612,7 @@ h1, h2, h3, h4 {
     background: #fff; }
     .footer-social a:hover span, .social a:hover span {
       color: #5EAAC1; }
+
 
 .social a:hover {
   background: #343a40; }
@@ -1789,6 +1805,7 @@ h1, h2, h3, h4 {
 .form-control:active, .form-control:focus {
   border-color: #5EAAC1 !important; }
 
+
 .comment-form-wrap {
   clear: both; }
 
@@ -1871,6 +1888,7 @@ h1, h2, h3, h4 {
       margin: 5px; }
     .single-carousel .owl-dots .owl-dot.active > span {
       background: #5EAAC1; }
+
 
 .single-carousel img {
   max-width: 400px;
