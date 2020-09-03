@@ -224,7 +224,21 @@ def create_study(request):
 
 def study(request):
     studies = Study.objects.all()
-    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디"})
+
+    paginator = Paginator(studies, 6)
+    page = request.GET.get("page", 1)
+
+    try:
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+
+    return render(request, 'blog/study/study.html', {'studies':studies, "page_name":"스터디", "posts":posts, "page":page})
+    
 
 def my_study(request):
     user = request.user

@@ -94,7 +94,7 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-md-12">
             <div class="mb-5 text-center">
-              <h1 class="text-white font-weight-bold">나에게 맞는 취업 정보를 검색해보세요</h1>
+              <h1 class="text-white font-weight-bold typewrite" data-period='10000' data-type='["나에게 맞는 취업 정보를 검색해보세요"]'></h1>
               <p>오늘의 뉴스부터 취업, 공모전 정보까지 필요한 정보를 한번에</p>
             </div>
             <form method="get" class="search-jobs-form" action="{% url 'main_search'%}">
@@ -230,6 +230,7 @@
   
   <script src="{% static 'js/quill.min.js' %}"></script>
   
+  <script src="{% static 'js/typewriter.js' %}"></script>
 
 </body>
 </html>
