@@ -267,16 +267,16 @@ th, td {
   .site-navbar .site-burger-menu, .site-navbar .right-cta-menu {
     position: absolute;
     right: 5%; }
-    @media (max-width: 767.98px) {
+    @media screen and (max-width: 767.98px) {
       .site-navbar .site-burger-menu, .site-navbar .right-cta-menu {
         position: relative;
         right: auto; } }
   .site-navbar .site-menu-toggle {
     color: #fff;
     line-height: 0;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     position: relative; }
-    @media (max-width: 767.98px) {
+    @media screen and (max-width: 767.98px) {
       .site-navbar .site-menu-toggle {
         margin-left: 5px; } }
   .site-navbar .site-navigation {
@@ -312,7 +312,7 @@ th, td {
           padding-right: 20px; }
           .site-navbar .site-navigation .site-menu .has-children > a:before {
             position: absolute;
-            font-size: 16px;
+            font-size: 12px;
             top: 50%;
             right: 0;
             -webkit-transform: translateY(-50%);
