@@ -13,11 +13,10 @@ class Articles(models.Model):
     field = models.CharField(db_column="분류", max_length=50)
     news_text = models.CharField(db_column="내용", max_length=500)
 
-    article_like_count = models.PositiveIntegerField(default=0)
+    article_like_count = models.PositiveIntegerField(db_column="article_like_count", default=0)
 
     article_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
-    article_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='article_user_likes', blank=True, db_constraint=False,
-                                           null=True)
+    article_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='article_user_likes', blank=True, db_constraint=False)
 
     class Meta:
         db_table = "articles"
@@ -39,10 +38,10 @@ class Jobs(models.Model):
     link = models.CharField(db_column='상세링크', max_length=300)
     field = models.CharField(db_column="분류필터", max_length=50)
 
-    job_like_count = models.PositiveIntegerField(default=0)
+    job_like_count = models.PositiveIntegerField(db_column="job_like_count", default=0)
 
     job_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
-    job_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='job_user_likes', blank=True, db_constraint=False, null=True)
+    job_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='job_user_likes', blank=True, db_constraint=False)
 
 
     class Meta:
@@ -68,11 +67,10 @@ class Contest(models.Model):
     contest_views = models.IntegerField(db_column="조회수")
     field = models.CharField(db_column="분류", max_length=50)
 
-    contest_like_count = models.PositiveIntegerField(default=0)
+    contest_like_count = models.PositiveIntegerField(db_column="contest_like_count", default=0)
 
     contest_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, db_constraint=False, null=True, blank=True)
-    contest_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='contest_user_likes', blank=True, db_constraint=False,
-                                           null=True)
+    contest_likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='contest_user_likes', blank=True, db_constraint=False)
 
     class Meta:
         db_table = "contest"
@@ -153,7 +151,7 @@ class Study(models.Model):
     description = models.CharField(max_length=500)
 
     owner = models.ForeignKey(User, related_name='owner', on_delete=models.CASCADE, default=1)
-    members = models.ManyToManyField(User, related_name='members', null=True)
+    members = models.ManyToManyField(User, related_name='members')
     
     class Meta:
         db_table = "study"
