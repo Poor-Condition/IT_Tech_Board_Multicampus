@@ -24,59 +24,61 @@
 
 <body>
 <div class="site-wrap">
-  <div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-      <div class="site-mobile-menu-close mt-3">
-        <span class="js-menu-toggle"><i class="fas fa-bars"></i></span>
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="js-menu-toggle">&#9776;</span>
+        </div>
       </div>
+      <div class="site-mobile-menu-body"></div>
     </div>
-    <div class="site-mobile-menu-body"></div>
-  </div> <!-- .site-mobile-menu -->
 
     <!-- NAVBAR -->
     <header class="site-navbar mt-4">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="site-logo col-6"><a href="{% url 'main_view' %}">IT_WAVE</a></div>
-
-          <nav class="mx-auto site-navigation">
-            <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0" style="font-size:18px">
-              <li class="has-children">
-                <a href="{% url 'article_list' %}">News<i class="fas fa-chevron-down ml-2"></i></a>
-                <ul class="dropdown">
-                  <li><a href="{% url 'article_dev_list' %}">개발자</a></li>
-                  <li><a href="{% url 'article_cloud_list' %}">클라우드</a></li>
-                  <li><a href="{% url 'article_big_data_list' %}">Big Data</a></li>
-                  <li><a href="{% url 'article_AI_list' %}">AI</a></li>
-                  <li><a href="{% url 'article_IoT_list' %}">IoT</a></li>
-                  <li><a href="{% url 'article_devops_list' %}">DevOps</a></li>
-                  <li><a href="{% url 'article_secure_list' %}">보안</a></li>
-                  <li><a href="{% url 'article_new_tech_list' %}">신기술</a></li>
-                </ul>
-              </li>
-              <li class="has-children">
-                <a href="{% url 'contest_list' %}">Contests<i class="fas fa-chevron-down ml-2"></i></a>
-                <ul class="dropdown">
-                  <li><a href="{% url 'contest_game_list' %}">게임 공모전</a></li>
-                  <li><a href="{% url 'contest_science_list' %}">과학 공모전</a></li>
-                  <li><a href="{% url 'contest_job_list' %}">취업/창업 공모전</a></li>
-                </ul>
-              </li>
-              <li class="has-children">
-                <a href="{% url 'job_list' %}">Job Listings</a>
-              </li>
-              <li class="has-children">
-                <a href="{% url 'study' %}">Community<i class="fas fa-chevron-down ml-2"></i></a>
+            <nav class="mx-auto site-navigation">
+              <!-- <label for="toggle" class="hamburger">&#9776;</label>
+              <input type="checkbox" id="toggle" style="display: none;"> -->
+              <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0" style="font-size:16px">
+                <li class="has-children">
+                  <a href="{% url 'article_list' %}">News<i class="fas fa-chevron-down ml-2"></i></a>
                   <ul class="dropdown">
-                    <li><a href="{% url 'study' %}">스터디</a></li>
+                    <li><a href="{% url 'article_dev_list' %}">개발자</a></li>
+                    <li><a href="{% url 'article_cloud_list' %}">클라우드</a></li>
+                    <li><a href="{% url 'article_big_data_list' %}">Big Data</a></li>
+                    <li><a href="{% url 'article_AI_list' %}">AI</a></li>
+                    <li><a href="{% url 'article_IoT_list' %}">IoT</a></li>
+                    <li><a href="{% url 'article_devops_list' %}">DevOps</a></li>
+                    <li><a href="{% url 'article_secure_list' %}">보안</a></li>
+                    <li><a href="{% url 'article_new_tech_list' %}">신기술</a></li>
                   </ul>
-              </li>
-              <li class="has-children">
-                <a href="{% url 'trend' %}">Trend</a>
-              </li>
-              <li><a href="{% url 'contact' %}">Contact</a></li>
-            </ul>
-          </nav>
+                </li>
+                <li class="has-children">
+                  <a href="{% url 'contest_list' %}">Contests<i class="fas fa-chevron-down ml-2"></i></a>
+                  <ul class="dropdown">
+                    <li><a href="{% url 'contest_game_list' %}">게임 공모전</a></li>
+                    <li><a href="{% url 'contest_science_list' %}">과학 공모전</a></li>
+                    <li><a href="{% url 'contest_job_list' %}">취업/창업 공모전</a></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <a href="{% url 'job_list' %}">Job Listings</a>
+                </li>
+                <li class="has-children">
+                  <a href="{% url 'study' %}">Community<i class="fas fa-chevron-down ml-2"></i></a>
+                    <ul class="dropdown">
+                      <li><a href="{% url 'study' %}">스터디</a></li>
+                    </ul>
+                </li>
+                <li class="has-children">
+                  <a href="{% url 'trend' %}">Trend</a>
+                </li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+              </ul> 
+            </nav>
 
           <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
             <div class="ml-auto">
@@ -88,8 +90,9 @@
                 <a href="{% url 'register' %}" style="color:white"><button class="btn btn-info border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-list-alt"></span><i class="far fa-list-alt mr-2"></i>Sign Up</a>
                 <a href="{% url 'login' %}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span><i class="fas fa-sign-in-alt mr-2"></i>Log In</a>
               {% endif %}
+              <label for="toggle" class="col-1 hamburger js-menu-toggle" style="position: absolute;">&#9776;</label>
+              <input type="checkbox" id="toggle" style="display: none;">  
             </div>
-            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
           </div>
         </div>
       </div>
