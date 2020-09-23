@@ -23,14 +23,6 @@
 
 <body>
   <div class="site-wrap">
-    <iv class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
-    </div> <!-- .site-mobile-menu -->
 
       <!-- NAVBAR -->
     <header class="site-navbar mt-4">
@@ -81,15 +73,18 @@
             <div class="ml-auto">
               {% if user.is_authenticated %}
                 <a href="{% url 'mypage' %}"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><i class="fas fa-user mr-2"></i>mypage</button></a>
-                <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>
+                <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>  
               {% endif %}
               {% if not user.is_authenticated %}
                 <a href="{% url 'register' %}" style="color:white"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-list-alt"></span><i class="far fa-list-alt mr-2"></i>Sign Up</a>
                 <a href="{% url 'login' %}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span><i class="fas fa-sign-in-alt mr-2"></i>Log In</a>
               {% endif %}
             </div>
-            <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-          </div>
+            <div class="hamburger">
+              <label for="toggle" style="z-index: 2; display: none;">&#9776;</label>
+              <input type="checkbox" id="toggle" style="display: none;">
+            </div>
+         </div>
         </div>
       </div>
     </header>

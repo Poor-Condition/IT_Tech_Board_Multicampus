@@ -234,7 +234,26 @@ th, td {
   font-size: 23px;
 }
 
+.hamburger{
+  font-size: 26px;
+  margin-left: 40px;
+  color: #fff;
+  max-width: 500px;
+  position: absolute;
+  margin-right: 10px;
+  display: none;
+}
 
+@media screen and (max-width: 1199.98px){
+  .hamburger{
+    display: block;
+    cursor: pointer;
+  }
+}
+
+#toggle{
+  
+}
 
 /* 여기서부터 부트스트랩 */
 .site-navbar {
@@ -560,6 +579,7 @@ th, td {
         width: auto; }
         .site-mobile-menu .site-nav-wrap[data-class="social"] > li:first-child a {
           padding-left: 15px !important; }
+
 
 .sticky-wrapper {
   position: absolute;
