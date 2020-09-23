@@ -12,3 +12,5 @@ FROM python:3.7
     WORKDIR /code/django_src
 
     CMD ["python", "manage.py", "runserver","0.0.0.0:8000"]
+
+    hello world
