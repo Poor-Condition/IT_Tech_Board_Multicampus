@@ -15,6 +15,8 @@ urlpatterns = [
     path('search/', views.main_search, name='main_search'),
     
     # 뉴스
+    path('article', views.article_list, name='article_list'),
+    path('article/dev/', views.article_dev_list, name='article_dev_list'),
     path('article/cloud/', views.article_cloud_list, name='article_cloud_list'),
     path('article/big_data/', views.article_big_data_list, name='article_big_data_list'),
     path('article/AI/', views.article_AI_list, name='article_AI_list'),
