@@ -235,6 +235,34 @@ th, td {
   font-size: 23px;
 }
 
+.hamburger{
+  font-size: 30px;
+  margin-left: 40px;
+  color: #fff;
+  max-width: 500px;
+  position: absolute;
+  margin-right: 10px;
+  display: none;
+}
+
+@media screen and (max-width: 1199.98px){
+  .hamburger{
+    display: block;
+    cursor: pointer;
+  }
+
+  /* .has-children{
+    display: block;
+    width: 100%;
+  }
+  .has-children a {
+    display: block;
+  } */
+}
+
+#toggle{
+  display: none;
+}
 
 
 /* 여기서부터 부트스트랩 */
@@ -247,17 +275,17 @@ th, td {
   .site-navbar .container-fluid {
     padding-left: 7rem;
     padding-right: 7rem; }
-    @media (max-width: 1199.98px) {
+    /* @media (max-width: 1199.98px) {
       .site-navbar .container-fluid {
         padding-left: 15px;
-        padding-right: 15px; } }
+        padding-right: 15px; } } */
   .site-navbar .site-logo {
     position: absolute;
     left: 5%; }
-    @media (max-width: 767.98px) {
+    /* @media (max-width: 767.98px) {
       .site-navbar .site-logo {
         position: relative;
-        left: auto; } }
+        left: auto; } } */
     .site-navbar .site-logo a {
       color: #fff;
       font-size: 1.5rem;
@@ -268,18 +296,18 @@ th, td {
   .site-navbar .site-burger-menu, .site-navbar .right-cta-menu {
     position: absolute;
     right: 5%; }
-    @media (max-width: 767.98px) {
+    /* @media screen and (max-width: 767.98px) {
       .site-navbar .site-burger-menu, .site-navbar .right-cta-menu {
         position: relative;
-        right: auto; } }
+        right: auto; } } */
   .site-navbar .site-menu-toggle {
     color: #fff;
     line-height: 0;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     position: relative; }
-    @media (max-width: 767.98px) {
+    /* @media screen and (max-width: 767.98px) {
       .site-navbar .site-menu-toggle {
-        margin-left: 5px; } }
+        margin-left: 5px; } } */
   .site-navbar .site-navigation {
     position: absolute;
     left: 50%;
@@ -313,7 +341,7 @@ th, td {
           padding-right: 20px; }
           .site-navbar .site-navigation .site-menu .has-children > a:before {
             position: absolute;
-            font-size: 16px;
+            font-size: 12px;
             top: 50%;
             right: 0;
             -webkit-transform: translateY(-50%);
@@ -561,6 +589,7 @@ th, td {
         width: auto; }
         .site-mobile-menu .site-nav-wrap[data-class="social"] > li:first-child a {
           padding-left: 15px !important; }
+
 
 .sticky-wrapper {
   position: absolute;

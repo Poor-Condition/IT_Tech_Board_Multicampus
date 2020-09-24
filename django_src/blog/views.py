@@ -156,6 +156,7 @@ def register(request):
             login(request, user)
             return render(request, 'registration/signup_done.html', {'user': user, "page_name": "Sign Up"})
 
+
     elif request.method == 'GET':
         user_form = RegisterForm()
 
@@ -197,7 +198,7 @@ def update(request):
 
     else:
         user_change_form=CustomUserChangeForm(instance=request.user)
-        return render(request, 'registration/update.html', {'user_change_form': user_change_form})
+        return render(request, 'registration/update.html', {'user_change_form': user_change_form, 'page_name':'회원 정보 수정'})
 
 @login_required
 def mypage(request):

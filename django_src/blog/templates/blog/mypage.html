@@ -4,21 +4,22 @@
 {% block content %}
 
 <!-- 내 정보 -->
-<section id="my-info">
-  <div class="row">
-    <div class="col-lg-3 mr-auto">
-      <div class="border p-4 rounded">
-        <ul class="list-unstyled block__47528 mb-0">
-          <li><span class="active">Welcome {{ user.이름 }}!</span></li><br>
-          <li><a href="#profile" class="smoothscroll">내 정보</a></li>
-          <li><a href="{% url 'update' %}">내 정보 수정</a></li>
-          <li><a href="#study" class="smoothscroll">내 스터디 관리</a></li>
-          <li><a href="#liked_posts" class="smoothscroll">좋아요한 게시물</a></li>
-        </ul>
-      </div>
+<div class="row">
+  <!-- 스크롤 가능한 사이드 바 -->
+  <div class="col-lg-3 mr-auto">
+    <div class="border p-4 rounded sticky-top" style="top:30px;">
+      <ul class="list-unstyled block__47528 mb-0">
+        <li><span class="active">Welcome {{ user.이름 }}!</span></li><br>
+        <li><a href="#profile" class="smoothscroll">내 정보</a></li>
+        <li><a href="{% url 'update' %}">내 정보 수정</a></li>
+        <li><a href="#study" class="smoothscroll">내 스터디 관리</a></li>
+        <li><a href="#liked_posts" class="smoothscroll">좋아요한 게시물</a></li>
+      </ul>
     </div>
-    <div class="col-lg-9 mt-0 pl-5" id="profile">
-      <h3>내 정보</h3>
+  </div>
+  <div class="col-lg-9 mt-0 pl-5">
+    <section id="my-info">
+      <h3 id="profile">내 정보</h3>
       <hr class="mb-4">
       <div class="row">
         <figure class="col-2 mr-4 profile"><img src= "{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid rounded-circle"></figure>
@@ -31,14 +32,10 @@
         </div>
         <p><a href="{% url 'update' %}" class="btn btn-primary btn-md mt-4">내 정보 수정</a></p>
       </div>
-    </div>  
-  </div>
-</section>
+    </section>
 
-<!-- 내 스터디 -->
-<section id="study" class="site-section services-section block__62849">
-  <div class="row justify-content-end">
-    <div class="col-9 pl-5 mt-5">
+    <!-- 내 스터디 -->
+    <section id="study" class="site-section services-section block__62849"> 
       <h3>내 스터디 관리</h3>
       <hr class="mb-4">
         <div class="row">
@@ -65,14 +62,10 @@
         <div class="row mt-3">
           <div class="col-11 offset-11"><a href="{% url 'my_study' %}">더보기>></a></div>
         </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- 좋아요 한 게시물 -->
-<section id="liked_posts">
-  <div class="row justify-content-end">
-    <div class="col-9 pl-5">
+    <!-- 좋아요 한 게시물 -->
+    <section id="liked_posts">
       <h3>좋아요 한 게시물</h3>
       <hr class="mb-4">
 
@@ -138,10 +131,8 @@
         </div>
         <div class="col-11 offset-11"><a href="{% url 'liked_contests' %}">더보기>></a></div>
       </section>
-    </div>
-  </div>
-</section>
-          
-
+    </section>
+  </div>           
+</div>
 
 {% endblock %}
