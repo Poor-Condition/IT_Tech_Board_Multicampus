@@ -8,15 +8,19 @@
         {% csrf_token %}
         <table class="table table-bordered table-hover">
         <tr>
-         <td>{{ form.username.label_tag }}</td><td>{{ form.username }}</td>
+            <td>{{ form.username.label_tag }}</td><td>{{ form.username }}</td>
         </tr>
         <tr>
-         <td>{{ form.password.label_tag }}</td><td>{{ form.password }}</td>
+            <td>{{ form.password.label_tag }}</td><td>{{ form.password }}</td>
         </tr>
         </table>
         <br>
-        <p>아이디가 없으신가요? <a href="{% url 'register' %}">회원가입</a></p>
-        <input type="submit" value="login" class="btn btn-primary btn-lg" />
-        <input type="hidden" name="next" value="{{ next }}" />
+        
+        <div style="padding-bottom: 50pt;">
+            <p>아이디가 없으신가요? <a href="{% url 'register' %}">회원가입</a></p>
+
+            <input type="submit" value="login" class="btn btn-primary btn-lg" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
     </form>
 {% endblock %}

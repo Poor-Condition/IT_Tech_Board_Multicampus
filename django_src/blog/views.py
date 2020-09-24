@@ -68,7 +68,6 @@ def article_list(request):
 def article_dev_list(request):
     return set_view(request, Articles, "개발자", "article", "개발자 뉴스")
 
-
 def article_cloud_list(request):
     return set_view(request, Articles, "클라우드", "article", "클라우드 뉴스")
 
@@ -155,7 +154,8 @@ def register(request):
             user.set_password(user_form.cleaned_data['password'])
             user.save()
             login(request, user)
-            return render(request, 'registration/signup_done.html', {'user': user, 'page_name':'Sign Up'})
+            return render(request, 'registration/signup_done.html', {'user': user, "page_name": "Sign Up"})
+
 
     elif request.method == 'GET':
         user_form = RegisterForm()
@@ -163,7 +163,7 @@ def register(request):
     if request.user.is_authenticated:
         return redirect('main_view')
 
-    return render(request, 'registration/signup.html', {'user_form': user_form, 'page_name':'Sign Up'})
+    return render(request, 'registration/signup.html', {'user_form': user_form, "page_name": "Sign Up"})
 
 def study_chat(request):
     return render(request, "chat/chat.html", {'page_name':'채팅방 입장하기'})

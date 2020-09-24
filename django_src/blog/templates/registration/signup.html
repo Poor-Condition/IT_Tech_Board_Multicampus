@@ -1,15 +1,15 @@
 {% extends "blog/base.html" %}
-{% block title %}회원가입{% endblock %}
-{% block page %}SIGN UP{% endblock %}
+<!-- {% block title %}회원가입{% endblock %}
+{% block page %}SIGN UP{% endblock %} -->
 
 {% block content %}
 <div style = "padding-left:50px; padding-top:50px;">
-    <h1>Sign up</h1>
+    <h3>Sign up</h3>
     <hr>
-    <form action = "" method = "POST">
+    <form action = "" method = "POST" style="padding-bottom: 100px;">
         {{user_form.as_p }}
         {% csrf_token %}
-        <input class = "btn btn-primary" type = "submit" value = "submit">
+        <input class="btn btn-primary" type="submit" value="submit">
     </form>
 </div>
 {% endblock %}

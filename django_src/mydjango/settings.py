@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-# Test
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,9 +31,9 @@ ALLOWED_HOSTS = [
     "172.30.1.15",
     "14.39.38.10",
     "127.0.0.1",
-    "192.168.111.100",
-    "192.168.33.10",
-    "0.0.0.0"
+    "0.0.0.0",
+    "itwave.site",
+    "www.itwave.site"
 ]
 
 
@@ -96,29 +95,24 @@ CHANNEL_LAYERS = {
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
+    'default': {
+     'ENGINE': 'django.db.backends.mysql',
+     'NAME': 'it_wave_db',  # DB명
+     'USER': 'root',  # 데이터베이스 계정
+     'PASSWORD': 'root',   # 계정 비밀번호
+     'HOST': 'localhost',  # 데이테베이스 IP
+     'PORT': '3307',  # 데이터베이스 port
+     }
+
     # 'default': {
     #  'ENGINE': 'django.db.backends.mysql',
     #  'NAME': 'poor_db',  # DB명
-    #  'USER': 'python',  # 데이터베이스 계정
-    #  'PASSWORD': 'python',   # 계정 비밀번호
-    #  'HOST': 'localhost',  # 데이테베이스 IP
+    #  'USER': 'django',  # 데이터베이스 계정
+    #  'PASSWORD': 'poordjango',   # 계정 비밀번호
+    #  'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
     #  'PORT': '3306',  # 데이터베이스 port
     #  }
-
-    'default': {
-     'ENGINE': 'django.db.backends.mysql',
-     'NAME': 'poor_db',  # DB명
-     'USER': 'django',  # 데이터베이스 계정
-     'PASSWORD': 'poordjango',   # 계정 비밀번호
-     'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
-     'PORT': '3306',  # 데이터베이스 port
-     }
 }
 
 # Password validation
@@ -177,5 +171,3 @@ LOGOUT_REDIRECT_URL='/'
 
 
 AUTH_USER_MODEL = 'blog.User'
-
-
