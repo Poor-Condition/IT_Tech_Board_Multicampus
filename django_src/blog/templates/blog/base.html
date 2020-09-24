@@ -28,7 +28,7 @@
         <div class="row align-items-center">
           <div class="site-logo col-6"><a href="{% url 'main_view' %}">IT_WAVE</a></div>
 
-          <nav class="mx-auto site-navigation">
+          <nav class="site-navigation">
             <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0" style="font-size:15pt">
               <li class="has-children">
                 <a href="#">News<i class="fas fa-chevron-down ml-2"></i></a>
@@ -71,11 +71,11 @@
             <div class="ml-auto">
               {% if user.is_authenticated %}
                 <a href="{% url 'mypage' %}"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><i class="fas fa-user mr-2"></i>mypage</button></a>
-                <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><i class="fas fa-sign-out-alt mr-2"></i>Log out</a>
+                <a href="{% url 'logout' %}?next={{request.path}}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><i class="fas fa-sign-out-alt mr-2"></i>Sign out</a>
               {% endif %}
               {% if not user.is_authenticated %}
                 <a href="{% url 'register' %}" style="color:white"><button class="btn btn-primary border-width-2 d-none d-lg-inline-block mr-2"><span class="glyphicon glyphicon-list-alt"></span><i class="far fa-list-alt mr-2"></i>Sign Up</a>
-                <a href="{% url 'login' %}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span><i class="fas fa-sign-in-alt mr-2"></i>Log In</a>
+                <a href="{% url 'login' %}"><button class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="glyphicon glyphicon-log-in"></span><i class="fas fa-sign-in-alt mr-2"></i>Sign In</a>
               {% endif %}
             </div>
             <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
@@ -115,12 +115,12 @@
           <div class="col-6 col-md-3 mb-4 mb-md-0">
             <h3>Search Trending</h3>
             <ul class="list-unstyled">
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Graphic Design</a></li>
-              <li><a href="#">Web Developers</a></li>
-              <li><a href="#">Python</a></li>
-              <li><a href="#">HTML5</a></li>
-              <li><a href="#">CSS3</a></li>
+              <li><a href="{% url 'trend' %}">Web Design</a></li>
+              <li><a href="{% url 'trend' %}">Graphic Design</a></li>
+              <li><a href="{% url 'trend' %}">Web Developers</a></li>
+              <li><a href="{% url 'trend' %}">Python</a></li>
+              <li><a href="{% url 'trend' %}">HTML5</a></li>
+              <li><a href="{% url 'trend' %}">CSS3</a></li>
             </ul>
           </div>
           <div class="col-6 col-md-3 mb-4 mb-md-0">

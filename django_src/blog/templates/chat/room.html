@@ -1,6 +1,5 @@
 {% extends "blog/base.html" %}
 
-
 {% block content %}
 {% if user in study.members.all %}
 <body>
@@ -48,7 +47,7 @@
             </div>
             <div class="col-8 mb-5">
                 <div class="chat-container border border-secondary">
-                    <div id="chatWrap row">
+                    <div id="chatWrap">
                         <div id="chatHeader">[{{ study.name }}] Chat Room</div>
                         <div id="chatLog"></div>
                         <div id="chatForm">
@@ -60,11 +59,6 @@
             </div>
         </div>
     </div>
-
-        
-        
-        
-        
     
     {% else %}
         <div>[{{ study.name }}]에 가입되지 않은 사용자 입니다 :)</div>
@@ -108,8 +102,10 @@
 
         document.querySelector('#chat-message-input').focus();
         document.querySelector('#chat-message-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#chat-message-submit').click();
+            if(document.querySelector('#chat-message-input').value != ""){
+                if (e.keyCode === 13) {  // enter, return
+                    document.querySelector('#chat-message-submit').click();
+                }
             }
         };
 
@@ -117,10 +113,12 @@
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
             socketId = chatSocket.id
-            chatSocket.send(JSON.stringify({
-                'message': message,
-                "name": "{{ user.이름 }}"
-            }));
+            if(message != ""){
+                chatSocket.send(JSON.stringify({
+                    'message': message,
+                    "name": "{{ user.이름 }}"
+                }));
+            }
             messageInputDom.value = '';
         };
     </script>
