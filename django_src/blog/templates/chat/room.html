@@ -9,19 +9,14 @@
             <div class="col-4">
                 <div class="row mb-3 pl-3">
                     <div>
-                        <h2>Study Introduction</h2>
+                        <h3>Study Introduction</h3>
                     </div>
                     <hr>
-                    <p>
-                        안녕하세요!<br>
-                        Django Study 조장 {{study.owner.이름}}입니다.<br>
-                        저희 모임은 django를 함께 공부하는 모임입니다.<br>
-                        열심히 하실 분은 들어오세요~^^
-                    </p>
+                    <p>{{ study.description }}</p>
                 </div>
                 <hr>
                 <div class="row mb-3 pl-3">
-                    <h2>Study Time</h2><br>
+                    <h3>Study Time</h3><br>
                     <hr>
                 </div>
                 <div class="row mb-5 pl-3">
@@ -29,7 +24,7 @@
                 </div>
                 <hr>
                 <div class="row mb-3 pl-3">
-                    <h2>Study Location</h2><br>
+                    <h3>Study Location</h3><br>
                     <hr>
                 </div>
                 <div class="row mb-5 pl-3">
@@ -37,7 +32,7 @@
                 </div>
                 <hr>
                 <div class="row mb-3 pl-3">
-                    <h2>Study Member ({{ study.members.all.count }})</h2><br>
+                    <h3>Study Member ({{ study.members.all.count }})</h3><br>
                     <hr>
                 </div>
                 {% for member in study.members.all %}
