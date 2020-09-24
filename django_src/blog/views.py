@@ -20,7 +20,7 @@ from .filters import JobFilter
 # @login_required
 
 
-# 메인 화면(임시)
+# 메인 화면
 def main_view(request):
     return render(request, "blog/main_view.html", )
 
