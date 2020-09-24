@@ -53,7 +53,7 @@ urlpatterns = [
     #회원가입
     path('register/', views.register, name = 'register'),
 
-    #필터된 정보
+    #필터된 정보u
     path('', FilterView.as_view(
             filterset_class=JobFilter,
             template_name='job/job_detail_list_temp.html'),
