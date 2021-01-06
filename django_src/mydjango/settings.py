@@ -96,23 +96,23 @@ CHANNEL_LAYERS = {
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 DATABASES = {
-    'default': {
-     'ENGINE': 'django.db.backends.mysql',
-     'NAME': 'poor_db',  # DB명
-     'USER': 'minji',  # 데이터베이스 계정
-     'PASSWORD': 'minji',   # 계정 비밀번호
-     'HOST': 'localhost',  # 데이테베이스 IP
-     'PORT': '3306',  # 데이터베이스 port
-     }
-
     # 'default': {
     #  'ENGINE': 'django.db.backends.mysql',
     #  'NAME': 'poor_db',  # DB명
-    #  'USER': 'django',  # 데이터베이스 계정
-    #  'PASSWORD': 'poordjango',   # 계정 비밀번호
-    #  'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
+    #  'USER': 'minji',  # 데이터베이스 계정
+    #  'PASSWORD': 'minji',   # 계정 비밀번호
+    #  'HOST': 'localhost',  # 데이테베이스 IP
     #  'PORT': '3306',  # 데이터베이스 port
     #  }
+
+    'default': {
+     'ENGINE': 'django.db.backends.mysql',
+     'NAME': 'poor_db',  # DB명
+     'USER': 'django',  # 데이터베이스 계정
+     'PASSWORD': 'poordjango',   # 계정 비밀번호
+     'HOST': 'poordb.cubqrb9xgtzf.us-east-1.rds.amazonaws.com',  # 데이테베이스 IP
+     'PORT': '3306',  # 데이터베이스 port
+     }
 }
 
 # Password validation
