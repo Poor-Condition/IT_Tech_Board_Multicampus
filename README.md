@@ -1,6 +1,6 @@
 # IT_WAVE README
 
-  * [🏖️ Project Overview / 프로젝트 개요](#----project-overview----------)
+  * [🏖️ Project Overview / 프로젝트 개요](https://github.com/Poor-Condition/IT_WAVE#%EF%B8%8F-project-overview--%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
   * [🖥️ 수행 도구](#---------)
   * [🛠️ 기능](#------)
   * [📖 프로젝트 아키텍처 및 설계](#-----------------)
