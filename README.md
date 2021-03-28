@@ -88,7 +88,7 @@ python manage.py runserver
 
 ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled%203.png](assets/Untitled_3.png)
 
-▪ 마이 페이지
+▪ **마이 페이지**
 
 ​	&nbsp;&nbsp;&nbsp;&nbsp;▫ 내 정보 / 스터디 / 좋아요 한 뉴스, 채용공고, 공모전이 한꺼번에 관리할 수 있는 정보 페이지
 
