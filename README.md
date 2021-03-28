@@ -13,7 +13,7 @@
 
 |                                                              |                                                              |
 | ------------------------------------------------------------ | :----------------------------------------------------------- |
-| ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Screen_Shot_2021-03-28_at_2.46.27_PM.png](assets/Screen_Shot_2021-03-28_at_2.46.27_PM.png) | ▪기획 의도<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 취업 준비생들이 필요로 하는 취업정보 (채용공고, 공모전, 뉴스)를 모아서 보여줄수 있는 웹사이트를 기획<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 현업 종사자, 다른 취업 준비생들과 소통하고 커리어를 쌓아갈 수 있는 커뮤니티를 기획<br /><br />▪ 웹사이트 링크: [www.itwave.site<br />](http://www.itwave.site)<br />▪ 프로젝트 포트폴리오: [컨디션난조_IT_WAVE_포트폴리오.pdf](https://drive.google.com/file/d/1sfaWo-qPXVE2zhVZeB6UsbKWGWvh6neN/view?usp=sharing)** |
+| ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Screen_Shot_2021-03-28_at_2.46.27_PM.png](assets/Screen_Shot_2021-03-28_at_2.46.27_PM.png) | ▪기획 의도<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 취업 준비생들이 필요로 하는 취업정보 (채용공고, 공모전, 뉴스)를 모아서 보여줄수 있는 웹사이트를 기획<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 현업 종사자, 다른 취업 준비생들과 소통하고 커리어를 쌓아갈 수 있는 커뮤니티를 기획<br /><br />▪ 웹사이트 링크: [www.itwave.site<br />](http://www.itwave.site)<br />▪ 프로젝트 포트폴리오: [컨디션난조_IT_WAVE_포트폴리오.pdf](https://drive.google.com/file/d/1sfaWo-qPXVE2zhVZeB6UsbKWGWvh6neN/view?usp=sharing) |
 
 
 
@@ -31,6 +31,7 @@
 <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=MariaDB&logoColor=white"/>&nbsp
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>&nbsp
 </p>&nbsp&nbsp&nbsp&nbsp
+
 **필요 패키지 설치**
 
 ```python
@@ -57,17 +58,19 @@ python manage.py runserver
 
 ▪ **메인 화면**
 
-![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled.png](assets/Untitled.png)
-
 ​	▫ 회원 여부를 판단하여 로그인과 회원 가입을 할 수 있다.
 
 ​	▫ 뉴스, 공모전, 채용, IT Trend, 스터디 게시판에 입장할 수 있다.
+
+![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled.png](assets/Untitled.png)
+
+
 
 ▪ **뉴스 / 공모전 / 채용**
 
 ​	▫ 회원 상관 없이 입장 가능
 
-▫ 뉴스 게시판
+​	▫ 뉴스 게시판
 
 ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Screen_Shot_2021-03-28_at_4.26.52_PM.png](assets/Screen_Shot_2021-03-28_at_4.26.52_PM.png)
 
@@ -77,7 +80,7 @@ python manage.py runserver
 
 ▫ 채용 공고 게시판
 
-![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled%202.png](assets/Untitled 2.png)
+![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled%202.png](assets/Untitled_2.png)
 
 ▪ **IT Trend 게시판**
 
@@ -85,7 +88,7 @@ python manage.py runserver
 
 ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled%203.png](assets/Untitled_3.png)
 
-▪ 마이 페이지
+▪ **마이 페이지**
 
 ​	&nbsp;&nbsp;&nbsp;&nbsp;▫ 내 정보 / 스터디 / 좋아요 한 뉴스, 채용공고, 공모전이 한꺼번에 관리할 수 있는 정보 페이지
 
