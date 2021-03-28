@@ -104,7 +104,7 @@ python manage.py runserver
 
 ​	&nbsp;&nbsp;&nbsp;&nbsp;▫ 스터디 가입 여부를 판단하여, 스터디 채팅 및 탈퇴 가능
 
-![Screen Shot 2021-03-28 at 5.50.11 PM](assets/Screen Shot 2021-03-28 at 5.50.11 PM.png)
+![Screen Shot 2021-03-28 at 5.50.11 PM](assets/study_chat.png)
 
 ## 📖 프로젝트 아키텍처 및 설계
 
