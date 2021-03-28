@@ -77,7 +77,7 @@ python manage.py runserver
 
 ▫ 채용 공고 게시판
 
-![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled%202.png](assets/Untitled 2.png)
+![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled%202.png](assets/Untitled_2.png)
 
 ▪ **IT Trend 게시판**
 
