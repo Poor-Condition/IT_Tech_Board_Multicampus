@@ -58,11 +58,13 @@ python manage.py runserver
 
 ▪ **메인 화면**
 
-![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled.png](assets/Untitled.png)
-
 ​	▫ 회원 여부를 판단하여 로그인과 회원 가입을 할 수 있다.
 
 ​	▫ 뉴스, 공모전, 채용, IT Trend, 스터디 게시판에 입장할 수 있다.
+
+![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Untitled.png](assets/Untitled.png)
+
+
 
 ▪ **뉴스 / 공모전 / 채용**
 
