@@ -1,6 +1,6 @@
 # IT_WAVE README
 
-  * [🏖️ Project Overview / 프로젝트 개요](#----project-overview----------)
+  * [🏖️ Project Overview / 프로젝트 개요](https://github.com/Poor-Condition/IT_WAVE#%EF%B8%8F-project-overview--%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
   * [🖥️ 수행 도구](#---------)
   * [🛠️ 기능](#------)
   * [📖 프로젝트 아키텍처 및 설계](#-----------------)
@@ -104,7 +104,7 @@ python manage.py runserver
 
 ​	&nbsp;&nbsp;&nbsp;&nbsp;▫ 스터디 가입 여부를 판단하여, 스터디 채팅 및 탈퇴 가능
 
-![Screen Shot 2021-03-28 at 5.50.11 PM](assets/Screen Shot 2021-03-28 at 5.50.11 PM.png)
+![Screen Shot 2021-03-28 at 5.50.11 PM](assets/study_chat.png)
 
 ## 📖 프로젝트 아키텍처 및 설계
 
