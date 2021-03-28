@@ -31,6 +31,7 @@
 <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=MariaDB&logoColor=white"/>&nbsp
 <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>&nbsp
 </p>&nbsp&nbsp&nbsp&nbsp
+
 **필요 패키지 설치**
 
 ```python
