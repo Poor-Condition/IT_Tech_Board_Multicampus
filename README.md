@@ -17,7 +17,7 @@
 
 
 
-## 🖥️ 수행 도구
+## 🖥️ 수행 도구 / 실행 방법
 
 <p align="left">
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>&nbsp
@@ -31,23 +31,16 @@
 <img src="https://img.shields.io/badge/MariaDB-003545?style=flat-square&logo=MariaDB&logoColor=white"/>&nbsp
 </p>&nbsp&nbsp&nbsp&nbsp
 
-### 협업
+필요 패키지 설치
+```python
+pip install -r requirements.txt
+```
 
-- Github
+서버 실행
+```python
+python manage.py runserver
+```
 
-### 개발
-
-- python3.7
-  - 웹 스크래핑 라이브러리(BeatifulSoup와 Request)
-  - 데이터 시각화 라이브러리(pandas, matplotlib, seaborn)
-- Django
-  - Django Channels
-- AWS RDS
-
-### 배포
-
-- AWS EC2
-- Docker
 
 ## 🛠️ 기능
 
