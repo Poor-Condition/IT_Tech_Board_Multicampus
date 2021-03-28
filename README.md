@@ -67,7 +67,7 @@ python manage.py runserver
 
 ​	▫ 회원 상관 없이 입장 가능
 
-▫ 뉴스 게시판
+​	▫ 뉴스 게시판
 
 ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Screen_Shot_2021-03-28_at_4.26.52_PM.png](assets/Screen_Shot_2021-03-28_at_4.26.52_PM.png)
 
