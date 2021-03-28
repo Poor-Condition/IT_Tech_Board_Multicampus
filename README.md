@@ -1,11 +1,11 @@
 # IT_WAVE README
 
   * [🏖️ Project Overview / 프로젝트 개요](https://github.com/Poor-Condition/IT_WAVE#%EF%B8%8F-project-overview--%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EA%B0%9C%EC%9A%94)
-  * [🖥️ 수행 도구](#---------)
-  * [🛠️ 기능](#------)
-  * [📖 프로젝트 아키텍처 및 설계](#-----------------)
-  * [🙋🏻‍♂️ 수행 역할](#-------------)
-  * [👩‍💻배운점 / 느낀점](#--------------)
+  * [🖥️ 수행 도구](https://github.com/Poor-Condition/IT_WAVE#%EF%B8%8F-%EC%88%98%ED%96%89-%EB%8F%84%EA%B5%AC--%EC%8B%A4%ED%96%89-%EB%B0%A9%EB%B2%95)
+  * [🛠️ 기능](https://github.com/Poor-Condition/IT_WAVE#%EF%B8%8F-%EA%B8%B0%EB%8A%A5)
+  * [📖 프로젝트 아키텍처 및 설계](https://github.com/Poor-Condition/IT_WAVE#-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%B0%8F-%EC%84%A4%EA%B3%84)
+  * [🙋🏻‍♂️ 수행 역할](https://github.com/Poor-Condition/IT_WAVE#%EF%B8%8F-%EC%88%98%ED%96%89-%EC%97%AD%ED%95%A0)
+  * [👩‍💻배운점 / 느낀점](https://github.com/Poor-Condition/IT_WAVE#%EB%B0%B0%EC%9A%B4%EC%A0%90--%EB%8A%90%EB%82%80%EC%A0%90)
 
 
 
