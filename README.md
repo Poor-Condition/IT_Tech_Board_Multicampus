@@ -13,7 +13,7 @@
 
 |                                                              |                                                              |
 | ------------------------------------------------------------ | :----------------------------------------------------------- |
-| ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Screen_Shot_2021-03-28_at_2.46.27_PM.png](assets/Screen_Shot_2021-03-28_at_2.46.27_PM.png) | ▪기획 의도<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 취업 준비생들이 필요로 하는 취업정보 (채용공고, 공모전, 뉴스)를 모아서 보여줄수 있는 웹사이트를 기획<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 현업 종사자, 다른 취업 준비생들과 소통하고 커리어를 쌓아갈 수 있는 커뮤니티를 기획<br /><br />▪ 웹사이트 링크: [www.itwave.site<br />](http://www.itwave.site)<br />▪ 프로젝트 포트폴리오: [컨디션난조_IT_WAVE_포트폴리오.pdf](https://drive.google.com/file/d/1sfaWo-qPXVE2zhVZeB6UsbKWGWvh6neN/view?usp=sharing)** |
+| ![IT_WAVE%20Read%20Me%20458d443382cf4216b14478ddfb0a2cad/Screen_Shot_2021-03-28_at_2.46.27_PM.png](assets/Screen_Shot_2021-03-28_at_2.46.27_PM.png) | ▪기획 의도<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 취업 준비생들이 필요로 하는 취업정보 (채용공고, 공모전, 뉴스)를 모아서 보여줄수 있는 웹사이트를 기획<br />&nbsp;&nbsp;&nbsp;&nbsp;▫ IT 현업 종사자, 다른 취업 준비생들과 소통하고 커리어를 쌓아갈 수 있는 커뮤니티를 기획<br /><br />▪ 웹사이트 링크: [www.itwave.site<br />](http://www.itwave.site)<br />▪ 프로젝트 포트폴리오: [컨디션난조_IT_WAVE_포트폴리오.pdf](https://drive.google.com/file/d/1sfaWo-qPXVE2zhVZeB6UsbKWGWvh6neN/view?usp=sharing) |
 
 
 
